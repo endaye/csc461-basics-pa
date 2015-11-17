@@ -1,0 +1,102 @@
+Program Assignment: 3 
+Name: Student Values
+------------Memory System------------
+
+Test14: 
+
+     memSystem mem;                     
+     mem.InitializeSystem();            
+     void *a = mem.Malloc( 0x200 );     
+     void *b = mem.Malloc( 0x200 );     
+     void *c = mem.Malloc( 0x300 );     
+     void *d = mem.Malloc( 0x300 );     
+     void *e = mem.Malloc( 0x300 );     
+     void *f = mem.Malloc( 0x400 );     
+     void *g = mem.Malloc( 0x300 );     
+     mem.dump();                        
+     mem.Free( a );                     
+     mem.Free( c );                     
+     mem.Free( f );                     
+     mem.dump();                        
+     void *r = mem.Malloc( 0x380 );     
+     mem.dump();                        
+
+------- DUMP -------------
+
+heapStart: 0x0016C190     
+heapEnd:   0x00178990 
+
+usedHead:  0x0016D330     
+freeHead:  0x0016D640 
+
+Heap Hdr   s: 0016C190  e: 0016C1D0                            size: 0x40 
+USED HDR   s: 0016C1D0  e: 0016C1E0  p: 0016C3E0  n: 00000000  size: 0x10    AF: 0 
+USED       s: 0016C1E0  e: 0016C3E0                            size: 0x200 
+USED HDR   s: 0016C3E0  e: 0016C3F0  p: 0016C5F0  n: 0016C1D0  size: 0x10    AF: 0 
+USED       s: 0016C3F0  e: 0016C5F0                            size: 0x200 
+USED HDR   s: 0016C5F0  e: 0016C600  p: 0016C900  n: 0016C3E0  size: 0x10    AF: 0 
+USED       s: 0016C600  e: 0016C900                            size: 0x300 
+USED HDR   s: 0016C900  e: 0016C910  p: 0016CC10  n: 0016C5F0  size: 0x10    AF: 0 
+USED       s: 0016C910  e: 0016CC10                            size: 0x300 
+USED HDR   s: 0016CC10  e: 0016CC20  p: 0016CF20  n: 0016C900  size: 0x10    AF: 0 
+USED       s: 0016CC20  e: 0016CF20                            size: 0x300 
+USED HDR   s: 0016CF20  e: 0016CF30  p: 0016D330  n: 0016CC10  size: 0x10    AF: 0 
+USED       s: 0016CF30  e: 0016D330                            size: 0x400 
+USED HDR   s: 0016D330  e: 0016D340  p: 00000000  n: 0016CF20  size: 0x10    AF: 0 
+USED       s: 0016D340  e: 0016D640                            size: 0x300 
+FREE HDR   s: 0016D640  e: 0016D650  p: 00000000  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 0016D650  e: 00178990                            size: 0xb340 
+
+------- DUMP -------------
+
+heapStart: 0x0016C190     
+heapEnd:   0x00178990 
+
+usedHead:  0x0016D330     
+freeHead:  0x0016C1D0 
+
+Heap Hdr   s: 0016C190  e: 0016C1D0                            size: 0x40 
+FREE HDR   s: 0016C1D0  e: 0016C1E0  p: 00000000  n: 0016C5F0  size: 0x10    AF: 0 
+FREE       s: 0016C1E0  e: 0016C3E0                            size: 0x200 
+USED HDR   s: 0016C3E0  e: 0016C3F0  p: 0016C900  n: 00000000  size: 0x10    AF: 1 
+USED       s: 0016C3F0  e: 0016C5F0                            size: 0x200 
+FREE HDR   s: 0016C5F0  e: 0016C600  p: 0016C1D0  n: 0016CF20  size: 0x10    AF: 0 
+FREE       s: 0016C600  e: 0016C900                            size: 0x300 
+USED HDR   s: 0016C900  e: 0016C910  p: 0016CC10  n: 0016C3E0  size: 0x10    AF: 1 
+USED       s: 0016C910  e: 0016CC10                            size: 0x300 
+USED HDR   s: 0016CC10  e: 0016CC20  p: 0016D330  n: 0016C900  size: 0x10    AF: 0 
+USED       s: 0016CC20  e: 0016CF20                            size: 0x300 
+FREE HDR   s: 0016CF20  e: 0016CF30  p: 0016C5F0  n: 0016D640  size: 0x10    AF: 0 
+FREE       s: 0016CF30  e: 0016D330                            size: 0x400 
+USED HDR   s: 0016D330  e: 0016D340  p: 00000000  n: 0016CC10  size: 0x10    AF: 1 
+USED       s: 0016D340  e: 0016D640                            size: 0x300 
+FREE HDR   s: 0016D640  e: 0016D650  p: 0016CF20  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 0016D650  e: 00178990                            size: 0xb340 
+
+------- DUMP -------------
+
+heapStart: 0x0016C190     
+heapEnd:   0x00178990 
+
+usedHead:  0x0016CF20     
+freeHead:  0x0016C1D0 
+
+Heap Hdr   s: 0016C190  e: 0016C1D0                            size: 0x40 
+FREE HDR   s: 0016C1D0  e: 0016C1E0  p: 00000000  n: 0016C5F0  size: 0x10    AF: 0 
+FREE       s: 0016C1E0  e: 0016C3E0                            size: 0x200 
+USED HDR   s: 0016C3E0  e: 0016C3F0  p: 0016C900  n: 00000000  size: 0x10    AF: 1 
+USED       s: 0016C3F0  e: 0016C5F0                            size: 0x200 
+FREE HDR   s: 0016C5F0  e: 0016C600  p: 0016C1D0  n: 0016D2B0  size: 0x10    AF: 0 
+FREE       s: 0016C600  e: 0016C900                            size: 0x300 
+USED HDR   s: 0016C900  e: 0016C910  p: 0016CC10  n: 0016C3E0  size: 0x10    AF: 1 
+USED       s: 0016C910  e: 0016CC10                            size: 0x300 
+USED HDR   s: 0016CC10  e: 0016CC20  p: 0016D330  n: 0016C900  size: 0x10    AF: 0 
+USED       s: 0016CC20  e: 0016CF20                            size: 0x300 
+USED HDR   s: 0016CF20  e: 0016CF30  p: 00000000  n: 0016D330  size: 0x10    AF: 0 
+USED       s: 0016CF30  e: 0016D2B0                            size: 0x380 
+FREE HDR   s: 0016D2B0  e: 0016D2C0  p: 0016C5F0  n: 0016D640  size: 0x10    AF: 0 
+FREE       s: 0016D2C0  e: 0016D330                            size: 0x70 
+USED HDR   s: 0016D330  e: 0016D340  p: 0016CF20  n: 0016CC10  size: 0x10    AF: 1 
+USED       s: 0016D340  e: 0016D640                            size: 0x300 
+FREE HDR   s: 0016D640  e: 0016D650  p: 0016D2B0  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 0016D650  e: 00178990                            size: 0xb340 

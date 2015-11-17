@@ -1,0 +1,33 @@
+﻿  Failure.cpp
+  output.cpp
+  SimpleString.cpp
+  Test.cpp
+  TestRegistry.cpp
+  TestResult.cpp
+  Timer.cpp
+  UnitTest.cpp
+  heap.cpp
+  main.cpp
+  mem.cpp
+  Mem_Stress_Tests.cpp
+  Mem_Test_1.cpp
+  Mem_Test_10.cpp
+  Mem_Test_11.cpp
+  Mem_Test_12.cpp
+  Mem_Test_13.cpp
+  Mem_Test_14.cpp
+  Mem_Test_15.cpp
+  Mem_Test_2.cpp
+  Compiling...
+  Mem_Test_3.cpp
+  Mem_Test_4.cpp
+  Mem_Test_5.cpp
+  Mem_Test_6.cpp
+  Mem_Test_7.cpp
+  Mem_Test_8.cpp
+  Mem_Test_9.cpp
+  Generating code
+c:\code\2015_optimized\reference\assignment\pa4\pa4 - memory  (with unit tests and stress )\pa4_memory\memory_tests\mem_stress_tests.cpp(42): warning C4702: unreachable code
+c:\code\2015_optimized\reference\assignment\pa4\pa4 - memory  (with unit tests and stress )\pa4_memory\main.cpp(36): warning C4702: unreachable code
+  Finished generating code
+  PA4_Memory.vcxproj -> C:\code\2015_Optimized\reference\Assignment\PA4\PA4 - Memory  (with unit tests and stress )\Release\PA4_Memory.exe

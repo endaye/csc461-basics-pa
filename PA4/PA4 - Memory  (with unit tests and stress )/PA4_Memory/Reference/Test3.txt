@@ -1,0 +1,39 @@
+Program Assignment: 3 
+Name: Student Values
+------------Memory System------------
+
+Test3: 
+
+ 1) allocate the biggest block          
+ 2) free it                             
+
+     memSystem mem;                     
+     mem.InitializeSystem();            
+     void *p = mem.Malloc( 0xc7b0 );    
+     mem.dump();                        
+     mem.Free( p );                     
+     mem.dump();                        
+
+------- DUMP -------------
+
+heapStart: 0x0016C190     
+heapEnd:   0x00178990 
+
+usedHead:  0x0016C1D0     
+freeHead:  0x00000000 
+
+Heap Hdr   s: 0016C190  e: 0016C1D0                            size: 0x40 
+USED HDR   s: 0016C1D0  e: 0016C1E0  p: 00000000  n: 00000000  size: 0x10    AF: 0 
+USED       s: 0016C1E0  e: 00178990                            size: 0xc7b0 
+
+------- DUMP -------------
+
+heapStart: 0x0016C190     
+heapEnd:   0x00178990 
+
+usedHead:  0x00000000     
+freeHead:  0x0016C1D0 
+
+Heap Hdr   s: 0016C190  e: 0016C1D0                            size: 0x40 
+FREE HDR   s: 0016C1D0  e: 0016C1E0  p: 00000000  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 0016C1E0  e: 00178990                            size: 0xc7b0 
