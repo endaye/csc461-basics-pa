@@ -1,1 +1,5 @@
 Student: Yuancheng Zhang
+
+11/17/2015
+1. changed double type to float
+2. added a switch in main.cpp
