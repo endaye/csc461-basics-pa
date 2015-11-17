@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{6fa94ab6-a27a-4994-bdba-42add07f81fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory_Tests">
+      <UniqueIdentifier>{c3ba1af1-efde-4a79-b6cc-b6b43f47cb3d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="heap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Failure.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\TestRegistry.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\TestResult.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\UnitTest.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\SimpleString.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Test.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\output.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Timer.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Stress_Tests.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_1.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_2.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_3.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_4.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_5.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_6.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_7.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_8.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_9.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_10.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_11.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_12.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_13.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_14.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory_Tests\Mem_Test_15.cpp">
+      <Filter>Memory_Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="freeHdr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="usedHdr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="freeHdr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="heapHdr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="memTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="usedHdr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\UnitTest.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\SimpleString.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\TestRegistry.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\output.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Timer.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

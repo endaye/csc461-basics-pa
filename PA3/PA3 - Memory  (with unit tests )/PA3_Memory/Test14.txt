@@ -1,0 +1,102 @@
+Program Assignment: 3 
+Name: Student Values
+------------Memory System------------
+
+Test14: 
+
+     memSystem mem;                     
+     mem.InitializeSystem();            
+     void *a = mem.Malloc( 0x200 );     
+     void *b = mem.Malloc( 0x200 );     
+     void *c = mem.Malloc( 0x300 );     
+     void *d = mem.Malloc( 0x300 );     
+     void *e = mem.Malloc( 0x300 );     
+     void *f = mem.Malloc( 0x400 );     
+     void *g = mem.Malloc( 0x300 );     
+     mem.dump();                        
+     mem.Free( a );                     
+     mem.Free( c );                     
+     mem.Free( f );                     
+     mem.dump();                        
+     void *r = mem.Malloc( 0x380 );     
+     mem.dump();                        
+
+------- DUMP -------------
+
+heapStart: 0x01608C60     
+heapEnd:   0x01615460 
+
+usedHead:  0x01609E00     
+freeHead:  0x0160A110 
+
+Heap Hdr   s: 01608C60  e: 01608CA0                            size: 0x40 
+USED HDR   s: 01608CA0  e: 01608CB0  p: 01608EB0  n: 00000000  size: 0x10    AF: 0 
+USED       s: 01608CB0  e: 01608EB0                            size: 0x200 
+USED HDR   s: 01608EB0  e: 01608EC0  p: 016090C0  n: 01608CA0  size: 0x10    AF: 0 
+USED       s: 01608EC0  e: 016090C0                            size: 0x200 
+USED HDR   s: 016090C0  e: 016090D0  p: 016093D0  n: 01608EB0  size: 0x10    AF: 0 
+USED       s: 016090D0  e: 016093D0                            size: 0x300 
+USED HDR   s: 016093D0  e: 016093E0  p: 016096E0  n: 016090C0  size: 0x10    AF: 0 
+USED       s: 016093E0  e: 016096E0                            size: 0x300 
+USED HDR   s: 016096E0  e: 016096F0  p: 016099F0  n: 016093D0  size: 0x10    AF: 0 
+USED       s: 016096F0  e: 016099F0                            size: 0x300 
+USED HDR   s: 016099F0  e: 01609A00  p: 01609E00  n: 016096E0  size: 0x10    AF: 0 
+USED       s: 01609A00  e: 01609E00                            size: 0x400 
+USED HDR   s: 01609E00  e: 01609E10  p: 00000000  n: 016099F0  size: 0x10    AF: 0 
+USED       s: 01609E10  e: 0160A110                            size: 0x300 
+FREE HDR   s: 0160A110  e: 0160A120  p: 00000000  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 0160A120  e: 01615460                            size: 0xb340 
+
+------- DUMP -------------
+
+heapStart: 0x01608C60     
+heapEnd:   0x01615460 
+
+usedHead:  0x01609E00     
+freeHead:  0x01608CA0 
+
+Heap Hdr   s: 01608C60  e: 01608CA0                            size: 0x40 
+FREE HDR   s: 01608CA0  e: 01608CB0  p: 00000000  n: 0160A110  size: 0x10    AF: 0 
+FREE       s: 01608CB0  e: 01608EB0                            size: 0x200 
+USED HDR   s: 01608EB0  e: 01608EC0  p: 016093D0  n: 00000000  size: 0x10    AF: 1 
+USED       s: 01608EC0  e: 016090C0                            size: 0x200 
+FREE HDR   s: 016090C0  e: 016090D0  p: 00000000  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 016090D0  e: 016093D0                            size: 0x300 
+USED HDR   s: 016093D0  e: 016093E0  p: 016096E0  n: 01608EB0  size: 0x10    AF: 1 
+USED       s: 016093E0  e: 016096E0                            size: 0x300 
+USED HDR   s: 016096E0  e: 016096F0  p: 01609E00  n: 016093D0  size: 0x10    AF: 0 
+USED       s: 016096F0  e: 016099F0                            size: 0x300 
+FREE HDR   s: 016099F0  e: 01609A00  p: 00000000  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 01609A00  e: 01609E00                            size: 0x400 
+USED HDR   s: 01609E00  e: 01609E10  p: 00000000  n: 016096E0  size: 0x10    AF: 1 
+USED       s: 01609E10  e: 0160A110                            size: 0x300 
+FREE HDR   s: 0160A110  e: 0160A120  p: 01608CA0  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 0160A120  e: 01615460                            size: 0xb340 
+
+------- DUMP -------------
+
+heapStart: 0x01608C60     
+heapEnd:   0x01615460 
+
+usedHead:  0x0160A110     
+freeHead:  0x01608CA0 
+
+Heap Hdr   s: 01608C60  e: 01608CA0                            size: 0x40 
+FREE HDR   s: 01608CA0  e: 01608CB0  p: 00000000  n: 0160A4A0  size: 0x10    AF: 0 
+FREE       s: 01608CB0  e: 01608EB0                            size: 0x200 
+USED HDR   s: 01608EB0  e: 01608EC0  p: 016093D0  n: 00000000  size: 0x10    AF: 1 
+USED       s: 01608EC0  e: 016090C0                            size: 0x200 
+FREE HDR   s: 016090C0  e: 016090D0  p: 00000000  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 016090D0  e: 016093D0                            size: 0x300 
+USED HDR   s: 016093D0  e: 016093E0  p: 016096E0  n: 01608EB0  size: 0x10    AF: 1 
+USED       s: 016093E0  e: 016096E0                            size: 0x300 
+USED HDR   s: 016096E0  e: 016096F0  p: 01609E00  n: 016093D0  size: 0x10    AF: 0 
+USED       s: 016096F0  e: 016099F0                            size: 0x300 
+FREE HDR   s: 016099F0  e: 01609A00  p: 00000000  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 01609A00  e: 01609E00                            size: 0x400 
+USED HDR   s: 01609E00  e: 01609E10  p: 0160A110  n: 016096E0  size: 0x10    AF: 1 
+USED       s: 01609E10  e: 0160A110                            size: 0x300 
+USED HDR   s: 0160A110  e: 0160A120  p: 00000000  n: 01609E00  size: 0x10    AF: 0 
+USED       s: 0160A120  e: 0160A4A0                            size: 0x380 
+FREE HDR   s: 0160A4A0  e: 0160A4B0  p: 01608CA0  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 0160A4B0  e: 01615460                            size: 0xafb0 

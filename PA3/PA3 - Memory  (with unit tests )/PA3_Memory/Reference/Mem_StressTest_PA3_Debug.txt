@@ -1,0 +1,7 @@
+Program Assignment: 3 
+Name: <your name>
+------------Memory System------------
+
+      Mem Lib: stress test: 6773.066895 ms 
+Custom Memory: stress test: 253.277420 ms 
+              times faster: 26.741693 

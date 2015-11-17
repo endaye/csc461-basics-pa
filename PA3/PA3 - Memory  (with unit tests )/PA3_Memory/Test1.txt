@@ -1,0 +1,21 @@
+Program Assignment: 3 
+Name: Student Values
+------------Memory System------------
+
+Test1: 
+
+     memSystem mem;               
+     mem.InitializeSystem();      
+     mem.dump();                  
+
+------- DUMP -------------
+
+heapStart: 0x016075A0     
+heapEnd:   0x01613DA0 
+
+usedHead:  0x00000000     
+freeHead:  0x016075E0 
+
+Heap Hdr   s: 016075A0  e: 016075E0                            size: 0x40 
+FREE HDR   s: 016075E0  e: 016075F0  p: 00000000  n: 00000000  size: 0x10    AF: 0 
+FREE       s: 016075F0  e: 01613DA0                            size: 0xc7b0 

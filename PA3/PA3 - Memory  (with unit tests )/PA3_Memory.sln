@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PA3_Memory", "PA3_Memory\PA3_Memory.vcxproj", "{4D6ED3D6-D38E-4C2D-B1DE-2A33F555B3CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D6ED3D6-D38E-4C2D-B1DE-2A33F555B3CF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4D6ED3D6-D38E-4C2D-B1DE-2A33F555B3CF}.Debug|Win32.Build.0 = Debug|Win32
+		{4D6ED3D6-D38E-4C2D-B1DE-2A33F555B3CF}.Release|Win32.ActiveCfg = Release|Win32
+		{4D6ED3D6-D38E-4C2D-B1DE-2A33F555B3CF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
