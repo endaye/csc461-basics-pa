@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="A">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAgAQAAAAAAAAAAAAAAAAAAAgAABgIGAAAAA=</HashCode>
+      <FileName>A.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAgAAAAAQEBAAA=</HashCode>
+      <FileName>A.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="C">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAgAABggGAAAAA=</HashCode>
+      <FileName>C.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="D">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAgAAAABQABAAA=</HashCode>
+      <FileName>C.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="E">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAgAAAAAAAAgAAAAAAAAAAAgAAAAAgAAAAA=</HashCode>
+      <FileName>E.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="F">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAQgAAAAAAAAAAAgAQAAEAAAAAA=</HashCode>
+      <FileName>E.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="G">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAEAAAAAAAAAAAAAAgAAAAAAAAAACgAAAACAAAAAA=</HashCode>
+      <FileName>E.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="M">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAACAAgAAAAAAAAAAAgAAAAAAIAAAA=</HashCode>
+      <FileName>M.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="N">
+    <Position X="11.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAgAAAABAAAAAAgAQAAABAAAAA=</HashCode>
+      <FileName>M.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="O">
+    <Position X="11.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAgAAAAAAAAAACgAAAAAAgAAAA=</HashCode>
+      <FileName>M.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
