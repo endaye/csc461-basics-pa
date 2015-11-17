@@ -1,0 +1,16 @@
+Program Assignment: 5 
+Name: Yuancheng Zhang
+
+ -----------Memory System------------
+
+Memory Time: 1893.420288 ms
+
+
+ --------- Bloated Nodes ---------------
+
+Creation of List: 10.958916 s
+        Find Key: 23.533175 ms
+
+ -----------Math Test------------
+
+Math test: 358.706909 ms

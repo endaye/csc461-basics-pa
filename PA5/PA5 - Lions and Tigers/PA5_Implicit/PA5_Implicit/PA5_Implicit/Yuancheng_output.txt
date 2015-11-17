@@ -1,0 +1,44 @@
+Program Assignment: 5 
+Name: Yuancheng Zhang
+Implicit Conversions
+Debug Mode
+Run with implict conversions: 278.895348 ms
+Run with NO implict conversions: 268.324604 ms
+		1.04 faster
+		
+Release Mode
+Run with implict conversions: 233.432055 ms
+Run with NO implict conversions: 212.140232 ms
+		1.10 faster
+
+ERRORS - for implicit conversion:
+
+1>------ Build started: Project: PA5_Implicit, Configuration: Debug Win32 ------
+1>  main.cpp
+1>  stressTest.cpp
+1>stressTest.cpp(39): error C2248: 'Vect::setX' : cannot access private member declared in class 'Vect'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(100) : see declaration of 'Vect::setX'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(5) : see declaration of 'Vect'
+1>stressTest.cpp(40): error C2248: 'Vect::setY' : cannot access private member declared in class 'Vect'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(101) : see declaration of 'Vect::setY'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(5) : see declaration of 'Vect'
+1>stressTest.cpp(41): error C2248: 'Vect::setZ' : cannot access private member declared in class 'Vect'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(102) : see declaration of 'Vect::setZ'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(5) : see declaration of 'Vect'
+1>stressTest.cpp(51): error C2248: 'Vect::setX' : cannot access private member declared in class 'Vect'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(100) : see declaration of 'Vect::setX'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(5) : see declaration of 'Vect'
+1>stressTest.cpp(53): error C2248: 'Vect::setZ' : cannot access private member declared in class 'Vect'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(102) : see declaration of 'Vect::setZ'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(5) : see declaration of 'Vect'
+1>stressTest.cpp(57): error C2248: 'Vect::set' : cannot access private member declared in class 'Vect'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(103) : see declaration of 'Vect::set'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(5) : see declaration of 'Vect'
+1>stressTest.cpp(62): error C2248: 'Vect::setZ' : cannot access private member declared in class 'Vect'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(102) : see declaration of 'Vect::setZ'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(5) : see declaration of 'Vect'
+1>stressTest.cpp(66): error C2248: 'Vect::setX' : cannot access private member declared in class 'Vect'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(100) : see declaration of 'Vect::setX'
+1>          c:\users\yuancheng\google drive\csc 461 optimized c++\pa5\pa5 - lions and tigers\pa5_implicit\pa5_implicit\pa5_implicit\PA5_A.h(5) : see declaration of 'Vect'
+1>  Generating Code...
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========

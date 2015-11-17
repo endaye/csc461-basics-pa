@@ -1,0 +1,17 @@
+Program Assignment: 5
+Name: Ed Keenan
+Proxy Objects
+
+Debug Mode
+
+Run without proxy objects: 16570.712891 ms
+Run _with_  proxy objects: 12142.890625 ms
+
+			 1.36  faster
+
+Release Mode
+
+Run without proxy objects: 1518.297241 ms
+Run _with_  proxy objects: 225.754288 ms
+
+                        6.74    faster

@@ -1,0 +1,5 @@
+Program Assignment: 5
+Name: Yuancheng Zhang
+Proxy Objects
+Release Mode
+Run _with__ proxy objects: 269.127136 ms

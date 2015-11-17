@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Benchmarks", "Benchmarks\Benchmarks.vcxproj", "{8387A83E-0987-4DF2-84D8-74AEDFADDF97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		MR_FAST|Win32 = MR_FAST|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8387A83E-0987-4DF2-84D8-74AEDFADDF97}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8387A83E-0987-4DF2-84D8-74AEDFADDF97}.Debug|Win32.Build.0 = Debug|Win32
+		{8387A83E-0987-4DF2-84D8-74AEDFADDF97}.MR_FAST|Win32.ActiveCfg = MR_FAST|Win32
+		{8387A83E-0987-4DF2-84D8-74AEDFADDF97}.MR_FAST|Win32.Build.0 = MR_FAST|Win32
+		{8387A83E-0987-4DF2-84D8-74AEDFADDF97}.Release|Win32.ActiveCfg = Release|Win32
+		{8387A83E-0987-4DF2-84D8-74AEDFADDF97}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,11 @@
+Program Assignment: 5 
+Name: Yuancheng Zhang
+RVO
+Debug Mode
+Run without RVO: 2660.312500 ms
+Run _with__ RVO: 1694.154419 ms
+		1.57 faster
+Release Mode
+Run without RVO: 1941.673218 ms
+Run _with__ RVO: 1350.872192 ms
+		1.44 faster

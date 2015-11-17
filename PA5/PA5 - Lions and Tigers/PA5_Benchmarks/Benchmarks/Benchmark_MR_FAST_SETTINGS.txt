@@ -1,0 +1,19 @@
+Program Assignment: 4 
+Name: Yuancheng Zhang
+
+Compiler Settings
+  - List any changes to the compiler settings here
+
+Enable C++ Exception: No
+Enable Enhanced Instruction Set: Streaming SIMD Extensions 2(/arch:SSE2)
+Whole Program Optimization: Yes (/GL)
+Treat Warning As Errors: Yes(/WX)
+Warning Level: Turn Off All Warnings(/W0)
+Optimization: Full Optimization(/Ox)
+Security Check: Disable Security Check(/GS~)
+Favor Size Or Speed: Favor fast code(/Ot)
+Floating Point Model: Fast(/fp:fast)
+Enable Minimal Rebuild: No(/Gm~)
+Enable Parallel Code Generation: Yes(/Qpar)
+Inline Funtion Expansion: Any Suitable(/Ob2)
+Compile As: Compile as C++ Code(/TP)

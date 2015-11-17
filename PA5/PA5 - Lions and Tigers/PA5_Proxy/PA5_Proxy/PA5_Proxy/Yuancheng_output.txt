@@ -1,0 +1,12 @@
+Program Assignment: 5
+Name: Yuancheng Zhang
+Proxy Objects
+Debug Mode
+Run without proxy objects: 16018.612305 ms
+Run _with__ proxy objects: 14570.581055 ms
+			1.1 faster
+
+Release Mode
+Run without proxy objects: 1263.154663 ms
+Run _with__ proxy objects: 265.921692 ms
+			4.76 faster
