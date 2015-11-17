@@ -66,6 +66,7 @@ int main (int argc, char * const argv[])
 
 	// counter for printing
 	int i = 0;
+	int j = 0;
 
 	// main update loop... do this forever or until some breaks 
 	while(OpenGLDevice::IsRunning())
@@ -131,6 +132,13 @@ int main (int argc, char * const argv[])
 			float updateTime = updateTimer.timeInSeconds();
 			float drawTime = drawTimer.timeInSeconds();
 			printf("LoopTime: update:%f ms  draw:%f ms  tot:%f\n",updateTime * 1000.0f, drawTime * 1000.0f, (updateTime + drawTime) *1000.0f);
+		}
+		
+		// turn off
+		j++;
+		if (j > 500)
+		{
+			break;
 		}
 	}
 	
