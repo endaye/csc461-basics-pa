@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basics9", "Basics9\Basics9.vcxproj", "{8076A810-5C32-4B4F-8DDD-68B4CCB8156F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{742F4D27-E36B-4663-8845-C872DD60A25E} = {742F4D27-E36B-4663-8845-C872DD60A25E}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parse", "parse\parse.vcxproj", "{742F4D27-E36B-4663-8845-C872DD60A25E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8076A810-5C32-4B4F-8DDD-68B4CCB8156F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8076A810-5C32-4B4F-8DDD-68B4CCB8156F}.Debug|Win32.Build.0 = Debug|Win32
+		{742F4D27-E36B-4663-8845-C872DD60A25E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{742F4D27-E36B-4663-8845-C872DD60A25E}.Debug|Win32.Build.0 = Debug|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
