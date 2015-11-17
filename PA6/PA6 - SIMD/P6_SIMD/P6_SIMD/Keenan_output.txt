@@ -1,0 +1,64 @@
+Program Assignment: 5
+Name: Ed Keenan
+PA5 - Intrinsics & SIMD
+
+
+-- DEBUG ------------------------------------
+
+---------- Vect4D ----------------
+  Vect4D Orig: 0.804890  
+  Vect4D_SIMD: 0.807652
+       Faster: 0.996580
+
+
+---------- Matrix ----------------
+  Matrix Orig: 0.667059
+  Matrix SIMD: 0.842585
+       Faster: 0.791681
+
+
+---------- Vect * Matrix ----------------
+  Vect*Matrix Orig: 0.460973
+  Vect*Matrix_SIMD: 0.764922
+            Faster: 0.602641
+
+
+---------- LERP ----------------
+  LERP Orig: 12.748580
+  LERP SIMD: 1.802870
+     Faster: 7.071268
+
+
+
+
+-- RELEASE------------------------------------
+
+
+---------- Vect4D ----------------
+  Vect4D Orig: 0.144225  
+  Vect4D_SIMD: 0.122201
+       Faster: 1.180227
+
+
+---------- Matrix ----------------
+  Matrix Orig: 0.329669
+  Matrix SIMD: 0.079514
+       Faster: 4.146054
+
+
+---------- Vect * Matrix ----------------
+  Vect*Matrix Orig: 0.226023
+  Vect*Matrix_SIMD: 0.110898
+            Faster: 2.038121
+
+
+---------- LERP ----------------
+  LERP Orig: 0.573672
+  LERP SIMD: 0.106908
+     Faster: 5.366028
+
+
+
+
+
+

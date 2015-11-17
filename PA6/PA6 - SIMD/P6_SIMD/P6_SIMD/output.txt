@@ -1,0 +1,59 @@
+Program Assignment: 5 
+Name: Yuancheng Zhang
+PA5 - Intrinsics & SIMD
+
+
+
+-- Debug ------------------------------
+
+---------- Vect4D ----------------
+  Vect4D Orig: 2.260186  
+  Vect4D_SIMD: 2.197844
+       Faster: 1.028365
+
+
+---------- Matrix ----------------
+  Matrix Orig: 1.948221
+  Matrix SIMD: 2.200214
+       Faster: 0.885469
+
+
+---------- Vect * Matrix ----------------
+  Vect*Matrix Orig: 1.402965
+  Vect*Matrix_SIMD: 2.180923
+            Faster: 0.643289
+
+
+---------- LERP ----------------
+  LERP Orig: 0.479577
+  LERP SIMD: 1.035271
+     Faster: 0.463238
+
+	 
+	 
+	 
+	 
+-- Release ------------------------------
+
+---------- Vect4D ----------------
+  Vect4D Orig: 1.433795  
+  Vect4D_SIMD: 1.446151
+       Faster: 0.991457
+
+
+---------- Matrix ----------------
+  Matrix Orig: 4.193743
+  Matrix SIMD: 2.854249
+       Faster: 1.469298
+
+
+---------- Vect * Matrix ----------------
+  Vect*Matrix Orig: 3.192958
+  Vect*Matrix_SIMD: 2.094114
+            Faster: 1.524730
+
+
+---------- LERP ----------------
+  LERP Orig: 0.028506
+  LERP SIMD: 1.228260
+     Faster: 0.023209
