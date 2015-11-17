@@ -7,25 +7,25 @@
 
 Matrix::Matrix()
 {	// constructor for the matrix
-	this->m0 = 0.0;
-	this->m1 = 0.0;
-	this->m2 = 0.0;
-	this->m3 = 0.0;
+	this->m0 = 0.0f;
+	this->m1 = 0.0f;
+	this->m2 = 0.0f;
+	this->m3 = 0.0f;
 
-	this->m4 = 0.0;
-	this->m5 = 0.0;
-	this->m6 = 0.0;
-	this->m7 = 0.0;
+	this->m4 = 0.0f;
+	this->m5 = 0.0f;
+	this->m6 = 0.0f;
+	this->m7 = 0.0f;
 
-	this->m8 = 0.0;
-	this->m9 = 0.0;
-	this->m10 = 0.0;
-	this->m11 = 0.0;
+	this->m8 = 0.0f;
+	this->m9 = 0.0f;
+	this->m10 = 0.0f;
+	this->m11 = 0.0f;
 	
-	this->m12 = 0.0;
-	this->m13 = 0.0;
-	this->m14 = 0.0;
-	this->m15 = 0.0;
+	this->m12 = 0.0f;
+	this->m13 = 0.0f;
+	this->m14 = 0.0f;
+	this->m15 = 0.0f;
 }
 
 
@@ -60,48 +60,48 @@ Matrix::~Matrix()
 
 void Matrix::setIdentMatrix()
 { // initialize to the identity matrix
-	this->m0 = 1.0;
-	this->m1 = 0.0;
-	this->m2 = 0.0;
-	this->m3 = 0.0;
+	this->m0 = 1.0f;
+	this->m1 = 0.0f;
+	this->m2 = 0.0f;
+	this->m3 = 0.0f;
 
-	this->m4 = 0.0;
-	this->m5 = 1.0;
-	this->m6 = 0.0;
-	this->m7 = 0.0;
+	this->m4 = 0.0f;
+	this->m5 = 1.0f;
+	this->m6 = 0.0f;
+	this->m7 = 0.0f;
 
-	this->m8 = 0.0;
-	this->m9 = 0.0;
-	this->m10 = 1.0;
-	this->m11 = 0.0;
+	this->m8 = 0.0f;
+	this->m9 = 0.0f;
+	this->m10 = 1.0f;
+	this->m11 = 0.0f;
 	
-	this->m12 = 0.0;
-	this->m13 = 0.0;
-	this->m14 = 0.0;
-	this->m15 = 1.0;
+	this->m12 = 0.0f;
+	this->m13 = 0.0f;
+	this->m14 = 0.0f;
+	this->m15 = 1.0f;
 }
 
 void Matrix::setTransMatrix(Vect4D *t)
 { // set the translation matrix (note: we are row major)
-	this->m0 = 1.0;
-	this->m1 = 0.0;
-	this->m2 = 0.0;
-	this->m3 = 0.0;
+	this->m0 = 1.0f;
+	this->m1 = 0.0f;
+	this->m2 = 0.0f;
+	this->m3 = 0.0f;
 
-	this->m4 = 0.0;
-	this->m5 = 1.0;
-	this->m6 = 0.0;
-	this->m7 = 0.0;
+	this->m4 = 0.0f;
+	this->m5 = 1.0f;
+	this->m6 = 0.0f;
+	this->m7 = 0.0f;
 
-	this->m8 = 0.0;
-	this->m9 = 0.0;
-	this->m10 = 1.0;
-	this->m11 = 0.0;
+	this->m8 = 0.0f;
+	this->m9 = 0.0f;
+	this->m10 = 1.0f;
+	this->m11 = 0.0f;
 	
 	this->m12 = t->x;
 	this->m13 = t->y;
 	this->m14 = t->z;
-	this->m15 = 1.0;
+	this->m15 = 1.0f;
 }
 
 void Matrix::set( MatrixRowEnum row, Vect4D *t )
@@ -558,7 +558,7 @@ void Matrix::setScaleMatrix(Vect4D *scale)
 	this->m12 = 0;
 	this->m13 = 0;
 	this->m14 = 0;
-	this->m15 = 1.0;
+	this->m15 = 1.0f;
 }
 
 void Matrix::setRotZMatrix(double az)

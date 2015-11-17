@@ -244,8 +244,8 @@ void ParticleEmitter::draw()
 		// pivot Point
 		Matrix pivotParticle;
 		Vect4D pivotVect;
-		pivotVect.set(1.0, 0.0, 50.0);
-		pivotVect = pivotVect * 20.0 * it->life;
+		pivotVect.set(1.0f, 0.0f, 50.0f);
+		pivotVect = pivotVect * 20.0f * it->life;
 		pivotParticle.setTransMatrix( &pivotVect );
 
 		// scale Matrix
@@ -299,79 +299,79 @@ void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc)
 	// Sometimes code like this is inside real commerical code ( so now you know how it feels )
 	
 	// x - variance
-	double var = static_cast<double>(rand() % 1000) * 0.001f;
-	double sign = static_cast<double>(rand() % 2);
-	double *t_pos = reinterpret_cast<double*>(&pos);
-	double *t_var = &pos_variance[x];
+	float var = static_cast<float>(rand() % 1000) * 0.001f;
+	float sign = static_cast<float>(rand() % 2);
+	float *t_pos = reinterpret_cast<float*>(&pos);
+	float *t_var = &pos_variance[x];
 	if(sign == 0)
 	{
-		var *= -1.0;
+		var *= -1.0f;
 	}
 	*t_pos += *t_var * var;
 
 	// y - variance
-	var = static_cast<double>(rand() % 1000) * 0.001f;
-	sign = static_cast<double>(rand() % 2);
+	var = static_cast<float>(rand() % 1000) * 0.001f;
+	sign = static_cast<float>(rand() % 2);
 	t_pos++;
 	t_var++;
 	if(sign == 0)
 	{
-		var *= -1.0;
+		var *= -1.0f;
 	}
 	*t_pos += *t_var * var;
 	
 	// z - variance
-	var = static_cast<double>(rand() % 1000) * 0.001f;
-	sign = static_cast<double>(rand() % 2);
+	var = static_cast<float>(rand() % 1000) * 0.001f;
+	sign = static_cast<float>(rand() % 2);
 	t_pos++;
 	t_var++;
 	if(sign == 0)
 	{
-		var *= -1.0;
+		var *= -1.0f;
 	}
 	*t_pos += *t_var * var;
 	
-	var = static_cast<double>(rand() % 1000) * 0.001f;
-	sign = static_cast<double>(rand() % 2);
+	var = static_cast<float>(rand() % 1000) * 0.001f;
+	sign = static_cast<float>(rand() % 2);
 	
 	// x  - add velocity
 	t_pos = &vel[x];
 	t_var = &vel_variance[x];
 	if(sign == 0)
 	{
-		var *= -1.0;
+		var *= -1.0f;
 	}
 	*t_pos += *t_var * var;
 	
 	// y - add velocity
-	var = static_cast<double>(rand() % 1000) * 0.001f;
-	sign = static_cast<double>(rand() % 2);
+	var = static_cast<float>(rand() % 1000) * 0.001f;
+	sign = static_cast<float>(rand() % 2);
 	t_pos++;
 	t_var++;
 	if(sign == 0)
 	{
-		var *= -1.0;
+		var *= -1.0f;
 	}
 	*t_pos += *t_var * var;
 	
 	// z - add velocity
-	var = static_cast<double>(rand() % 1000) * 0.001f;
-	sign = static_cast<double>(rand() % 2);
+	var = static_cast<float>(rand() % 1000) * 0.001f;
+	sign = static_cast<float>(rand() % 2);
 	t_pos++;
 	t_var++;
 	if(sign == 0)
 	{
-		var *= -1.0;
+		var *= -1.0f;
 	}
 	*t_pos += *t_var * var;
 	
 	// correct the sign
-	var = 2.0f * static_cast<double>(rand() % 1000) * 0.001f;
-	sign = static_cast<double>(rand() % 2);
+	var = 2.0f * static_cast<float>(rand() % 1000) * 0.001f;
+	sign = static_cast<float>(rand() % 2);
 	
 	if(sign == 0)
 	{
-		var *= -1.0;
+		var *= -1.0f;
 	}
 	sc = sc * var;
 }

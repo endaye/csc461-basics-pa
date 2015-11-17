@@ -67,9 +67,9 @@ void Particle::Update(const double& time_elapsed)
 	v.norm(v);
 	position = position + v * 0.05f * life;
 
-	if( scale > 1.0 )
+	if( scale > 1.0f )
 	{
-		scale = 1.0/scale;
+		scale = 1.0f/scale;
 	};
 
 	rotation = rotation + scale + rotation_velocity * time_elapsed * 2.01f;
