@@ -1,0 +1,90 @@
+Program Assignment: 7 
+Name: <YOUR NAME>
+
+Original nodes in Memory
+
+   Node Addr: 0x003457C8
+        next: 0x00345938
+        prev: 0x00000000
+           x: 0x6a894968
+           y: 0x3f413285
+           z: 0x75b942cf
+         key: 0xbbbbbbbb
+
+   Node Addr: 0x00345938
+        next: 0x00344F88
+        prev: 0x003457C8
+           x: 0x1c756f0c
+           y: 0x41266568
+           z: 0x6551d5
+         key: 0xcccccccc
+
+   Node Addr: 0x00344F88
+        next: 0x00345A78
+        prev: 0x00345938
+           x: 0x294823
+           y: 0x18be6784
+           z: 0x4ae13d6c
+         key: 0xaaaaaaaa
+
+   Node Addr: 0x00345A78
+        next: 0x0034BD10
+        prev: 0x00344F88
+           x: 0x105c31ac
+           y: 0x3465206
+           z: 0x2e8b445b
+         key: 0xeeeeeeee
+
+   Node Addr: 0x0034BD10
+        next: 0x00000000
+        prev: 0x00345A78
+           x: 0x30f94877
+           y: 0x64fb0aac
+           z: 0x7b4d49fa
+         key: 0xdddddddd
+
+
+Sample output, obviously you will have numbers in the pointer locations.
+
+New linked list after loading it back from a file
+
+   Node Addr: <some new address>    
+        next: <some new address> 
+        prev: 0x00000000
+           x: 0x6a894968
+           y: 0x3f413285
+           z: 0x75b942cf
+         key: 0xbbbbbbbb
+
+   Node Addr: <some new address> 
+        next: <some new address> 
+        prev: <some new address> 
+           x: 0x1c756f0c
+           y: 0x41266568
+           z: 0x6551d5
+         key: 0xcccccccc
+
+   Node Addr: <some new address> 
+        next: <some new address> 
+        prev: <some new address> 
+           x: 0x294823
+           y: 0x18be6784
+           z: 0x4ae13d6c
+         key: 0xaaaaaaaa
+
+   Node Addr: <some new address> 
+        next: <some new address> 
+        prev: <some new address> 
+           x: 0x105c31ac
+           y: 0x3465206
+           z: 0x2e8b445b
+         key: 0xeeeeeeee
+
+   Node Addr: <some new address> 
+        next: 0x00000000
+        prev: <some new address> 
+           x: 0x30f94877
+           y: 0x64fb0aac
+           z: 0x7b4d49fa
+         key: 0xdddddddd
+
