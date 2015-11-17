@@ -1,0 +1,34 @@
+Basics 6 
+Name: Ed Keenan
+
+------------Basics STL------------
+
+original
+
+        zippy[0]: s:Bug  zip:0xabcd 
+        zippy[1]: s:Dog  zip:0x1331 
+        zippy[2]: s:Cat  zip:0x8844 
+        zippy[3]: s:Pig  zip:0xbb77 
+        zippy[4]: s:Bee  zip:0xffee 
+
+stl: insert into a set
+     compare function sorts 2nd character of string
+
+        zippy[0]: s:Cat  zip:0x8844 
+        zippy[1]: s:Bee  zip:0xffee 
+        zippy[2]: s:Pig  zip:0xbb77 
+        zippy[3]: s:Dog  zip:0x1331 
+        zippy[4]: s:Bug  zip:0xabcd 
+
+stl: find node using complete node: {"Bee", 0xFFEE } 
+
+        zippy: s:Bee     
+               zip:0xffee 
+               addr: 0x00205D88    (your addr will be different)
+
+stl: find node using only the zip data: 0xBB77  
+
+        zippy: s:Pig     
+               zip:0xbb77 
+               addr: 0x00205D88    (your addr will be different)
+

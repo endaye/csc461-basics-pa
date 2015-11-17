@@ -1,0 +1,47 @@
+Basics 6 
+Name: Ed Keenan
+
+------------Basics STL------------
+
+original
+        A[ 0]: 6   
+        A[ 1]: 7   
+        A[ 2]: 3   
+        A[ 3]: 2   
+        A[ 4]: 8   
+        A[ 5]: 1   
+        A[ 6]: 9   
+        A[ 7]: 4   
+
+stl: vector 
+        Vect_A[0]: 6 
+        Vect_A[1]: 7 
+        Vect_A[2]: 3 
+        Vect_A[3]: 2 
+        Vect_A[4]: 8 
+        Vect_A[5]: 1 
+        Vect_A[6]: 9 
+        Vect_A[7]: 4 
+
+stl: insert '5' into vector 
+        Vect_A[0]: 6 
+        Vect_A[1]: 7 
+        Vect_A[2]: 3 
+        Vect_A[3]: 2 
+        Vect_A[4]: 5 
+        Vect_A[5]: 8 
+        Vect_A[6]: 1 
+        Vect_A[7]: 9 
+        Vect_A[8]: 4 
+
+stl: sort vector 
+        Vect_A[0]: 1 
+        Vect_A[1]: 2 
+        Vect_A[2]: 3 
+        Vect_A[3]: 4 
+        Vect_A[4]: 5 
+        Vect_A[5]: 6 
+        Vect_A[6]: 7 
+        Vect_A[7]: 8 
+        Vect_A[8]: 9 
+

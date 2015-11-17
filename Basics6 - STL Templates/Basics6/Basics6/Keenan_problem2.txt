@@ -1,0 +1,47 @@
+Basics 6 
+Name: Ed Keenan
+
+------------Basics STL------------
+
+original
+        B[ 0]: 66   
+        B[ 1]: 77   
+        B[ 2]: 33   
+        B[ 3]: 22   
+        B[ 4]: 88   
+        B[ 5]: 11   
+        B[ 6]: 99   
+        B[ 7]: 44   
+
+stl: init list 
+        List_B[0]: 66 
+        List_B[1]: 77 
+        List_B[2]: 33 
+        List_B[3]: 22 
+        List_B[4]: 88 
+        List_B[5]: 11 
+        List_B[6]: 99 
+        List_B[7]: 44 
+
+stl: insert '55' into list 
+        List_B[0]: 66 
+        List_B[1]: 77 
+        List_B[2]: 33 
+        List_B[3]: 22 
+        List_B[4]: 55 
+        List_B[5]: 88 
+        List_B[6]: 11 
+        List_B[7]: 99 
+        List_B[8]: 44 
+
+stl: sort list in reverse order using built in function 
+        List_B[0]: 99 
+        List_B[1]: 88 
+        List_B[2]: 77 
+        List_B[3]: 66 
+        List_B[4]: 55 
+        List_B[5]: 44 
+        List_B[6]: 33 
+        List_B[7]: 22 
+        List_B[8]: 11 
+
