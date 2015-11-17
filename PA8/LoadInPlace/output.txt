@@ -1,0 +1,144 @@
+Program Assignment: 6 
+Name: Yuancheng Zhang
+
+
+Creation Noise Pointers
+
+    NodeA: Addr: 0x008D3F60
+    NodeB: Addr: 0x008DC2E8
+    NodeC: Addr: 0x008DCA48
+    NodeD: Addr: 0x008DDFC8
+    NodeE: Addr: 0x008DE0E0
+    NodeF: Addr: 0x008DFDF8
+    NodeG: Addr: 0x008E06E8
+    NodeH: Addr: 0x008E1058
+    NodeI: Addr: 0x008E33A8
+    NodeJ: Addr: 0x008E34E8
+    NodeK: Addr: 0x008E3858
+
+Original nodes in Memory
+
+   Node Addr: 0x008DDF70
+        next: 0x008DFDA0
+        prev: 0x00000000
+           x: 0x6a894968
+           y: 0x3f413285
+           z: 0x75b942cf
+         key: 0xbbbbbbbb
+
+   Node Addr: 0x008DFDA0
+        next: 0x008D5018
+        prev: 0x008DDF70
+           x: 0x1c756f0c
+           y: 0x41266568
+           z: 0x6551d5
+         key: 0xcccccccc
+
+   Node Addr: 0x008D5018
+        next: 0x008E3490
+        prev: 0x008DFDA0
+           x: 0x294823
+           y: 0x18be6784
+           z: 0x4ae13d6c
+         key: 0xaaaaaaaa
+
+   Node Addr: 0x008E3490
+        next: 0x008E0690
+        prev: 0x008D5018
+           x: 0x105c31ac
+           y: 0x3465206
+           z: 0x2e8b445b
+         key: 0xeeeeeeee
+
+   Node Addr: 0x008E0690
+        next: 0x00000000
+        prev: 0x008E3490
+           x: 0x30f94877
+           y: 0x64fb0aac
+           z: 0x7b4d49fa
+         key: 0xdddddddd
+
+Memory in Contiguous form
+
+   Node Addr: 0x00000000
+        next: 0x00000018
+        prev: 0x00000000
+           x: 0x6a894968
+           y: 0x3f413285
+           z: 0x75b942cf
+         key: 0xbbbbbbbb
+
+   Node Addr: 0x00000018
+        next: 0x00000030
+        prev: 0x00000000
+           x: 0x1c756f0c
+           y: 0x41266568
+           z: 0x6551d5
+         key: 0xcccccccc
+
+   Node Addr: 0x00000030
+        next: 0x00000048
+        prev: 0x00000018
+           x: 0x294823
+           y: 0x18be6784
+           z: 0x4ae13d6c
+         key: 0xaaaaaaaa
+
+   Node Addr: 0x00000048
+        next: 0x00000060
+        prev: 0x00000030
+           x: 0x105c31ac
+           y: 0x3465206
+           z: 0x2e8b445b
+         key: 0xeeeeeeee
+
+   Node Addr: 0x00000060
+        next: 0x00000000
+        prev: 0x00000048
+           x: 0x30f94877
+           y: 0x64fb0aac
+           z: 0x7b4d49fa
+         key: 0xdddddddd
+
+New linked list after loading it back from a file
+
+   Node Addr: 0x008E0168
+        next: 0x008E0180
+        prev: 0x00000000
+           x: 0x6a894968
+           y: 0x3f413285
+           z: 0x75b942cf
+         key: 0xbbbbbbbb
+
+   Node Addr: 0x008E0180
+        next: 0x008E0198
+        prev: 0x008E0168
+           x: 0x1c756f0c
+           y: 0x41266568
+           z: 0x6551d5
+         key: 0xcccccccc
+
+   Node Addr: 0x008E0198
+        next: 0x008E01B0
+        prev: 0x008E0180
+           x: 0x294823
+           y: 0x18be6784
+           z: 0x4ae13d6c
+         key: 0xaaaaaaaa
+
+   Node Addr: 0x008E01B0
+        next: 0x008E01C8
+        prev: 0x008E0198
+           x: 0x105c31ac
+           y: 0x3465206
+           z: 0x2e8b445b
+         key: 0xeeeeeeee
+
+   Node Addr: 0x008E01C8
+        next: 0x00000000
+        prev: 0x008E01B0
+           x: 0x30f94877
+           y: 0x64fb0aac
+           z: 0x7b4d49fa
+         key: 0xdddddddd
+
