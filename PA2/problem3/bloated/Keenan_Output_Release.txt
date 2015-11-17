@@ -1,0 +1,38 @@
+Program Assignment: 1 
+Name: Ed Keenan
+
+-------------------------------------------------
+
+Creation of Bloated List: 4.601764 s
+
+Original linked list---------------------------
+   Finding Key: 23.522184 ms
+ (Proof)   key: 0x30431DAA
+       name[0]: dc
+      name[55]: f4
+     name[111]: 47
+     name[113]: 9a
+             z: 213.353165
+        MB[13]: 31498.669922
+           A.y: 14393.348633
+
+Conversion to Hot/Cold: 139.086273 ms
+
+Hot/Cold linked list---------------------------
+   Finding Key: 1.456168 ms
+ (Proof)   key: 0x30431DAA
+       name[0]: dc
+      name[55]: f4
+     name[111]: 47
+     name[113]: 9a
+             z: 213.353165
+        MB[13]: 31498.669922
+           A.y: 14393.348633
+
+Verify Nodes: Original and New Hot/Cold : 81.294159 ms
+
+------ Summary ------------------------------------- 
+
+                 orig: 23.522184 ms 
+                  new: 1.456168 ms 
+                ratio: 16.153482 
