@@ -37,6 +37,7 @@ private:
 	float y;
 	float z;
 	float w;
+	float SqrtOpt(float x);
 };
 
 #endif  //Vect4D.h

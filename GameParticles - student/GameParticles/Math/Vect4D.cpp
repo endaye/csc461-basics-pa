@@ -27,15 +27,19 @@ Vect4D::~Vect4D()
 
 void Vect4D::norm(Vect4D& out)
 {
-	float mag = sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
-
-	if (0.0f < mag)
+	if (this->x == 0.0f && this->y == 0.0f && this->z == 0.0f)
 	{
-		out.x = this->x / mag;
-		out.y = this->y / mag;
-		out.z = this->z / mag;
-		out.w = 1.0f;
+		return;
 	}
+
+	//float mag = sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
+	float mag = SqrtOpt(this->x * this->x + this->y * this->y + this->z * this->z);
+	
+	out.x = this->x / mag;
+	out.y = this->y / mag;
+	out.z = this->z / mag;
+	out.w = 1.0f;
+
 }
 
 Vect4D Vect4D::operator + (Vect4D t)
@@ -107,6 +111,16 @@ void Vect4D::set(float tx, float ty, float tz, float tw)
 	this->y = ty;
 	this->z = tz;
 	this->w = tw;
+}
+
+float Vect4D::SqrtOpt(float x)
+{
+	float xhalf = 0.5f * x;
+	int i = *(int*)&x; // get bits for floating value
+	i = 0x5f375a86 - (i >> 1); // gives initial guess y0
+	x = *(float*)&i; // convert bits back to float
+	x = x * (1.5f - xhalf * x * x); // Newton step, repeating increases accuracy
+	return 1.0f / x; // return sqrt root
 }
 
 // End of file
