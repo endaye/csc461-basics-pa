@@ -29,7 +29,7 @@ ParticleEmitter::ParticleEmitter()
 	start_velocity( 0.0f, 1.0f, 0.0f), 
 	max_life( MAX_LIFE ),
 	max_particles( NUM_PARTICLES ),
-	spawn_frequency( 0.0000001 ),
+	spawn_frequency( 0.0000001f ),
 	last_spawn( globalTimer::getTimerInSec() ),
 	last_loop(  globalTimer::getTimerInSec() ),
 	last_active_particle( -1 ),
@@ -63,7 +63,7 @@ void ParticleEmitter::SpawnParticle()
 		newParticle->life     = 0.0f;
 		newParticle->position = start_position;
 		newParticle->velocity = start_velocity;
-		newParticle->scale    = Vect4D(1.0, 1.0, 1.0, 1.0);
+		newParticle->scale    = Vect4D(1.0f, 1.0f, 1.0f, 1.0f);
 
 		// apply the variance
 		this->Execute(newParticle->position, newParticle->velocity, newParticle->scale);
@@ -304,6 +304,7 @@ void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc)
 	float *t_pos = reinterpret_cast<float*>(&pos);
 	float *t_var = &pos_variance[x];
 	if(sign == 0)
+	if(sign == 0.0f)
 	{
 		var *= -1.0f;
 	}
@@ -314,7 +315,7 @@ void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc)
 	sign = static_cast<float>(rand() % 2);
 	t_pos++;
 	t_var++;
-	if(sign == 0)
+	if(sign == 0.0f)
 	{
 		var *= -1.0f;
 	}
