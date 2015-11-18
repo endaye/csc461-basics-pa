@@ -30,7 +30,7 @@
        <result_directory.path>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\GameParticles\My Amplifier XE Results - GameParticles\r@@@{at}</result_directory.path>
        <search_directories>
         <item>
-         <value>sym=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\Release</value>
+         <value>sym=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER</value>
         </item>
         <item>
          <value>sym=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student</value>
@@ -42,7 +42,7 @@
          <value>sym=srv*C:\Users\Yuancheng\AppData\Local\Temp\SymbolCache*http://msdl.microsoft.com/download/symbols</value>
         </item>
         <item>
-         <value>bin=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\Release</value>
+         <value>bin=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER</value>
         </item>
         <item>
          <value>bin=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student</value>
@@ -184,7 +184,7 @@
        <targetName>launch</targetName>
        <launch.userapppath>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\Release\GameParticles.exe</launch.userapppath>
        <launch_app.inherit_sys_environment type="bool">true</launch_app.inherit_sys_environment>
-       <launch_app.app_to_launch>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\Release\GameParticles.exe</launch_app.app_to_launch>
+       <launch_app.app_to_launch>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER\GameParticles.exe</launch_app.app_to_launch>
        <launch_app.working_folder>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\GameParticles</launch_app.working_folder>
        <launch_app.app_parameters></launch_app.app_parameters>
        <launch_app.environment></launch_app.environment>
@@ -193,7 +193,7 @@
        <result_directory.path>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\GameParticles\My Amplifier XE Results - GameParticles\r@@@{at}</result_directory.path>
        <search_directories>
         <item>
-         <value>sym=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\Release</value>
+         <value>sym=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER</value>
         </item>
         <item>
          <value>sym=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student</value>
@@ -205,7 +205,7 @@
          <value>sym=srv*C:\Users\Yuancheng\AppData\Local\Temp\SymbolCache*http://msdl.microsoft.com/download/symbols</value>
         </item>
         <item>
-         <value>bin=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\Release</value>
+         <value>bin=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER</value>
         </item>
         <item>
          <value>bin=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student</value>
@@ -353,7 +353,7 @@
        <result_directory.path>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\GameParticles\My Amplifier XE Results - GameParticles\r@@@{at}</result_directory.path>
        <search_directories>
         <item>
-         <value>sym=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\Release</value>
+         <value>sym=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER</value>
         </item>
         <item>
          <value>sym=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student</value>
@@ -365,7 +365,7 @@
          <value>sym=srv*C:\Users\Yuancheng\AppData\Local\Temp\SymbolCache*http://msdl.microsoft.com/download/symbols</value>
         </item>
         <item>
-         <value>bin=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\Release</value>
+         <value>bin=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER</value>
         </item>
         <item>
          <value>bin=C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student</value>
