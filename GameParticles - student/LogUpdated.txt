@@ -7,15 +7,7 @@ Student: Yuancheng Zhang
 4. reindented to make it more readable
 
 #define NUM_PARTICLES	(1 * 1000 )  //leave at 30K for final testing
-LoopTime: update:6.948533 ms  draw:8.141383 ms  tot:15.089916
 LoopTime: update:7.840108 ms  draw:8.745258 ms  tot:16.585367
-LoopTime: update:6.690296 ms  draw:9.449448 ms  tot:16.139744
-LoopTime: update:6.143366 ms  draw:10.170853 ms  tot:16.314220
-LoopTime: update:6.411203 ms  draw:10.474445 ms  tot:16.885649
-LoopTime: update:6.306253 ms  draw:11.921560 ms  tot:18.227814
-LoopTime: update:6.075828 ms  draw:10.334733 ms  tot:16.410559
-LoopTime: update:6.527740 ms  draw:10.016242 ms  tot:16.543983
-LoopTime: update:6.164555 ms  draw:10.193035 ms  tot:16.357590
 
 Elapsed Time:	8.840s
     CPU Time:	9.819s
@@ -24,3 +16,6 @@ Elapsed Time:	8.840s
         Overhead Time:	0s
     Total Thread Count:	8
     Paused Time:	0s
+
+11/18/2015
+1. used SqrtOpt() instead of original sqrtf() in Vect4D.h (2.7x faster in release mode)
