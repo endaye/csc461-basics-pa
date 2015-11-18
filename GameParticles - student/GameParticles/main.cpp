@@ -82,8 +82,6 @@ int main(int argc, char * const argv[])
 		// start update timer ---------------------------------------
 		updateTimer.tic();
 
-		
-
 		// start draw... end draw (the draw updates)
 		OpenGLDevice::StartDraw();
 
