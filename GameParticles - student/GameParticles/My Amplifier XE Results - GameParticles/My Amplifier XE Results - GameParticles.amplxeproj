@@ -182,8 +182,8 @@
      <launch type="pointer" type_id="dasID_cctrl2::ApplicationWorkload" ptr_type="dasID_cctrl2::IWorkload">
       <workload>
        <targetName>launch</targetName>
-       <launch_app.inherit_sys_environment type="bool">true</launch_app.inherit_sys_environment>
        <launch.userapppath>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER\GameParticles.exe</launch.userapppath>
+       <launch_app.inherit_sys_environment type="bool">true</launch_app.inherit_sys_environment>
        <launch_app.app_to_launch>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER\GameParticles.exe</launch_app.app_to_launch>
        <launch_app.working_folder>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\GameParticles</launch_app.working_folder>
        <launch_app.app_parameters></launch_app.app_parameters>
