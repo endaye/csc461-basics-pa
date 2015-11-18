@@ -44,7 +44,7 @@ void Vect4D::norm(Vect4D& out)
 
 }
 
-Vect4D Vect4D::operator + (Vect4D &t)
+Vect4D Vect4D::operator + (Vect4D &t) const
 {
 	Vect4D out;
 
@@ -55,7 +55,7 @@ Vect4D Vect4D::operator + (Vect4D &t)
 	return out;
 }
 
-Vect4D Vect4D::operator - (Vect4D &t)
+Vect4D Vect4D::operator - (Vect4D &t) const
 {
 	Vect4D out;
 
@@ -66,7 +66,7 @@ Vect4D Vect4D::operator - (Vect4D &t)
 	return out;
 }
 
-Vect4D Vect4D::operator *(float scale)
+Vect4D Vect4D::operator *(float scale) const
 {
 	Vect4D tmp;
 
