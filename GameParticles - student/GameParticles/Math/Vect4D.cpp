@@ -1,6 +1,8 @@
 #include <math.h>
 #include <assert.h>
 
+#include <xmmintrin.h>
+#include <smmintrin.h> 
 #include "Vect4D.h"
 
 
@@ -42,7 +44,7 @@ void Vect4D::norm(Vect4D& out)
 
 }
 
-Vect4D Vect4D::operator + (Vect4D t)
+Vect4D Vect4D::operator + (Vect4D &t)
 {
 	Vect4D out;
 
@@ -53,7 +55,7 @@ Vect4D Vect4D::operator + (Vect4D t)
 	return out;
 }
 
-Vect4D Vect4D::operator - (Vect4D t)
+Vect4D Vect4D::operator - (Vect4D &t)
 {
 	Vect4D out;
 
