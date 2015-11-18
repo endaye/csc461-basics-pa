@@ -66,7 +66,9 @@ int main(int argc, char * const argv[])
 
 	// counter for printing
 	int i = 0;
+	//////// remove this part ///////
 	int j = 0;
+	/////////////////////////////////
 
 	// main update loop... do this forever or until some breaks 
 	while (OpenGLDevice::IsRunning())
@@ -97,7 +99,7 @@ int main(int argc, char * const argv[])
 		// set matrix to Model View
 		// push the inverseCameraMarix to stack
 		glMatrixMode(GL_MODELVIEW);
-		glLoadMatrixd(reinterpret_cast<double*>(&inverseCameraMatrix));
+		glLoadMatrixf(reinterpret_cast<float*>(&inverseCameraMatrix));
 		glPushMatrix(); // push the camera matrix
 
 		// update the emitter
@@ -134,12 +136,14 @@ int main(int argc, char * const argv[])
 			printf("LoopTime: update:%f ms  draw:%f ms  tot:%f\n", updateTime * 1000.0f, drawTime * 1000.0f, (updateTime + drawTime) *1000.0f);
 		}
 
+		/////////////// remove this part //////////
 		// turn off
 		j++;
 		if (j > 500)
 		{
 			break;
 		}
+		///////////////////////////////////////////
 	}
 
 	return 0;
