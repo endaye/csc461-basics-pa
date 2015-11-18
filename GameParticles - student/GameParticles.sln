@@ -1,18 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameParticles", "GameParticles\GameParticles.vcxproj", "{9A018ABF-E12F-4B90-B56C-EEBF17C547CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32
+		USE_THIS_FASTER|Win32 = USE_THIS_FASTER|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9A018ABF-E12F-4B90-B56C-EEBF17C547CC}.Debug|Win32.ActiveCfg = Debug|Win32
 		{9A018ABF-E12F-4B90-B56C-EEBF17C547CC}.Debug|Win32.Build.0 = Debug|Win32
 		{9A018ABF-E12F-4B90-B56C-EEBF17C547CC}.Release|Win32.ActiveCfg = Release|Win32
 		{9A018ABF-E12F-4B90-B56C-EEBF17C547CC}.Release|Win32.Build.0 = Release|Win32
+		{9A018ABF-E12F-4B90-B56C-EEBF17C547CC}.USE_THIS_FASTER|Win32.ActiveCfg = USE_THIS_FASTER|Win32
+		{9A018ABF-E12F-4B90-B56C-EEBF17C547CC}.USE_THIS_FASTER|Win32.Build.0 = USE_THIS_FASTER|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
