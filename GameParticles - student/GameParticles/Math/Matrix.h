@@ -21,30 +21,30 @@ public:
 		MATRIX_ROW_3
 	};
 
-	Matrix();	
-	Matrix( Matrix& t );	
+	Matrix();
+	Matrix(Matrix& t);
 	~Matrix();
 
-	void set( MatrixRowEnum row, Vect4D *t );
-	void get( MatrixRowEnum row, Vect4D *vOut );
+	void set(MatrixRowEnum row, Vect4D *t);
+	void get(MatrixRowEnum row, Vect4D *vOut);
 
 	void setIdentMatrix();
-	void setTransMatrix(Vect4D *t );
-	void setScaleMatrix(Vect4D *s );
+	void setTransMatrix(Vect4D *t);
+	void setScaleMatrix(Vect4D *s);
 	void setRotZMatrix(float Z_Radians);
 
 	float &operator[](INDEX_ENUM e);
-	
-	Matrix operator*( Matrix &t );
+
+	Matrix operator*(Matrix &t);
 	Matrix operator*(float s);
 
 	float Determinant();
-	
+
 	Matrix GetAdjugate();
 	Matrix& Matrix::operator/=(float t);
-	
-	void Matrix::Inverse( Matrix &out );
-	
+
+	void Matrix::Inverse(Matrix &out);
+
 private:
 
 	// ROW 0

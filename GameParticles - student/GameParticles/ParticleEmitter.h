@@ -12,21 +12,21 @@ class ParticleEmitter
 public:
 	ParticleEmitter();
 	~ParticleEmitter();
-	
+
 	void SpawnParticle();
 	void update();
 	void draw();
 
-	void addParticleToList(Particle *p );
-	void removeParticleFromList( Particle *p );
+	void addParticleToList(Particle *p);
+	void removeParticleFromList(Particle *p);
 
 	void Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc);
 
 private:
-	
+
 	Vect4D	start_position;
 	Vect4D	start_velocity;
-	
+
 	float	max_life;
 	int		max_particles;
 	float	spawn_frequency;
