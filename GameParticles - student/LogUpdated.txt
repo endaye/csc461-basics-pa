@@ -11,11 +11,15 @@ LoopTime: update:7.840108 ms  draw:8.745258 ms  tot:16.585367
 
 Elapsed Time:	8.840s
     CPU Time:	9.819s
-        Effective Time:	5.237s
-        Spin Time:	4.581s
-        Overhead Time:	0s
-    Total Thread Count:	8
-    Paused Time:	0s
+Effective Time:	5.237s
+	Spin Time:	4.581s
+Total Thread Count:	8
 
 11/18/2015
 1. used SqrtOpt() instead of original sqrtf() in Vect4D.h (2.7x faster in release mode)
+
+Elapsed Time:	8.849s
+    CPU Time:	9.608s
+Effective Time:	4.504s
+	Spin Time:	5.104s
+Total Thread Count:	8
