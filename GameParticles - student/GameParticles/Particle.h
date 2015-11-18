@@ -11,7 +11,7 @@ public:
 	
 	Particle();	
 	~Particle();
-	void Update(const double& time_elapsed);
+	void Update(const float& time_elapsed);
 	void CopyDataOnly( Particle *p );
 private:
 	Particle *next;
@@ -23,15 +23,15 @@ private:
 	Vect4D  prev_Row3;
 
 	Vect4D	position;
-	double	life;
+	float	life;
 	Vect4D	velocity;
 	Vect4D	scale;
-	double	rotation;
+	float	rotation;
 	Vect4D  diff_Row0;
 	Vect4D  diff_Row1;
 	Vect4D  diff_Row2;
 	Vect4D  diff_Row3;
-	double	rotation_velocity;
+	float	rotation_velocity;
 	
 	Vect4D	curr_Row0;
 	Vect4D	curr_Row1;

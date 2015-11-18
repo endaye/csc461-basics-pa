@@ -31,45 +31,45 @@ public:
 	void setIdentMatrix();
 	void setTransMatrix(Vect4D *t );
 	void setScaleMatrix(Vect4D *s );
-	void setRotZMatrix( double Z_Radians );
+	void setRotZMatrix(float Z_Radians);
 
-	double &operator[]( INDEX_ENUM e);
+	float &operator[](INDEX_ENUM e);
 	
 	Matrix operator*( Matrix &t );
-	Matrix operator*( double s );
+	Matrix operator*(float s);
 
-	double Determinant();
+	float Determinant();
 	
 	Matrix GetAdjugate();
-	Matrix& Matrix::operator/=(double t);
+	Matrix& Matrix::operator/=(float t);
 	
 	void Matrix::Inverse( Matrix &out );
 	
 private:
 
 	// ROW 0
-	double m0;
-	double m1;
-	double m2;
-	double m3;
+	float m0;
+	float m1;
+	float m2;
+	float m3;
 
 	// ROW 1
-	double m4;
-	double m5;
-	double m6;
-	double m7;
+	float m4;
+	float m5;
+	float m6;
+	float m7;
 
 	// ROW 2
-	double m8;
-	double m9;
-	double m10;
-	double m11;
+	float m8;
+	float m9;
+	float m10;
+	float m11;
 
 	// ROW 3
-	double m12;
-	double m13;
-	double m14;
-	double m15;
+	float m12;
+	float m13;
+	float m14;
+	float m15;
 };
 
 #endif  // Matrix.h

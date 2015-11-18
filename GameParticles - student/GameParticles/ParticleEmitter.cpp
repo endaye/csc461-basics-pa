@@ -15,18 +15,18 @@ static const unsigned char squareColors[] =
 	255,  000,  255,  255,
 }; 
 
-static const double squareVertices[] = 
+static const float squareVertices[] =
 {
-	-0.015,  -0.015, 0.0,
-	 0.015,  -0.015, 0.0,
-	-0.015,   0.015, 0.0,
-	 0.015,   0.015, 0.0,
+	-0.015f,  -0.015f, 0.0f,
+	 0.015f,  -0.015f, 0.0f,
+	-0.015f,   0.015f, 0.0f,
+	 0.015f,   0.015f, 0.0f,
 };
 
 
 ParticleEmitter::ParticleEmitter()
-:	start_position( 0.0, 0.0, 0.0 ),
-	start_velocity( 0.0, 1.0, 0.0), 
+:	start_position( 0.0f, 0.0f, 0.0f ),
+	start_velocity( 0.0f, 1.0f, 0.0f), 
 	max_life( MAX_LIFE ),
 	max_particles( NUM_PARTICLES ),
 	spawn_frequency( 0.0000001 ),
@@ -34,9 +34,9 @@ ParticleEmitter::ParticleEmitter()
 	last_loop(  globalTimer::getTimerInSec() ),
 	last_active_particle( -1 ),
 	particle_list( NUM_PARTICLES ),
-	vel_variance( 1.0, 4.0, 0.4 ),
-	pos_variance( 1.0, 1.0, 1.0 ),
-	scale_variance( 2.5),
+	vel_variance( 1.0f, 4.0f, 0.4f ),
+	pos_variance( 1.0f, 1.0f, 1.0f ),
+	scale_variance(2.5f),
 	headParticle(0)
 {
 	// nothing to do
@@ -80,10 +80,10 @@ void ParticleEmitter::SpawnParticle()
 void ParticleEmitter::update()
 {
 	// get current time
-	double current_time = globalTimer::getTimerInSec();
+	float current_time = globalTimer::getTimerInSec();
 
 	// spawn particles
-	double time_elapsed = current_time - last_spawn;
+	float time_elapsed = current_time - last_spawn;
 	
 	// update
 	while( spawn_frequency < time_elapsed )
@@ -210,7 +210,7 @@ void ParticleEmitter::draw()
 	Matrix cameraMatrix;
 
 	// get the camera matrix from OpenGL
-	glGetDoublev(GL_MODELVIEW_MATRIX, reinterpret_cast<double*>(&cameraMatrix));
+	glGetFloatv(GL_MODELVIEW_MATRIX, reinterpret_cast<float*>(&cameraMatrix));
 
 	// iterate throught the list of particles
 	std::list<Particle>::iterator it;
@@ -224,7 +224,7 @@ void ParticleEmitter::draw()
 		cameraMatrix.get( Matrix::MATRIX_ROW_3, &camPosVect );
 
 		// OpenGL goo... don't worrry about this
-		glVertexPointer(3, GL_DOUBLE, 0, squareVertices);
+		glVertexPointer(3, GL_FLOAT, 0, squareVertices);
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
 		glEnableClientState(GL_COLOR_ARRAY);
@@ -256,7 +256,7 @@ void ParticleEmitter::draw()
 		tmp = scaleMatrix * transCamera * transParticle * rotParticle * scaleMatrix;
 
 		// set the transformation matrix
-		glLoadMatrixd(reinterpret_cast<double*>(&(tmp)));
+		glLoadMatrixf(reinterpret_cast<float*>(&(tmp)));
 
 		// squirrel away matrix for next update
 		tmp.get(Matrix::MATRIX_ROW_0, &it->curr_Row0 );

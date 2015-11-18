@@ -30,7 +30,7 @@ void Particle::CopyDataOnly( Particle *p )
 	this->life     = p->life;
 }
 
-void Particle::Update(const double& time_elapsed)
+void Particle::Update(const float& time_elapsed)
 {
 	// Rotate the matrices
 	Vect4D tmp_Row0;
@@ -56,13 +56,13 @@ void Particle::Update(const double& time_elapsed)
 	tmp.set(Matrix::MATRIX_ROW_2, &this->diff_Row2);
 	tmp.set(Matrix::MATRIX_ROW_3, &this->diff_Row3);
 
-	double scale = tmp.Determinant();
+	float scale = tmp.Determinant();
 
 	// serious math below - magic secret sauce
 	life += time_elapsed;
 	position = position + (velocity * time_elapsed);
 	Vect4D z_axis(0.0f, -0.25f, 1.0f);
-	Vect4D v(3,4,0);
+	Vect4D v(3.0f, 4.0f, 0.0f);
 	position.Cross( z_axis, v);
 	v.norm(v);
 	position = position + v * 0.05f * life;

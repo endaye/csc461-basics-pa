@@ -143,7 +143,7 @@ void Matrix::set( MatrixRowEnum row, Vect4D *t )
 	}
 }
 
-double &Matrix::operator[](INDEX_ENUM e)
+float &Matrix::operator[](INDEX_ENUM e)
 {
 	// get the individual elements
 	switch(e)
@@ -269,11 +269,11 @@ Matrix Matrix::operator*( Matrix& rhs)
 	return tmp;
 }
 
-Matrix& Matrix::operator/=(double rhs)
+Matrix& Matrix::operator/=(float rhs)
 { 
 	// divide each element by a value
 	// using inverse multiply trick, faster that individual divides
-	double inv_rhs = 1.0/rhs;
+	float inv_rhs = 1.0f / rhs;
 
 	m0 *= inv_rhs;
 	m1 *= inv_rhs;
@@ -295,7 +295,7 @@ Matrix& Matrix::operator/=(double rhs)
 	return *this;
 }
 
-double Matrix::Determinant() 
+float Matrix::Determinant()
 {
 	// A = { a,b,c,d / e,f,g,h / j,k,l,m / n,o,p,q }
 	// A = { 0,1,2,3 / 4,5,6,7 / 8,9,10,11 / 12,13,14,15 }
@@ -311,17 +311,17 @@ double Matrix::Determinant()
 	//			- (d (e (kp - lo) - f (jp - ln) + g (jo - kn) ) )
 	
 	// ta = (lq - mp)
-	double ta = (m10 * m15) - (m11 * m14);
+	float ta = (m10 * m15) - (m11 * m14);
 	// tb = (kq - mo)
-	double tb = (m9 * m15) - (m11 * m13);
+	float tb = (m9 * m15) - (m11 * m13);
 	// tc = (kp - lo)
-	double tc = (m9 * m14) - (m10 * m13);
+	float tc = (m9 * m14) - (m10 * m13);
 	// td = (jq - mn)
-	double td = (m8 * m15) - (m11 * m12);
+	float td = (m8 * m15) - (m11 * m12);
 	// te = (jo - kn)
-	double te = (m8 * m13) - (m9 *  m12);
+	float te = (m8 * m13) - (m9 *  m12);
 	// tf = (jp - ln)
-	double tf = (m8 * m14) - (m10 * m12);
+	float tf = (m8 * m14) - (m10 * m12);
 	
 	// det(A) = (a (f*ta  - g*tb + h*tc) )
 	//			- (b (e*ta - g*td + h*tf) )
@@ -424,9 +424,9 @@ Matrix Matrix::GetAdjugate()
 	Matrix tmp;
 	
 	// load		ABC		(3)		ABC--
-	double t1 = (m10*m15) - (m11*m14);
-	double t2 = (m9*m15) - (m11*m13);
-	double t3 = (m9*m14) - (m10*m13);
+	float t1 = (m10*m15) - (m11*m14);
+	float t2 = (m9*m15) - (m11*m13);
+	float t3 = (m9*m14) - (m10*m13);
 	
 	// a = f(ta) - g(tb) + h(tc)
 	tmp.m0 = (m5*t1) - (m6*t2) + (m7*t3);
@@ -434,8 +434,8 @@ Matrix Matrix::GetAdjugate()
 	tmp.m1 = -((m1*t1) - (m2*t2) + (m3*t3));
 	
 	// load		JK		(5)		ABCJK
-	double t4 = (m8*m15) - (m11*m12);
-	double t5 = (m8*m14) - (m10*m12);
+	float t4 = (m8*m15) - (m11*m12);
+	float t5 = (m8*m14) - (m10*m12);
 	// e = - ( e(ta) - g(tj) + h(tk))
 	tmp.m4 = -( (m4*t1) - (m6*t4) + (m7*t5));
 	// f = a(ta) - c(tj) + d(tk)
@@ -518,7 +518,7 @@ Matrix Matrix::GetAdjugate()
 void Matrix::Inverse( Matrix &out ) 
 {
 	Matrix tmp;
-	double det = Determinant();
+	float det = Determinant();
 	if(fabs(det) < 0.0001)
 	{
 		// do nothing, Matrix is not invertable
@@ -561,7 +561,7 @@ void Matrix::setScaleMatrix(Vect4D *scale)
 	this->m15 = 1.0f;
 }
 
-void Matrix::setRotZMatrix(double az)
+void Matrix::setRotZMatrix(float az)
 {
 	//	{	cos		-sin	0		0	}
 	//	{	sin		cos		0		0	}
