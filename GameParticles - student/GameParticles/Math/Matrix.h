@@ -3,6 +3,7 @@
 
 // includes
 #include "Enum.h"
+#include "Vect4D.h"
 
 // forward declare
 class Vect4D;
@@ -23,6 +24,7 @@ public:
 
 	Matrix();
 	Matrix(Matrix& t);
+	Matrix(Vect4D &tV0, Vect4D &tV1, Vect4D &tV2, Vect4D &tV3);
 	~Matrix();
 
 	void set(MatrixRowEnum row, Vect4D *t);
@@ -45,31 +47,46 @@ public:
 
 	void Matrix::Inverse(Matrix &out);
 
-private:
+	// Level 4 complains nameless struct/union ...
+	#pragma warning( disable : 4201)
 
-	// ROW 0
-	float m0;
-	float m1;
-	float m2;
-	float m3;
+	union
+	{
+		struct
+		{
+			Vect4D v0;
+			Vect4D v1;
+			Vect4D v2;
+			Vect4D v3;
+		};
 
-	// ROW 1
-	float m4;
-	float m5;
-	float m6;
-	float m7;
+		struct
+		{
+			// ROW 0
+			float m0;
+			float m1;
+			float m2;
+			float m3;
 
-	// ROW 2
-	float m8;
-	float m9;
-	float m10;
-	float m11;
+			// ROW 1
+			float m4;
+			float m5;
+			float m6;
+			float m7;
 
-	// ROW 3
-	float m12;
-	float m13;
-	float m14;
-	float m15;
+			// ROW 2
+			float m8;
+			float m9;
+			float m10;
+			float m11;
+
+			// ROW 3
+			float m12;
+			float m13;
+			float m14;
+			float m15;
+		};
+	};
 };
 
 #endif  // Matrix.h
