@@ -22,10 +22,23 @@ Vect4D::Vect4D(float tx, float ty, float tz, float tw)
 	this->w = tw;
 }
 
+//Vect4D::Vect4D(const __m128 &M)
+//{
+//	this->m = M;
+//}
+
 Vect4D::~Vect4D()
 {
 	// nothing to delete
 }
+
+void Vect4D::operator = (const Vect4D &tmp)
+{
+	this->x = tmp.x;
+	this->y = tmp.y;
+	this->z = tmp.z;
+	this->w = tmp.w;
+};
 
 void Vect4D::norm(Vect4D& out)
 {
@@ -44,14 +57,17 @@ void Vect4D::norm(Vect4D& out)
 
 }
 
+
+
 Vect4D Vect4D::operator + (Vect4D &t) const
 {
+	/*if (1)
+		return Vect4D(_mm_add_ps(this->m, t.m));
+	return Vect4D(this->m);*/
 	Vect4D out;
-
 	out.x = this->x + t.x;
 	out.y = this->y + t.y;
 	out.z = this->z + t.z;
-
 	return out;
 }
 
