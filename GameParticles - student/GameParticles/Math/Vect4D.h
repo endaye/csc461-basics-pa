@@ -6,7 +6,7 @@
 
 // includes
 #include <xmmintrin.h>
-#include <smmintrin.h> 
+#include <smmintrin.h>  
 #include "Enum.h"
 
 // Foward Declarations
@@ -20,7 +20,17 @@ public:
 
 	Vect4D();
 	Vect4D(float tx, float ty, float tz, float tw = 1.0f);
+	Vect4D(const __m128 &M)
+		:m(M)
+	{};
+	Vect4D(const Vect4D &tmp)
+		:x(tmp.x), y(tmp.y), z(tmp.z), w(tmp.w)
+	{
+	};
 	~Vect4D();
+
+
+	void operator = (const Vect4D &tmp);
 
 	void norm(Vect4D &out);
 	void set(float tx, float ty, float tz, float tw = 1.0f);
@@ -33,8 +43,6 @@ public:
 
 	float &operator[](VECT_ENUM e);
 
-
-private:
 	// Level 4 complains nameless struct/union ...
 	#pragma warning( disable : 4201)
 
@@ -52,6 +60,8 @@ private:
 			float w;
 		};
 	};
+
+private:
 	float SqrtOpt(float x);
 };
 
