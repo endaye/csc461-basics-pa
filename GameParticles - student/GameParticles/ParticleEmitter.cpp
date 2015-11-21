@@ -220,9 +220,11 @@ void ParticleEmitter::draw()
 	
 	// get the position from this matrix
 	Vect4D camPosVect;
+	cameraMatrix.get(Matrix::MATRIX_ROW_3, &camPosVect);
 
 	// camera position
 	Matrix transCamera;
+	transCamera.setTransMatrix(&camPosVect);
 
 	// particle position
 	Matrix transParticle;
@@ -244,12 +246,6 @@ void ParticleEmitter::draw()
 	std::list<Particle>::iterator it;
 	for (it = drawBuffer.begin(); it != drawBuffer.end(); ++it)
 	{
-		// get the position from this matrix
-		cameraMatrix.get(Matrix::MATRIX_ROW_3, &camPosVect);
-
-		// camera position
-		transCamera.setTransMatrix(&camPosVect);
-
 		// particle position
 		transParticle.setTransMatrix(&it->position);
 
