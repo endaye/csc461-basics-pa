@@ -212,44 +212,56 @@ void ParticleEmitter::draw()
 	// get the camera matrix from OpenGL
 	glGetFloatv(GL_MODELVIEW_MATRIX, reinterpret_cast<float*>(&cameraMatrix));
 
+	// OpenGL goo... don't worrry about this
+	glVertexPointer(3, GL_FLOAT, 0, squareVertices);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
+	glEnableClientState(GL_COLOR_ARRAY);
+	
+	// get the position from this matrix
+	Vect4D camPosVect;
+
+	// camera position
+	Matrix transCamera;
+
+	// particle position
+	Matrix transParticle;
+
+	// rotation matrix
+	Matrix rotParticle;
+
+	// pivot Point
+	Matrix pivotParticle;
+	Vect4D pivotVect;
+
+	// scale Matrix
+	Matrix scaleMatrix;
+
+	//Temporary matrix
+	Matrix tmp;
+
 	// iterate throught the list of particles
 	std::list<Particle>::iterator it;
 	for (it = drawBuffer.begin(); it != drawBuffer.end(); ++it)
 	{
-		//Temporary matrix
-		Matrix tmp;
-
 		// get the position from this matrix
-		Vect4D camPosVect;
 		cameraMatrix.get(Matrix::MATRIX_ROW_3, &camPosVect);
 
-		// OpenGL goo... don't worrry about this
-		glVertexPointer(3, GL_FLOAT, 0, squareVertices);
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
-		glEnableClientState(GL_COLOR_ARRAY);
-
 		// camera position
-		Matrix transCamera;
 		transCamera.setTransMatrix(&camPosVect);
 
 		// particle position
-		Matrix transParticle;
 		transParticle.setTransMatrix(&it->position);
 
 		// rotation matrix
-		Matrix rotParticle;
 		rotParticle.setRotZMatrix(it->rotation);
 
 		// pivot Point
-		Matrix pivotParticle;
-		Vect4D pivotVect;
 		pivotVect.set(1.0f, 0.0f, 50.0f);
 		pivotVect = pivotVect * 20.0f * it->life;
 		pivotParticle.setTransMatrix(&pivotVect);
 
 		// scale Matrix
-		Matrix scaleMatrix;
 		scaleMatrix.setScaleMatrix(&it->scale);
 
 		// total transformation of particle
