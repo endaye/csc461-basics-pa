@@ -12,5 +12,11 @@ Student: Yuancheng Zhang
 11/20/2015
 1. moved variable declearations out of the loop in ParticleEmitter::draw()
 2. added SIMD in Vect4D
+3. made particle all public (easy to debug)
+4. wrote a new ParticleEmitter::Execute() instead of the old ugly one
 
 11/22/2015
+1. combined Vect4D norm() and Cross() into updatePos()
+2. combined SqrtOpt() into updatePos() instead of sqrtf()
+3. replaced pointer with const reference
+4. 
