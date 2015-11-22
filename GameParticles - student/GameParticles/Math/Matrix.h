@@ -9,7 +9,7 @@
 class Vect4D;
 
 // class
-class Matrix
+class __declspec(align(16)) Matrix
 {
 public:
 
@@ -47,6 +47,7 @@ public:
 
 	void Matrix::Inverse(Matrix &out);
 
+public:
 	// Level 4 complains nameless struct/union ...
 	#pragma warning( disable : 4201)
 

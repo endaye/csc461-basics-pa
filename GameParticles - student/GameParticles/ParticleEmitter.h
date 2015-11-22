@@ -22,7 +22,7 @@ public:
 
 	void Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc);
 
-private:
+public:
 
 	Vect4D	start_position;
 	Vect4D	start_velocity;
@@ -33,6 +33,8 @@ private:
 	float	last_spawn;
 	float	last_loop;
 	int		last_active_particle;
+	const int randHalf = RAND_MAX / 2;
+	const float varM = static_cast <float> (randHalf);
 
 	// added for speed efficiency
 	int bufferCount;
@@ -42,7 +44,8 @@ private:
 	std::list<Particle> drawBuffer;
 	Particle *headParticle;
 	std::list<Particle> particle_list;
-
+	Matrix cameraMatrix;
+	Vect4D camPosVect;
 };
 
 #endif // PARTICLEEMITTER_H

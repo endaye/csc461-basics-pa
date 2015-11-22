@@ -57,7 +57,7 @@ void ParticleEmitter::SpawnParticle()
 	{
 
 		// create new particle
-		Particle *newParticle = new Particle();
+		Particle *newParticle = (Particle*)_aligned_malloc(sizeof Particle, 16);
 
 		// initialize the particle
 		newParticle->life = 0.0f;

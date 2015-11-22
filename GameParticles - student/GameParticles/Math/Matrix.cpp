@@ -7,49 +7,57 @@
 
 Matrix::Matrix()
 {	// constructor for the matrix
-	this->m0 = 0.0f;
-	this->m1 = 0.0f;
-	this->m2 = 0.0f;
-	this->m3 = 0.0f;
+	//this->m0 = 0.0f;
+	//this->m1 = 0.0f;
+	//this->m2 = 0.0f;
+	//this->m3 = 0.0f;
 
-	this->m4 = 0.0f;
-	this->m5 = 0.0f;
-	this->m6 = 0.0f;
-	this->m7 = 0.0f;
+	//this->m4 = 0.0f;
+	//this->m5 = 0.0f;
+	//this->m6 = 0.0f;
+	//this->m7 = 0.0f;
 
-	this->m8 = 0.0f;
-	this->m9 = 0.0f;
-	this->m10 = 0.0f;
-	this->m11 = 0.0f;
+	//this->m8 = 0.0f;
+	//this->m9 = 0.0f;
+	//this->m10 = 0.0f;
+	//this->m11 = 0.0f;
 
-	this->m12 = 0.0f;
-	this->m13 = 0.0f;
-	this->m14 = 0.0f;
-	this->m15 = 0.0f;
+	//this->m12 = 0.0f;
+	//this->m13 = 0.0f;
+	//this->m14 = 0.0f;
+	//this->m15 = 0.0f;
+	v0 = Vect4D(0.0f, 0.0f, 0.0f, 0.0f);
+	v1 = Vect4D(0.0f, 0.0f, 0.0f, 0.0f);
+	v2 = Vect4D(0.0f, 0.0f, 0.0f, 0.0f);
+	v3 = Vect4D(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
 
 Matrix::Matrix(Matrix& t)
 { // copy constructor
-	this->m0 = t.m0;
-	this->m1 = t.m1;
-	this->m2 = t.m2;
-	this->m3 = t.m3;
+	//this->m0 = t.m0;
+	//this->m1 = t.m1;
+	//this->m2 = t.m2;
+	//this->m3 = t.m3;
 
-	this->m4 = t.m4;
-	this->m5 = t.m5;
-	this->m6 = t.m6;
-	this->m7 = t.m7;
+	//this->m4 = t.m4;
+	//this->m5 = t.m5;
+	//this->m6 = t.m6;
+	//this->m7 = t.m7;
 
-	this->m8 = t.m8;
-	this->m9 = t.m9;
-	this->m10 = t.m10;
-	this->m11 = t.m11;
+	//this->m8 = t.m8;
+	//this->m9 = t.m9;
+	//this->m10 = t.m10;
+	//this->m11 = t.m11;
 
-	this->m12 = t.m12;
-	this->m13 = t.m13;
-	this->m14 = t.m14;
-	this->m15 = t.m15;
+	//this->m12 = t.m12;
+	//this->m13 = t.m13;
+	//this->m14 = t.m14;
+	//this->m15 = t.m15;
+	this->v0 = t.v0;
+	this->v1 = t.v1;
+	this->v2 = t.v2;
+	this->v3 = t.v3;
 }
 
 
@@ -60,48 +68,56 @@ Matrix::~Matrix()
 
 void Matrix::setIdentMatrix()
 { // initialize to the identity matrix
-	this->m0 = 1.0f;
-	this->m1 = 0.0f;
-	this->m2 = 0.0f;
-	this->m3 = 0.0f;
+	//this->m0 = 1.0f;
+	//this->m1 = 0.0f;
+	//this->m2 = 0.0f;
+	//this->m3 = 0.0f;
 
-	this->m4 = 0.0f;
-	this->m5 = 1.0f;
-	this->m6 = 0.0f;
-	this->m7 = 0.0f;
+	//this->m4 = 0.0f;
+	//this->m5 = 1.0f;
+	//this->m6 = 0.0f;
+	//this->m7 = 0.0f;
 
-	this->m8 = 0.0f;
-	this->m9 = 0.0f;
-	this->m10 = 1.0f;
-	this->m11 = 0.0f;
+	//this->m8 = 0.0f;
+	//this->m9 = 0.0f;
+	//this->m10 = 1.0f;
+	//this->m11 = 0.0f;
 
-	this->m12 = 0.0f;
-	this->m13 = 0.0f;
-	this->m14 = 0.0f;
-	this->m15 = 1.0f;
+	//this->m12 = 0.0f;
+	//this->m13 = 0.0f;
+	//this->m14 = 0.0f;
+	//this->m15 = 1.0f;
+	v0 = Vect4D(1.0f, 0.0f, 0.0f, 0.0f);
+	v1 = Vect4D(0.0f, 1.0f, 0.0f, 0.0f);
+	v2 = Vect4D(0.0f, 0.0f, 1.0f, 0.0f);
+	v3 = Vect4D(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void Matrix::setTransMatrix(Vect4D *t)
 { // set the translation matrix (note: we are row major)
-	this->m0 = 1.0f;
-	this->m1 = 0.0f;
-	this->m2 = 0.0f;
-	this->m3 = 0.0f;
+	//this->m0 = 1.0f;
+	//this->m1 = 0.0f;
+	//this->m2 = 0.0f;
+	//this->m3 = 0.0f;
 
-	this->m4 = 0.0f;
-	this->m5 = 1.0f;
-	this->m6 = 0.0f;
-	this->m7 = 0.0f;
+	//this->m4 = 0.0f;
+	//this->m5 = 1.0f;
+	//this->m6 = 0.0f;
+	//this->m7 = 0.0f;
 
-	this->m8 = 0.0f;
-	this->m9 = 0.0f;
-	this->m10 = 1.0f;
-	this->m11 = 0.0f;
+	//this->m8 = 0.0f;
+	//this->m9 = 0.0f;
+	//this->m10 = 1.0f;
+	//this->m11 = 0.0f;
 
-	this->m12 = t->x;
-	this->m13 = t->y;
-	this->m14 = t->z;
-	this->m15 = 1.0f;
+	//this->m12 = t->x;
+	//this->m13 = t->y;
+	//this->m14 = t->z;
+	//this->m15 = 1.0f;
+	v0 = Vect4D(1.0f, 0.0f, 0.0f, 0.0f);
+	v1 = Vect4D(0.0f, 1.0f, 0.0f, 0.0f);
+	v2 = Vect4D(0.0f, 0.0f, 1.0f, 0.0f);
+	v3 = Vect4D(t->x, t->y, t->z, 1.0f);
 }
 
 void Matrix::set(MatrixRowEnum row, Vect4D *t)
