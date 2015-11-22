@@ -11,3 +11,6 @@ Student: Yuancheng Zhang
 
 11/20/2015
 1. moved variable declearations out of the loop in ParticleEmitter::draw()
+2. added SIMD in Vect4D
+
+11/22/2015

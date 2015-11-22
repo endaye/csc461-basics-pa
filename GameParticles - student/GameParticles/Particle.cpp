@@ -13,6 +13,7 @@ Particle::Particle()
 
 }
 
+
 Particle::~Particle()
 {
 	// nothing to do
@@ -48,6 +49,20 @@ void Particle::Update(const float& time_elapsed)
 	Vect4D tmp_Row3;
 	tmp_Row3 = curr_Row3;
 	prev_Row3 = tmp_Row3;
+
+	// my code
+	//Vect4D tmp_R;
+	//tmp_R = curr_Row0;
+	//prev_Row0 = tmp_R;
+
+	//tmp_R = curr_Row1;
+	//prev_Row1 = tmp_R;
+	//
+	//tmp_R = curr_Row2;
+	//prev_Row2 = tmp_R;
+
+	//tmp_R = curr_Row3;
+	//prev_Row3 = tmp_R;
 
 	Matrix tmp;
 
