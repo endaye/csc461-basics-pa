@@ -78,7 +78,6 @@ public:
 	Vect4D operator * (float scale) const
 	{
 		return Vect4D(_mm_mul_ps(this->m, _mm_set1_ps(scale)));
-		//return Vect4D(x * scale, y * scale, z * scale, 1.0f);
 	};
 
 	void operator *= (Vect4D &tmp)
@@ -92,9 +91,11 @@ public:
 	};
 
 	float &operator[](VECT_ENUM e);
-	void norm(Vect4D &out);
-	void Cross(Vect4D &vin, Vect4D &vout);
+	void updatePos(const float life);
 
+	//void norm(Vect4D &out);
+	//void Cross(const Vect4D &vin, Vect4D &vout) const;
+	//float SqrtOpt(float x);
 public:
 	// Level 4 complains nameless struct/union ...
 	#pragma warning( disable : 4201)
@@ -114,8 +115,7 @@ public:
 		};
 	};
 
-//private:
-//	float SqrtOpt(float x);
+
 };
 
 #endif  //Vect4D.h

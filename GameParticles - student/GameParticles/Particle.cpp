@@ -50,20 +50,6 @@ void Particle::Update(const float& time_elapsed)
 	tmp_Row3 = curr_Row3;
 	prev_Row3 = tmp_Row3;
 
-	// my code
-	//Vect4D tmp_R;
-	//tmp_R = curr_Row0;
-	//prev_Row0 = tmp_R;
-
-	//tmp_R = curr_Row1;
-	//prev_Row1 = tmp_R;
-	//
-	//tmp_R = curr_Row2;
-	//prev_Row2 = tmp_R;
-
-	//tmp_R = curr_Row3;
-	//prev_Row3 = tmp_R;
-
 	Matrix tmp;
 
 	tmp.set(Matrix::MATRIX_ROW_0, this->diff_Row0);
@@ -76,12 +62,13 @@ void Particle::Update(const float& time_elapsed)
 	// serious math below - magic secret sauce
 	life += time_elapsed;
 	position = position + (velocity * time_elapsed);
-	Vect4D z_axis(0.0f, -0.25f, 1.0f);
-	Vect4D v(3.0f, 4.0f, 0.0f);
-	position.Cross(z_axis, v);
-	v.norm(v);
-	position = position + v * 0.05f * life;
-
+	//Vect4D z_axis(0.0f, -0.25f, 1.0f);
+	//Vect4D v(3.0f, 4.0f, 0.0f);
+	//Vect4D v;
+	//position.Cross(z_axis, v);
+	//v.norm(v);
+	//position += v * (0.05f * life);
+	position.updatePos(life);
 	if (scale > 1.0f)
 	{
 		scale = 1.0f / scale;
