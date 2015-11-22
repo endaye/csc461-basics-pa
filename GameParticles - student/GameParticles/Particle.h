@@ -10,10 +10,11 @@ public:
 	friend class ParticleEmitter;
 	
 	Particle();	
+	//Particle(const Particle &tmp);
 	~Particle();
 	void Update(const float& time_elapsed);
 	void CopyDataOnly( Particle *p );
-private:
+public:
 	Vect4D	prev_Row0;
 	Vect4D	prev_Row1;
 	Vect4D  prev_Row2;
@@ -36,6 +37,7 @@ private:
 	float	life;
 	float	rotation;
 	float	rotation_velocity;
+	float	pad0;
 
 	Particle *next;
 	Particle *prev;
