@@ -120,37 +120,25 @@ void Matrix::setTransMatrix(Vect4D *t)
 	v3 = Vect4D(t->x, t->y, t->z, 1.0f);
 }
 
-void Matrix::set(MatrixRowEnum row, Vect4D *t)
+void Matrix::set(MatrixRowEnum row, const Vect4D &t)
 {
 	// initialize the rows of the matrix
 	switch (row)
 	{
 	case MATRIX_ROW_0:
-		this->m0 = t->x;
-		this->m1 = t->y;
-		this->m2 = t->z;
-		this->m3 = t->w;
+		this->v0 = t;
 		break;
 
 	case MATRIX_ROW_1:
-		this->m4 = t->x;
-		this->m5 = t->y;
-		this->m6 = t->z;
-		this->m7 = t->w;
+		this->v1 = t;
 		break;
 
 	case MATRIX_ROW_2:
-		this->m8 = t->x;
-		this->m9 = t->y;
-		this->m10 = t->z;
-		this->m11 = t->w;
+		this->v2 = t;
 		break;
 
 	case MATRIX_ROW_3:
-		this->m12 = t->x;
-		this->m13 = t->y;
-		this->m14 = t->z;
-		this->m15 = t->w;
+		this->v3 = t;
 		break;
 
 	default:
@@ -220,36 +208,24 @@ float &Matrix::operator[](INDEX_ENUM e)
 }
 
 
-void Matrix::get(MatrixRowEnum row, Vect4D *t)
+void Matrix::get(MatrixRowEnum row, Vect4D &t) const
 { // get a row of the matrix
 	switch (row)
 	{
 	case MATRIX_ROW_0:
-		t->x = this->m0;
-		t->y = this->m1;
-		t->z = this->m2;
-		t->w = this->m3;
+		t = this->v0;
 		break;
 
 	case MATRIX_ROW_1:
-		t->x = this->m4;
-		t->y = this->m5;
-		t->z = this->m6;
-		t->w = this->m7;
+		t = this->v1;
 		break;
 
 	case MATRIX_ROW_2:
-		t->x = this->m8;
-		t->y = this->m9;
-		t->z = this->m10;
-		t->w = this->m11;
+		t = this->v2;
 		break;
 
 	case MATRIX_ROW_3:
-		t->x = this->m12;
-		t->y = this->m13;
-		t->z = this->m14;
-		t->w = this->m15;
+		t = this->v3;
 		break;
 
 	default:

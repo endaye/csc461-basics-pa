@@ -27,8 +27,8 @@ public:
 	Matrix(Vect4D &tV0, Vect4D &tV1, Vect4D &tV2, Vect4D &tV3);
 	~Matrix();
 
-	void set(MatrixRowEnum row, Vect4D *t);
-	void get(MatrixRowEnum row, Vect4D *vOut);
+	void set(MatrixRowEnum row, const Vect4D &t);
+	void get(MatrixRowEnum row, Vect4D &vOut) const;
 
 	void setIdentMatrix();
 	void setTransMatrix(Vect4D *t);

@@ -66,10 +66,10 @@ void Particle::Update(const float& time_elapsed)
 
 	Matrix tmp;
 
-	tmp.set(Matrix::MATRIX_ROW_0, &this->diff_Row0);
-	tmp.set(Matrix::MATRIX_ROW_1, &this->diff_Row1);
-	tmp.set(Matrix::MATRIX_ROW_2, &this->diff_Row2);
-	tmp.set(Matrix::MATRIX_ROW_3, &this->diff_Row3);
+	tmp.set(Matrix::MATRIX_ROW_0, this->diff_Row0);
+	tmp.set(Matrix::MATRIX_ROW_1, this->diff_Row1);
+	tmp.set(Matrix::MATRIX_ROW_2, this->diff_Row2);
+	tmp.set(Matrix::MATRIX_ROW_3, this->diff_Row3);
 
 	float scale = tmp.Determinant();
 
