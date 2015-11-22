@@ -70,10 +70,25 @@ public:
 		this->m = _mm_sub_ps(this->m, t.m);
 	};
 
+	Vect4D operator * (Vect4D &tmp) const
+	{
+		return Vect4D(_mm_mul_ps(this->m, tmp.m));
+	};
+	
 	Vect4D operator * (float scale) const
 	{
-		//return Vect4D(_mm_mul_ps(this->m, _mm_set1_ps(scale)));
-		return Vect4D(x * scale, y * scale, z * scale, 1.0f);
+		return Vect4D(_mm_mul_ps(this->m, _mm_set1_ps(scale)));
+		//return Vect4D(x * scale, y * scale, z * scale, 1.0f);
+	};
+
+	void operator *= (Vect4D &tmp)
+	{
+		this->m = _mm_mul_ps(this->m, tmp.m);
+	};
+
+	void operator *= (float scale)
+	{
+		this->m = _mm_mul_ps(this->m, _mm_set1_ps(scale));
 	};
 
 	float &operator[](VECT_ENUM e);
