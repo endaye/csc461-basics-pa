@@ -11,8 +11,27 @@
   <CPUFrequency type="s64_t">3100000000</CPUFrequency>
  </rdmgr>
  <All_Configurations-All_Platforms>
+  <searchDirs>
+   <searchCategory>
+    <category type="u8_t">1</category>
+   </searchCategory>
+   <searchCategory>
+    <category type="u8_t">2</category>
+   </searchCategory>
+   <searchCategory>
+    <category type="u8_t">3</category>
+    <searchDirectory>
+     <name>c:\</name>
+     <recursive type="bool">false</recursive>
+     <priority type="bool">false</priority>
+    </searchDirectory>
+   </searchCategory>
+   <searchCategory>
+    <category type="u8_t">4</category>
+   </searchCategory>
+  </searchDirs>
   <target_settings>
-   <inherited_state type="bool">true</inherited_state>
+   <inherited_state type="bool">false</inherited_state>
    <selected_workload>
     <localhost>launch</localhost>
    </selected_workload>
@@ -110,6 +129,9 @@
         <item>
          <value>bin=C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common</value>
         </item>
+        <item>
+         <value>bin=C:\Program Files\Microsoft\Web Platform Installer</value>
+        </item>
        </search_directories>
        <context>
         <contextValue>
@@ -182,14 +204,15 @@
      <launch type="pointer" type_id="dasID_cctrl2::ApplicationWorkload" ptr_type="dasID_cctrl2::IWorkload">
       <workload>
        <targetName>launch</targetName>
-       <launch.userapppath>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER\GameParticles.exe</launch.userapppath>
-       <launch_app.inherit_sys_environment type="bool">true</launch_app.inherit_sys_environment>
-       <launch_app.app_to_launch>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER\GameParticles.exe</launch_app.app_to_launch>
-       <launch_app.working_folder>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\GameParticles</launch_app.working_folder>
        <launch_app.app_parameters></launch_app.app_parameters>
        <launch_app.environment></launch_app.environment>
        <launch_app.environment_prepend>PATH=</launch_app.environment_prepend>
-       <use_app_dir_as_work_dir type="bool">false</use_app_dir_as_work_dir>
+       <use_app_dir_as_work_dir type="bool">true</use_app_dir_as_work_dir>
+       <launch.userappworkdir></launch.userappworkdir>
+       <launch.userapppath>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER\GameParticles.exe</launch.userapppath>
+       <launch_app.app_to_launch>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER\GameParticles.exe</launch_app.app_to_launch>
+       <launch_app.inherit_sys_environment type="bool">true</launch_app.inherit_sys_environment>
+       <launch_app.working_folder>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\USE_THIS_FASTER</launch_app.working_folder>
        <result_directory.path>C:\Users\Yuancheng\Google Drive\CSC 461 Optimized C++\csc461-basics-pa\GameParticles - student\GameParticles\My Amplifier XE Results - GameParticles\r@@@{at}</result_directory.path>
        <search_directories>
         <item>
@@ -272,6 +295,9 @@
         </item>
         <item>
          <value>bin=C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common</value>
+        </item>
+        <item>
+         <value>bin=C:\Program Files\Microsoft\Web Platform Installer</value>
         </item>
        </search_directories>
        <context>
@@ -432,6 +458,9 @@
         </item>
         <item>
          <value>bin=C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common</value>
+        </item>
+        <item>
+         <value>bin=C:\Program Files\Microsoft\Web Platform Installer</value>
         </item>
        </search_directories>
        <context>

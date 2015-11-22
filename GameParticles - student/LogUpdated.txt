@@ -6,20 +6,11 @@ Student: Yuancheng Zhang
 3. moved some duplicated code out of while loop in main()
 4. reindented to make it more readable
 
-#define NUM_PARTICLES	(1 * 1000 )  //leave at 30K for final testing
-LoopTime: update:7.840108 ms  draw:8.745258 ms  tot:16.585367
-
-Elapsed Time:	8.840s
-    CPU Time:	9.819s
-Effective Time:	5.237s
-	Spin Time:	4.581s
-Total Thread Count:	8
-
 11/18/2015
 1. used SqrtOpt() instead of original sqrtf() in Vect4D.h (2.7x faster in release mode)
 
-Elapsed Time:	8.849s
-    CPU Time:	9.608s
-Effective Time:	4.504s
-	Spin Time:	5.104s
-Total Thread Count:	8
+11/20/2015
+1. moved variable declearations out of the loop in ParticleEmitter::draw()
+2. added SIMD in Vect4D
+
+11/22/2015

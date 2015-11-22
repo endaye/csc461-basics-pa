@@ -6,7 +6,7 @@
 #include "Vect4D.h"
 
 
-Vect4D::Vect4D()
+/*Vect4D::Vect4D()
 {
 	this->x = 0.0f;
 	this->y = 0.0f;
@@ -40,30 +40,13 @@ void Vect4D::operator = (const Vect4D &tmp)
 	this->w = tmp.w;
 };
 
-void Vect4D::norm(Vect4D& out)
-{
-	if (this->x == 0.0f && this->y == 0.0f && this->z == 0.0f)
-	{
-		return;
-	}
 
-	//float mag = sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
-	float mag = SqrtOpt(this->x * this->x + this->y * this->y + this->z * this->z);
-	
-	out.x = this->x / mag;
-	out.y = this->y / mag;
-	out.z = this->z / mag;
-	out.w = 1.0f;
-
-}
 
 
 
 Vect4D Vect4D::operator + (Vect4D &t) const
 {
-	/*if (1)
-		return Vect4D(_mm_add_ps(this->m, t.m));
-	return Vect4D(this->m);*/
+	//return Vect4D(_mm_add_ps(this->m, t.m));
 	Vect4D out;
 	out.x = this->x + t.x;
 	out.y = this->y + t.y;
@@ -93,6 +76,15 @@ Vect4D Vect4D::operator *(float scale) const
 	return tmp;
 }
 
+void Vect4D::set(float tx, float ty, float tz, float tw)
+{
+this->x = tx;
+this->y = ty;
+this->z = tz;
+this->w = tw;
+}
+
+*/
 float& Vect4D::operator[](VECT_ENUM e)
 {
 	switch (e)
@@ -115,20 +107,60 @@ float& Vect4D::operator[](VECT_ENUM e)
 	}
 }
 
-void Vect4D::Cross(Vect4D& vin, Vect4D& vout)
+void Vect4D::updatePos(const float life)
+{
+	//Vect4D z_axis(0.0f, -0.25f, 1.0f);
+	float tx, ty, tz;
+	//tx = (this->y*z_axis.z - this->z*z_axis.y);
+	//ty = (this->z*z_axis.x - this->x*z_axis.z);
+	//tz = (this->x*z_axis.y - this->y*z_axis.x);
+	tx = (this->y - this->z*(-0.25f));
+	ty = (0.0f - this->x);
+	tz = (this->x * (-0.25f));
+
+	if (tx == 0.0f && ty == 0.0f && tz == 0.0f)
+	{
+		return;
+	}
+
+	// float mag = SqrtOpt(tx * tx + ty * ty + tz * tz) * 20.0f / life;
+	float mag = tx * tx + ty * ty + tz * tz;
+	float xhalf = 0.5f * mag;
+	int i = *(int*)&mag; // get bits for floating value
+	i = 0x5f375a86 - (i >> 1); // gives initial guess y0
+	mag = *(float*)&i; // convert bits back to float
+	mag = mag * (1.5f - xhalf * mag * mag) * 0.05f * life; // Newton step, repeating increases accuracy
+
+	//position += v * (0.05f * life);
+	this->x += tx * mag;
+	this->y += ty * mag;
+	this->z += tz * mag;
+}
+
+/*
+void Vect4D::norm(Vect4D& out)
+{
+	if (this->x == 0.0f && this->y == 0.0f && this->z == 0.0f)
+	{
+		return;
+	}
+
+	float mag = sqrtf(this->x * this->x + this->y * this->y + this->z * this->z);
+	//float mag = SqrtOpt(this->x * this->x + this->y * this->y + this->z * this->z);
+
+	out.x /= mag;
+	out.y /= mag;
+	out.z /= mag;
+	out.w = 1.0f;
+
+}
+
+void Vect4D::Cross(const Vect4D& vin, Vect4D& vout) const
 {
 	vout.x = (y*vin.z - z*vin.y);
 	vout.y = (z*vin.x - x*vin.z);
 	vout.z = (x*vin.y - y*vin.x);
-	vout.w = 1.0f;
-}
-
-void Vect4D::set(float tx, float ty, float tz, float tw)
-{
-	this->x = tx;
-	this->y = ty;
-	this->z = tz;
-	this->w = tw;
+	vout.w = 0.0f;
 }
 
 float Vect4D::SqrtOpt(float x)
@@ -141,4 +173,5 @@ float Vect4D::SqrtOpt(float x)
 	return 1.0f / x; // return sqrt root
 }
 
+*/
 // End of file

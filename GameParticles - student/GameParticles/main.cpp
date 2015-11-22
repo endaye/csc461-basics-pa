@@ -16,9 +16,6 @@ int main(int argc, char * const argv[]);
 // This is our Windows entry point.
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	nCmdShow;
-	lpCmdLine;
-	hPrevInstance;
 	OpenGLDevice::SetHInstance(hInstance);
 	main(__argc, __argv);
 }
@@ -46,9 +43,6 @@ int main(int argc, char * const argv[])
 	success = OpenGLDevice::InitWindow();
 	assert(success);
 
-	// create an emitter:-------------------------------
-	ParticleEmitter emitter;
-
 	// Get the inverse Camera Matrix:-------------------
 
 	// initialize the camera matrix
@@ -58,7 +52,7 @@ int main(int argc, char * const argv[])
 	// setup the translation matrix
 	Matrix transMatrix;
 	Vect4D trans(0.0f, 3.0f, 10.0f);
-	transMatrix.setTransMatrix(&trans);
+	transMatrix.setTransMatrix(trans);
 
 	// multiply them together
 	Matrix tmp;
@@ -68,13 +62,11 @@ int main(int argc, char * const argv[])
 	Matrix inverseCameraMatrix;
 	tmp.Inverse(inverseCameraMatrix);
 
+	// create an emitter:-------------------------------
+	ParticleEmitter emitter;
+
 	// counter for printing
 	int i = 0;
-
-	//////// remove this part ///////
-	// counter for turnoff
-	int j = 0;
-	/////////////////////////////////
 
 	// main update loop... do this forever or until some breaks 
 	while (OpenGLDevice::IsRunning())
@@ -125,14 +117,6 @@ int main(int argc, char * const argv[])
 			printf("LoopTime: update:%f ms  draw:%f ms  tot:%f\n", updateTime * 1000.0f, drawTime * 1000.0f, (updateTime + drawTime) *1000.0f);
 		}
 
-		/////////////// remove this part //////////
-		// turn off
-		j++;
-		if (j > 500)
-		{
-			break;
-		}
-		///////////////////////////////////////////
 	}
 
 	return 0;

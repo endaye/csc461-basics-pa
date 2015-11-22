@@ -3,6 +3,8 @@
 #include "DO_NOT_MODIFY\OpenGL\OpenGLInterface.h"
 
 #include <assert.h>
+#include <xmmintrin.h>
+#include <smmintrin.h> 
 
 #include "ParticleEmitter.h"
 #include "Settings.h"
@@ -30,12 +32,12 @@ ParticleEmitter::ParticleEmitter()
 	max_life(MAX_LIFE),
 	max_particles(NUM_PARTICLES),
 	spawn_frequency(0.0000001f),
+	randHalf(RAND_MAX / 2),
+	varM(static_cast <float> (randHalf)),
 	last_spawn(globalTimer::getTimerInSec()),
 	last_loop(globalTimer::getTimerInSec()),
 	last_active_particle(-1),
 	particle_list(NUM_PARTICLES),
-	vel_variance(1.0f, 4.0f, 0.4f),
-	pos_variance(1.0f, 1.0f, 1.0f),
 	scale_variance(2.5f),
 	headParticle(0)
 {
@@ -57,7 +59,7 @@ void ParticleEmitter::SpawnParticle()
 	{
 
 		// create new particle
-		Particle *newParticle = new Particle();
+		Particle *newParticle = (Particle*)_aligned_malloc(sizeof(Particle), 16);
 
 		// initialize the particle
 		newParticle->life = 0.0f;
@@ -200,7 +202,8 @@ void ParticleEmitter::removeParticleFromList(Particle *p)
 	}
 
 	// bye bye
-	delete p;
+	//delete p;
+	_aligned_free(p);
 }
 
 void ParticleEmitter::draw()
@@ -212,45 +215,56 @@ void ParticleEmitter::draw()
 	// get the camera matrix from OpenGL
 	glGetFloatv(GL_MODELVIEW_MATRIX, reinterpret_cast<float*>(&cameraMatrix));
 
+	// OpenGL goo... don't worrry about this
+	glVertexPointer(3, GL_FLOAT, 0, squareVertices);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
+	glEnableClientState(GL_COLOR_ARRAY);
+	
+	// get the position from this matrix
+	Vect4D camPosVect;
+	cameraMatrix.get(Matrix::MATRIX_ROW_3, camPosVect);
+
+	// camera position
+	Matrix transCamera;
+	transCamera.setTransMatrix(camPosVect);
+
+	// particle position
+	Matrix transParticle;
+
+	// rotation matrix
+	Matrix rotParticle;
+
+	// pivot Point
+	Matrix pivotParticle;
+	Vect4D pivotVect;
+
+	// scale Matrix
+	Matrix scaleMatrix;
+
+	//Temporary matrix
+	Matrix tmp;
+
 	// iterate throught the list of particles
-	std::list<Particle>::iterator it;
-	for (it = drawBuffer.begin(); it != drawBuffer.end(); ++it)
+	
+	Particle front = drawBuffer.front();
+	Particle *p = &front;
+	
+	for (size_t i = 0; i < drawBuffer.size(); i++)
 	{
-		//Temporary matrix
-		Matrix tmp;
-
-		// get the position from this matrix
-		Vect4D camPosVect;
-		cameraMatrix.get(Matrix::MATRIX_ROW_3, &camPosVect);
-
-		// OpenGL goo... don't worrry about this
-		glVertexPointer(3, GL_FLOAT, 0, squareVertices);
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
-		glEnableClientState(GL_COLOR_ARRAY);
-
-		// camera position
-		Matrix transCamera;
-		transCamera.setTransMatrix(&camPosVect);
-
 		// particle position
-		Matrix transParticle;
-		transParticle.setTransMatrix(&it->position);
+		transParticle.setTransMatrix(p->position);
 
 		// rotation matrix
-		Matrix rotParticle;
-		rotParticle.setRotZMatrix(it->rotation);
+		rotParticle.setRotZMatrix(p->rotation);
 
 		// pivot Point
-		Matrix pivotParticle;
-		Vect4D pivotVect;
 		pivotVect.set(1.0f, 0.0f, 50.0f);
-		pivotVect = pivotVect * 20.0f * it->life;
-		pivotParticle.setTransMatrix(&pivotVect);
+		pivotVect = pivotVect * 20.0f * p->life;
+		pivotParticle.setTransMatrix(pivotVect);
 
 		// scale Matrix
-		Matrix scaleMatrix;
-		scaleMatrix.setScaleMatrix(&it->scale);
+		scaleMatrix.setScaleMatrix(p->scale);
 
 		// total transformation of particle
 		tmp = scaleMatrix * transCamera * transParticle * rotParticle * scaleMatrix;
@@ -259,26 +273,28 @@ void ParticleEmitter::draw()
 		glLoadMatrixf(reinterpret_cast<float*>(&(tmp)));
 
 		// squirrel away matrix for next update
-		tmp.get(Matrix::MATRIX_ROW_0, &it->curr_Row0);
-		tmp.get(Matrix::MATRIX_ROW_1, &it->curr_Row1);
-		tmp.get(Matrix::MATRIX_ROW_2, &it->curr_Row2);
-		tmp.get(Matrix::MATRIX_ROW_3, &it->curr_Row3);
+		tmp.get(Matrix::MATRIX_ROW_0,p->curr_Row0);
+		tmp.get(Matrix::MATRIX_ROW_1,p->curr_Row1);
+		tmp.get(Matrix::MATRIX_ROW_2,p->curr_Row2);
+		tmp.get(Matrix::MATRIX_ROW_3,p->curr_Row3);
 
 		// draw the trangle strip
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 		// difference vector
-		it->diff_Row0 = it->curr_Row0 - it->prev_Row0;
-		it->diff_Row1 = it->curr_Row1 - it->prev_Row1;
-		it->diff_Row2 = it->curr_Row2 - it->prev_Row2;
-		it->diff_Row3 = it->curr_Row3 - it->prev_Row3;
-
+		p->diff_Row0 = p->curr_Row0 - p->prev_Row0;
+		p->diff_Row1 = p->curr_Row1 - p->prev_Row1;
+		p->diff_Row2 = p->curr_Row2 - p->prev_Row2;
+		p->diff_Row3 = p->curr_Row3 - p->prev_Row3;
 
 		// clears or flushes some internal setting, used in debug, but is need for performance reasons
 		// magic...  really it's magic.
 		GLenum glError = glGetError();
 		glError;
+
+		p = p->next;
 	}
+	
 
 	// delete the buffer
 	for (size_t i = 0; i < drawBuffer.size(); i++)
@@ -294,86 +310,22 @@ void ParticleEmitter::draw()
 void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc)
 {
 	// Add some randomness...
-
-	// Ses it's ugly - I didn't write this so don't bitch at me
-	// Sometimes code like this is inside real commerical code ( so now you know how it feels )
-
-	// x - variance
-	float var = static_cast<float>(rand() % 1000) * 0.001f;
-	float sign = static_cast<float>(rand() % 2);
-	float *t_pos = reinterpret_cast<float*>(&pos);
-	float *t_var = &pos_variance[x];
-	if (sign == 0.0f)
-	{
-		var *= -1.0f;
-	}
-	*t_pos += *t_var * var;
-
-	// y - variance
-	var = static_cast<float>(rand() % 1000) * 0.001f;
-	sign = static_cast<float>(rand() % 2);
-	t_pos++;
-	t_var++;
-	if (sign == 0.0f)
-	{
-		var *= -1.0f;
-	}
-	*t_pos += *t_var * var;
-
-	// z - variance
-	var = static_cast<float>(rand() % 1000) * 0.001f;
-	sign = static_cast<float>(rand() % 2);
-	t_pos++;
-	t_var++;
-	if (sign == 0)
-	{
-		var *= -1.0f;
-	}
-	*t_pos += *t_var * var;
-
-	var = static_cast<float>(rand() % 1000) * 0.001f;
-	sign = static_cast<float>(rand() % 2);
-
-	// x  - add velocity
-	t_pos = &vel[x];
-	t_var = &vel_variance[x];
-	if (sign == 0)
-	{
-		var *= -1.0f;
-	}
-	*t_pos += *t_var * var;
-
-	// y - add velocity
-	var = static_cast<float>(rand() % 1000) * 0.001f;
-	sign = static_cast<float>(rand() % 2);
-	t_pos++;
-	t_var++;
-	if (sign == 0)
-	{
-		var *= -1.0f;
-	}
-	*t_pos += *t_var * var;
-
-	// z - add velocity
-	var = static_cast<float>(rand() % 1000) * 0.001f;
-	sign = static_cast<float>(rand() % 2);
-	t_pos++;
-	t_var++;
-	if (sign == 0)
-	{
-		var *= -1.0f;
-	}
-	*t_pos += *t_var * var;
-
-	// correct the sign
-	var = 2.0f * static_cast<float>(rand() % 1000) * 0.001f;
-	sign = static_cast<float>(rand() % 2);
-
-	if (sign == 0)
-	{
-		var *= -1.0f;
-	}
-	sc = sc * var;
+	float var0 = static_cast <float> (rand() - this->randHalf) / this->varM;
+	float var1 = static_cast <float> (rand() - this->randHalf) / this->varM;
+	float var2 = static_cast <float> (rand() - this->randHalf) / this->varM;
+	pos.x += var0;
+	pos.y += var1;
+	pos.z += var2;
+	//pos += Vect4D(var0, var1, var2, 0.0f);
+	var0 = static_cast <float> (rand() - this->randHalf) / this->varM;				// * 1.0f
+	var1 = static_cast <float> ((rand() - this->randHalf) * 4) / this->varM;		// * 4.0f
+	var2 = static_cast <float> ((rand() - this->randHalf) * 2 / 5) / this->varM;	// * 0.4f
+	vel.x += var0;
+	vel.y += var1;
+	vel.z += var2;
+	//vel += Vect4D(var0, var1, var2, 0.0f);
+	var0 = static_cast <float> ((rand() - this->randHalf) * 2) / this->varM;
+	sc *= var0;
 }
 
 

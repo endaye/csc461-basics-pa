@@ -13,6 +13,7 @@ Particle::Particle()
 
 }
 
+
 Particle::~Particle()
 {
 	// nothing to do
@@ -51,22 +52,23 @@ void Particle::Update(const float& time_elapsed)
 
 	Matrix tmp;
 
-	tmp.set(Matrix::MATRIX_ROW_0, &this->diff_Row0);
-	tmp.set(Matrix::MATRIX_ROW_1, &this->diff_Row1);
-	tmp.set(Matrix::MATRIX_ROW_2, &this->diff_Row2);
-	tmp.set(Matrix::MATRIX_ROW_3, &this->diff_Row3);
+	tmp.set(Matrix::MATRIX_ROW_0, this->diff_Row0);
+	tmp.set(Matrix::MATRIX_ROW_1, this->diff_Row1);
+	tmp.set(Matrix::MATRIX_ROW_2, this->diff_Row2);
+	tmp.set(Matrix::MATRIX_ROW_3, this->diff_Row3);
 
 	float scale = tmp.Determinant();
 
 	// serious math below - magic secret sauce
 	life += time_elapsed;
 	position = position + (velocity * time_elapsed);
-	Vect4D z_axis(0.0f, -0.25f, 1.0f);
-	Vect4D v(3.0f, 4.0f, 0.0f);
-	position.Cross(z_axis, v);
-	v.norm(v);
-	position = position + v * 0.05f * life;
-
+	//Vect4D z_axis(0.0f, -0.25f, 1.0f);
+	//Vect4D v(3.0f, 4.0f, 0.0f);
+	//Vect4D v;
+	//position.Cross(z_axis, v);
+	//v.norm(v);
+	//position += v * (0.05f * life);
+	position.updatePos(life);
 	if (scale > 1.0f)
 	{
 		scale = 1.0f / scale;

@@ -9,7 +9,7 @@
 class Vect4D;
 
 // class
-class Matrix
+class __declspec(align(16)) Matrix
 {
 public:
 
@@ -27,26 +27,28 @@ public:
 	Matrix(Vect4D &tV0, Vect4D &tV1, Vect4D &tV2, Vect4D &tV3);
 	~Matrix();
 
-	void set(MatrixRowEnum row, Vect4D *t);
-	void get(MatrixRowEnum row, Vect4D *vOut);
+	void set(MatrixRowEnum row, const Vect4D &t);
+	void get(MatrixRowEnum row, Vect4D &vOut) const;
 
 	void setIdentMatrix();
-	void setTransMatrix(Vect4D *t);
-	void setScaleMatrix(Vect4D *s);
+	void setTransMatrix(const Vect4D &t);
+	void setScaleMatrix(const Vect4D &s);
 	void setRotZMatrix(float Z_Radians);
 
 	float &operator[](INDEX_ENUM e);
 
 	Matrix operator*(Matrix &t);
-	Matrix operator*(float s);
+	//Matrix operator*(float s);
 
 	float Determinant();
 
+	void Inverse(Matrix &out);
 	Matrix GetAdjugate();
-	Matrix& Matrix::operator/=(float t);
+	void operator/=(const float &t);
 
-	void Matrix::Inverse(Matrix &out);
+	
 
+public:
 	// Level 4 complains nameless struct/union ...
 	#pragma warning( disable : 4201)
 
