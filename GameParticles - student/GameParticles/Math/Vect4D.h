@@ -61,8 +61,8 @@ public:
 
 	Vect4D operator - (Vect4D &t) const
 	{
-		//return Vect4D(_mm_sub_ps(this->m, t.m));
-		return Vect4D(this->x - t.x, this->y - t.y, this->z - t.z, 1.0f);
+		return Vect4D(_mm_sub_ps(this->m, t.m));
+		//return Vect4D(this->x - t.x, this->y - t.y, this->z - t.z, 1.0f);
 	};
 
 	void operator -= (Vect4D &t)

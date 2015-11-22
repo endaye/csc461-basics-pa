@@ -246,22 +246,25 @@ void ParticleEmitter::draw()
 	Matrix tmp;
 
 	// iterate throught the list of particles
-	std::list<Particle>::iterator it;
-	for (it = drawBuffer.begin(); it != drawBuffer.end(); ++it)
+	
+	Particle front = drawBuffer.front();
+	Particle *p = &front;
+	
+	for (size_t i = 0; i < drawBuffer.size(); i++)
 	{
 		// particle position
-		transParticle.setTransMatrix(&it->position);
+		transParticle.setTransMatrix(&p->position);
 
 		// rotation matrix
-		rotParticle.setRotZMatrix(it->rotation);
+		rotParticle.setRotZMatrix(p->rotation);
 
 		// pivot Point
 		pivotVect.set(1.0f, 0.0f, 50.0f);
-		pivotVect = pivotVect * 20.0f * it->life;
+		pivotVect = pivotVect * 20.0f * p->life;
 		pivotParticle.setTransMatrix(&pivotVect);
 
 		// scale Matrix
-		scaleMatrix.setScaleMatrix(&it->scale);
+		scaleMatrix.setScaleMatrix(&p->scale);
 
 		// total transformation of particle
 		tmp = scaleMatrix * transCamera * transParticle * rotParticle * scaleMatrix;
@@ -270,26 +273,28 @@ void ParticleEmitter::draw()
 		glLoadMatrixf(reinterpret_cast<float*>(&(tmp)));
 
 		// squirrel away matrix for next update
-		tmp.get(Matrix::MATRIX_ROW_0, &it->curr_Row0);
-		tmp.get(Matrix::MATRIX_ROW_1, &it->curr_Row1);
-		tmp.get(Matrix::MATRIX_ROW_2, &it->curr_Row2);
-		tmp.get(Matrix::MATRIX_ROW_3, &it->curr_Row3);
+		tmp.get(Matrix::MATRIX_ROW_0, &p->curr_Row0);
+		tmp.get(Matrix::MATRIX_ROW_1, &p->curr_Row1);
+		tmp.get(Matrix::MATRIX_ROW_2, &p->curr_Row2);
+		tmp.get(Matrix::MATRIX_ROW_3, &p->curr_Row3);
 
 		// draw the trangle strip
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 		// difference vector
-		it->diff_Row0 = it->curr_Row0 - it->prev_Row0;
-		it->diff_Row1 = it->curr_Row1 - it->prev_Row1;
-		it->diff_Row2 = it->curr_Row2 - it->prev_Row2;
-		it->diff_Row3 = it->curr_Row3 - it->prev_Row3;
-
+		p->diff_Row0 = p->curr_Row0 - p->prev_Row0;
+		p->diff_Row1 = p->curr_Row1 - p->prev_Row1;
+		p->diff_Row2 = p->curr_Row2 - p->prev_Row2;
+		p->diff_Row3 = p->curr_Row3 - p->prev_Row3;
 
 		// clears or flushes some internal setting, used in debug, but is need for performance reasons
 		// magic...  really it's magic.
 		GLenum glError = glGetError();
 		glError;
+
+		p = p->next;
 	}
+	
 
 	// delete the buffer
 	for (size_t i = 0; i < drawBuffer.size(); i++)
