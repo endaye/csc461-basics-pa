@@ -32,7 +32,6 @@ Matrix::Matrix()
 	v3 = Vect4D(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
-
 Matrix::Matrix(Matrix& t)
 { // copy constructor
 	//this->m0 = t.m0;
@@ -60,64 +59,9 @@ Matrix::Matrix(Matrix& t)
 	this->v3 = t.v3;
 }
 
-
 Matrix::~Matrix()
 {
 	// nothign to delete
-}
-
-void Matrix::setIdentMatrix()
-{ // initialize to the identity matrix
-	//this->m0 = 1.0f;
-	//this->m1 = 0.0f;
-	//this->m2 = 0.0f;
-	//this->m3 = 0.0f;
-
-	//this->m4 = 0.0f;
-	//this->m5 = 1.0f;
-	//this->m6 = 0.0f;
-	//this->m7 = 0.0f;
-
-	//this->m8 = 0.0f;
-	//this->m9 = 0.0f;
-	//this->m10 = 1.0f;
-	//this->m11 = 0.0f;
-
-	//this->m12 = 0.0f;
-	//this->m13 = 0.0f;
-	//this->m14 = 0.0f;
-	//this->m15 = 1.0f;
-	v0 = Vect4D(1.0f, 0.0f, 0.0f, 0.0f);
-	v1 = Vect4D(0.0f, 1.0f, 0.0f, 0.0f);
-	v2 = Vect4D(0.0f, 0.0f, 1.0f, 0.0f);
-	v3 = Vect4D(0.0f, 0.0f, 0.0f, 1.0f);
-}
-
-void Matrix::setTransMatrix(Vect4D *t)
-{ // set the translation matrix (note: we are row major)
-	//this->m0 = 1.0f;
-	//this->m1 = 0.0f;
-	//this->m2 = 0.0f;
-	//this->m3 = 0.0f;
-
-	//this->m4 = 0.0f;
-	//this->m5 = 1.0f;
-	//this->m6 = 0.0f;
-	//this->m7 = 0.0f;
-
-	//this->m8 = 0.0f;
-	//this->m9 = 0.0f;
-	//this->m10 = 1.0f;
-	//this->m11 = 0.0f;
-
-	//this->m12 = t->x;
-	//this->m13 = t->y;
-	//this->m14 = t->z;
-	//this->m15 = 1.0f;
-	v0 = Vect4D(1.0f, 0.0f, 0.0f, 0.0f);
-	v1 = Vect4D(0.0f, 1.0f, 0.0f, 0.0f);
-	v2 = Vect4D(0.0f, 0.0f, 1.0f, 0.0f);
-	v3 = Vect4D(t->x, t->y, t->z, 1.0f);
 }
 
 void Matrix::set(MatrixRowEnum row, const Vect4D &t)
@@ -145,6 +89,112 @@ void Matrix::set(MatrixRowEnum row, const Vect4D &t)
 		// should never get here, if we are here something bad has happened
 		assert(0);
 	}
+}
+
+void Matrix::get(MatrixRowEnum row, Vect4D &t) const
+{ // get a row of the matrix
+	switch (row)
+	{
+	case MATRIX_ROW_0:
+		t = this->v0;
+		break;
+
+	case MATRIX_ROW_1:
+		t = this->v1;
+		break;
+
+	case MATRIX_ROW_2:
+		t = this->v2;
+		break;
+
+	case MATRIX_ROW_3:
+		t = this->v3;
+		break;
+
+	default:
+		assert(0);
+	}
+}
+
+void Matrix::setIdentMatrix()
+{ 
+	// initialize to the identity matrix
+	//this->m0 = 1.0f;
+	//this->m1 = 0.0f;
+	//this->m2 = 0.0f;
+	//this->m3 = 0.0f;
+
+	//this->m4 = 0.0f;
+	//this->m5 = 1.0f;
+	//this->m6 = 0.0f;
+	//this->m7 = 0.0f;
+
+	//this->m8 = 0.0f;
+	//this->m9 = 0.0f;
+	//this->m10 = 1.0f;
+	//this->m11 = 0.0f;
+
+	//this->m12 = 0.0f;
+	//this->m13 = 0.0f;
+	//this->m14 = 0.0f;
+	//this->m15 = 1.0f;
+	v0 = Vect4D(1.0f, 0.0f, 0.0f, 0.0f);
+	v1 = Vect4D(0.0f, 1.0f, 0.0f, 0.0f);
+	v2 = Vect4D(0.0f, 0.0f, 1.0f, 0.0f);
+	v3 = Vect4D(0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+void Matrix::setTransMatrix(const Vect4D &t)
+{ 
+	// set the translation matrix (note: we are row major)
+	v0 = Vect4D(1.0f, 0.0f, 0.0f, 0.0f);
+	v1 = Vect4D(0.0f, 1.0f, 0.0f, 0.0f);
+	v2 = Vect4D(0.0f, 0.0f, 1.0f, 0.0f);
+	v3 = Vect4D(t.x, t.y, t.z, 1.0f);
+}
+
+void Matrix::setScaleMatrix(const Vect4D &scale)
+{
+	//	{	sx		0		0		0	}
+	//	{	0		sy		0		0	}
+	//	{	0		0		sz		0	}
+	//	{	0		0		0		1	}
+
+	this->v0 = Vect4D(scale.x, 0.0f, 0.0f, 0.0f);
+	this->v1 = Vect4D(0.0f, scale.y, 0.0f, 0.0f);
+	this->v2 = Vect4D(0.0f, 0.0f, scale.z, 0.0f);
+	this->v3 = Vect4D(0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+void Matrix::setRotZMatrix(float az)
+{
+	//	{	cos		-sin	0		0	}
+	//	{	sin		cos		0		0	}
+	//	{	0		0		1		0	}
+	//	{	0		0		0		1	}
+
+	Matrix tmp;
+	tmp.m0 = cosf(az);
+	tmp.m1 = -sinf(az);
+	tmp.m2 = 0.0f;
+	tmp.m3 = 0.0f;
+
+	tmp.m4 = sinf(az);
+	tmp.m5 = cosf(az);
+	tmp.m6 = 0.0f;
+	tmp.m7 = 0.0f;
+
+	tmp.m8 = 0.0f;
+	tmp.m9 = 0.0f;
+	tmp.m10 = 1.0f;
+	tmp.m11 = 0.0f;
+
+	tmp.m12 = 0.0f;
+	tmp.m13 = 0.0f;
+	tmp.m14 = 0.0f;
+	tmp.m15 = 1.0f;
+
+	*this = tmp;
 }
 
 float &Matrix::operator[](INDEX_ENUM e)
@@ -207,84 +257,100 @@ float &Matrix::operator[](INDEX_ENUM e)
 	}
 }
 
-
-void Matrix::get(MatrixRowEnum row, Vect4D &t) const
-{ // get a row of the matrix
-	switch (row)
-	{
-	case MATRIX_ROW_0:
-		t = this->v0;
-		break;
-
-	case MATRIX_ROW_1:
-		t = this->v1;
-		break;
-
-	case MATRIX_ROW_2:
-		t = this->v2;
-		break;
-
-	case MATRIX_ROW_3:
-		t = this->v3;
-		break;
-
-	default:
-		assert(0);
-	}
-}
-
-
 Matrix Matrix::operator*(Matrix& rhs)
-{ // matrix multiplications
-	Matrix tmp;
+{
+	//// matrix multiplications
+	//Matrix tmp;
 
-	tmp.m0 = (m0*rhs.m0) + (m1*rhs.m4) + (m2*rhs.m8) + (m3*rhs.m12);
-	tmp.m1 = (m0*rhs.m1) + (m1*rhs.m5) + (m2*rhs.m9) + (m3*rhs.m13);
-	tmp.m2 = (m0*rhs.m2) + (m1*rhs.m6) + (m2*rhs.m10) + (m3*rhs.m14);
-	tmp.m3 = (m0*rhs.m3) + (m1*rhs.m7) + (m2*rhs.m11) + (m3*rhs.m15);
+	//tmp.m0 = (m0*rhs.m0) + (m1*rhs.m4) + (m2*rhs.m8) + (m3*rhs.m12);
+	//tmp.m1 = (m0*rhs.m1) + (m1*rhs.m5) + (m2*rhs.m9) + (m3*rhs.m13);
+	//tmp.m2 = (m0*rhs.m2) + (m1*rhs.m6) + (m2*rhs.m10) + (m3*rhs.m14);
+	//tmp.m3 = (m0*rhs.m3) + (m1*rhs.m7) + (m2*rhs.m11) + (m3*rhs.m15);
 
-	tmp.m4 = (m4*rhs.m0) + (m5*rhs.m4) + (m6*rhs.m8) + (m7*rhs.m12);
-	tmp.m5 = (m4*rhs.m1) + (m5*rhs.m5) + (m6*rhs.m9) + (m7*rhs.m13);
-	tmp.m6 = (m4*rhs.m2) + (m5*rhs.m6) + (m6*rhs.m10) + (m7*rhs.m14);
-	tmp.m7 = (m4*rhs.m3) + (m5*rhs.m7) + (m6*rhs.m11) + (m7*rhs.m15);
+	//tmp.m4 = (m4*rhs.m0) + (m5*rhs.m4) + (m6*rhs.m8) + (m7*rhs.m12);
+	//tmp.m5 = (m4*rhs.m1) + (m5*rhs.m5) + (m6*rhs.m9) + (m7*rhs.m13);
+	//tmp.m6 = (m4*rhs.m2) + (m5*rhs.m6) + (m6*rhs.m10) + (m7*rhs.m14);
+	//tmp.m7 = (m4*rhs.m3) + (m5*rhs.m7) + (m6*rhs.m11) + (m7*rhs.m15);
 
-	tmp.m8 = (m8*rhs.m0) + (m9*rhs.m4) + (m10*rhs.m8) + (m11*rhs.m12);
-	tmp.m9 = (m8*rhs.m1) + (m9*rhs.m5) + (m10*rhs.m9) + (m11*rhs.m13);
-	tmp.m10 = (m8*rhs.m2) + (m9*rhs.m6) + (m10*rhs.m10) + (m11*rhs.m14);
-	tmp.m11 = (m8*rhs.m3) + (m9*rhs.m7) + (m10*rhs.m11) + (m11*rhs.m15);
+	//tmp.m8 = (m8*rhs.m0) + (m9*rhs.m4) + (m10*rhs.m8) + (m11*rhs.m12);
+	//tmp.m9 = (m8*rhs.m1) + (m9*rhs.m5) + (m10*rhs.m9) + (m11*rhs.m13);
+	//tmp.m10 = (m8*rhs.m2) + (m9*rhs.m6) + (m10*rhs.m10) + (m11*rhs.m14);
+	//tmp.m11 = (m8*rhs.m3) + (m9*rhs.m7) + (m10*rhs.m11) + (m11*rhs.m15);
 
-	tmp.m12 = (m12*rhs.m0) + (m13*rhs.m4) + (m14*rhs.m8) + (m15*rhs.m12);
-	tmp.m13 = (m12*rhs.m1) + (m13*rhs.m5) + (m14*rhs.m9) + (m15*rhs.m13);
-	tmp.m14 = (m12*rhs.m2) + (m13*rhs.m6) + (m14*rhs.m10) + (m15*rhs.m14);
-	tmp.m15 = (m12*rhs.m3) + (m13*rhs.m7) + (m14 *rhs.m11) + (m15*rhs.m15);
+	//tmp.m12 = (m12*rhs.m0) + (m13*rhs.m4) + (m14*rhs.m8) + (m15*rhs.m12);
+	//tmp.m13 = (m12*rhs.m1) + (m13*rhs.m5) + (m14*rhs.m9) + (m15*rhs.m13);
+	//tmp.m14 = (m12*rhs.m2) + (m13*rhs.m6) + (m14*rhs.m10) + (m15*rhs.m14);
+	//tmp.m15 = (m12*rhs.m3) + (m13*rhs.m7) + (m14 *rhs.m11) + (m15*rhs.m15);
+	//
+	//return tmp;
 
-	return tmp;
+	Matrix A;
+	__m128 tmp;
+
+	tmp = _mm_set1_ps(this->v0.x);
+	A.v0.m = _mm_mul_ps(tmp, rhs.v0.m);
+
+	tmp = _mm_set1_ps(this->v0.y);
+	A.v0.m = _mm_add_ps(A.v0.m, _mm_mul_ps(tmp, rhs.v1.m));
+
+	tmp = _mm_set1_ps(this->v0.z);
+	A.v0.m = _mm_add_ps(A.v0.m, _mm_mul_ps(tmp, rhs.v2.m));
+
+	tmp = _mm_set1_ps(this->v0.w);
+	A.v0.m = _mm_add_ps(A.v0.m, _mm_mul_ps(tmp, rhs.v3.m));
+
+
+	tmp = _mm_set1_ps(this->v1.x);
+	A.v1.m = _mm_mul_ps(tmp, rhs.v0.m);
+
+	tmp = _mm_set1_ps(this->v1.y);
+	A.v1.m = _mm_add_ps(A.v1.m, _mm_mul_ps(tmp, rhs.v1.m));
+
+	tmp = _mm_set1_ps(this->v1.z);
+	A.v1.m = _mm_add_ps(A.v1.m, _mm_mul_ps(tmp, rhs.v2.m));
+
+	tmp = _mm_set1_ps(this->v1.w);
+	A.v1.m = _mm_add_ps(A.v1.m, _mm_mul_ps(tmp, rhs.v3.m));
+
+
+	tmp = _mm_set1_ps(this->v2.x);
+	A.v2.m = _mm_mul_ps(tmp, rhs.v0.m);
+
+	tmp = _mm_set1_ps(this->v2.y);
+	A.v2.m = _mm_add_ps(A.v2.m, _mm_mul_ps(tmp, rhs.v1.m));
+
+	tmp = _mm_set1_ps(this->v2.z);
+	A.v2.m = _mm_add_ps(A.v2.m, _mm_mul_ps(tmp, rhs.v2.m));
+
+	tmp = _mm_set1_ps(this->v2.w);
+	A.v2.m = _mm_add_ps(A.v2.m, _mm_mul_ps(tmp, rhs.v3.m));
+
+
+	tmp = _mm_set1_ps(this->v3.x);
+	A.v3.m = _mm_mul_ps(tmp, rhs.v0.m);
+
+	tmp = _mm_set1_ps(this->v3.y);
+	A.v3.m = _mm_add_ps(A.v3.m, _mm_mul_ps(tmp, rhs.v1.m));
+
+	tmp = _mm_set1_ps(this->v3.z);
+	A.v3.m = _mm_add_ps(A.v3.m, _mm_mul_ps(tmp, rhs.v2.m));
+
+	tmp = _mm_set1_ps(this->v3.w);
+	A.v3.m = _mm_add_ps(A.v3.m, _mm_mul_ps(tmp, rhs.v3.m));
+
+	return A;
 }
 
-Matrix& Matrix::operator/=(float rhs)
+void Matrix::operator/=(const float &rhs)
 {
 	// divide each element by a value
 	// using inverse multiply trick, faster that individual divides
-	float inv_rhs = 1.0f / rhs;
+	const float inv_rhs = 1.0f / rhs;
 
-	m0 *= inv_rhs;
-	m1 *= inv_rhs;
-	m2 *= inv_rhs;
-	m3 *= inv_rhs;
-	m4 *= inv_rhs;
-	m5 *= inv_rhs;
-	m6 *= inv_rhs;
-	m7 *= inv_rhs;
-	m8 *= inv_rhs;
-	m9 *= inv_rhs;
-	m10 *= inv_rhs;
-	m11 *= inv_rhs;
-	m12 *= inv_rhs;
-	m13 *= inv_rhs;
-	m14 *= inv_rhs;
-	m15 *= inv_rhs;
-
-	return *this;
+	this->v0 *= inv_rhs;
+	this->v1 *= inv_rhs;
+	this->v2 *= inv_rhs;
+	this->v3 *= inv_rhs;
 }
 
 float Matrix::Determinant()
@@ -292,12 +358,12 @@ float Matrix::Determinant()
 	// A = { a,b,c,d / e,f,g,h / j,k,l,m / n,o,p,q }
 	// A = { 0,1,2,3 / 4,5,6,7 / 8,9,10,11 / 12,13,14,15 }
 
-	// det(A) = a*det( { f,g,h / k,l,m / o,p,q } )
-	//			- b*det( { e,g,h / j,l,m / n,p,q } )
-	//			+ c*det( { e,f,h / j,k,m / n,o,q } )
-	//			- d*det( { e,f,g / j,k,l / n,o,p } )
+	// det(A) =   a * det( { f,g,h / k,l,m / o,p,q } )
+	//			- b * det( { e,g,h / j,l,m / n,p,q } )
+	//			+ c * det( { e,f,h / j,k,m / n,o,q } )
+	//			- d * det( { e,f,g / j,k,l / n,o,p } )
 
-	// det(A) = (a (f (lq - mp) - g (kq - mo) + h (kp - lo) ) )
+	// det(A) =   (a (f (lq - mp) - g (kq - mo) + h (kp - lo) ) )
 	//			- (b (e (lq - mp) - g (jq - mn) + h (jp - ln) ) )
 	//			+ (c (e (kq - mo) - f (jq - mn) + h (jo - kn) ) )
 	//			- (d (e (kp - lo) - f (jp - ln) + g (jo - kn) ) )
@@ -524,64 +590,6 @@ void Matrix::Inverse(Matrix &out)
 	out = tmp;
 }
 
-void Matrix::setScaleMatrix(Vect4D *scale)
-{
-	//	{	sx		0		0		0	}
-	//	{	0		sy		0		0	}
-	//	{	0		0		sz		0	}
-	//	{	0		0		0		1	}
 
-	Matrix tmp;
-	this->m0 = scale->x;
-	this->m1 = 0;
-	this->m2 = 0;
-	this->m3 = 0;
-
-	this->m4 = 0;
-	this->m5 = scale->y;
-	this->m6 = 0;
-	this->m7 = 0;
-
-	this->m8 = 0;
-	this->m9 = 0;
-	this->m10 = scale->z;
-	this->m11 = 0;
-
-	this->m12 = 0;
-	this->m13 = 0;
-	this->m14 = 0;
-	this->m15 = 1.0f;
-}
-
-void Matrix::setRotZMatrix(float az)
-{
-	//	{	cos		-sin	0		0	}
-	//	{	sin		cos		0		0	}
-	//	{	0		0		1		0	}
-	//	{	0		0		0		1	}
-
-	Matrix tmp;
-	tmp.m0 = cosf(az);
-	tmp.m1 = -sinf(az);
-	tmp.m2 = 0.0f;
-	tmp.m3 = 0.0f;
-
-	tmp.m4 = sinf(az);
-	tmp.m5 = cosf(az);
-	tmp.m6 = 0.0f;
-	tmp.m7 = 0.0f;
-
-	tmp.m8 = 0.0f;
-	tmp.m9 = 0.0f;
-	tmp.m10 = 1.0f;
-	tmp.m11 = 0.0f;
-
-	tmp.m12 = 0.0f;
-	tmp.m13 = 0.0f;
-	tmp.m14 = 0.0f;
-	tmp.m15 = 1.0f;
-
-	*this = tmp;
-}
 
 // End of file
