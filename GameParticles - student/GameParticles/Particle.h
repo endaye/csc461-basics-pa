@@ -13,7 +13,6 @@ public:
 	//Particle(const Particle &tmp);
 	~Particle();
 	void Update(const float& time_elapsed);
-	void CopyDataOnly( Particle *p );
 public:
 	Vect4D	prev_Row0;
 	Vect4D	prev_Row1;
@@ -36,8 +35,6 @@ public:
 
 	float	life;
 	float	rotation;
-	float	rotation_velocity;
-	float	pad0;
 
 	Particle *next;
 	Particle *prev;

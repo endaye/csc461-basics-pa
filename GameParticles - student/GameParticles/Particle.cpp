@@ -9,26 +9,12 @@ Particle::Particle()
 	this->velocity.set(0.0f, 0.0f, 0.0f);
 	this->scale.set(1.0f, 1.0f, 1.0f);
 	this->rotation = 0.0f;
-	this->rotation_velocity = 0.5f;
-
 }
 
 
 Particle::~Particle()
 {
 	// nothing to do
-}
-
-void Particle::CopyDataOnly(Particle *p)
-{
-	// copy the data only
-	// this way of copying data is more efficient that element by element
-	this->position = p->position;
-	this->velocity = p->velocity;
-	this->scale = p->scale;
-	this->rotation = p->rotation;
-	this->rotation_velocity = p->rotation_velocity;
-	this->life = p->life;
 }
 
 void Particle::Update(const float& time_elapsed)
@@ -74,7 +60,7 @@ void Particle::Update(const float& time_elapsed)
 		scale = 1.0f / scale;
 	};
 
-	rotation = rotation + scale + rotation_velocity * time_elapsed * 2.01f;
+	rotation += scale + 0.5f * time_elapsed * 2.01f;
 }
 
 
