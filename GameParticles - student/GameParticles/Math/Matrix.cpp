@@ -119,25 +119,6 @@ void Matrix::get(MatrixRowEnum row, Vect4D &t) const
 void Matrix::setIdentMatrix()
 { 
 	// initialize to the identity matrix
-	//this->m0 = 1.0f;
-	//this->m1 = 0.0f;
-	//this->m2 = 0.0f;
-	//this->m3 = 0.0f;
-
-	//this->m4 = 0.0f;
-	//this->m5 = 1.0f;
-	//this->m6 = 0.0f;
-	//this->m7 = 0.0f;
-
-	//this->m8 = 0.0f;
-	//this->m9 = 0.0f;
-	//this->m10 = 1.0f;
-	//this->m11 = 0.0f;
-
-	//this->m12 = 0.0f;
-	//this->m13 = 0.0f;
-	//this->m14 = 0.0f;
-	//this->m15 = 1.0f;
 	v0 = Vect4D(1.0f, 0.0f, 0.0f, 0.0f);
 	v1 = Vect4D(0.0f, 1.0f, 0.0f, 0.0f);
 	v2 = Vect4D(0.0f, 0.0f, 1.0f, 0.0f);
@@ -166,7 +147,7 @@ void Matrix::setScaleMatrix(const Vect4D &scale)
 	this->v3 = Vect4D(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
-void Matrix::setRotZMatrix(float az)
+void Matrix::setRotZMatrix(const float &az)
 {
 	//	{	cos		-sin	0		0	}
 	//	{	sin		cos		0		0	}
@@ -174,6 +155,7 @@ void Matrix::setRotZMatrix(float az)
 	//	{	0		0		0		1	}
 
 	Matrix tmp;
+	
 	tmp.m0 = cosf(az);
 	tmp.m1 = -sinf(az);
 	tmp.m2 = 0.0f;
@@ -261,27 +243,22 @@ Matrix Matrix::operator*(Matrix& rhs)
 {
 	//// matrix multiplications
 	//Matrix tmp;
-
 	//tmp.m0 = (m0*rhs.m0) + (m1*rhs.m4) + (m2*rhs.m8) + (m3*rhs.m12);
 	//tmp.m1 = (m0*rhs.m1) + (m1*rhs.m5) + (m2*rhs.m9) + (m3*rhs.m13);
 	//tmp.m2 = (m0*rhs.m2) + (m1*rhs.m6) + (m2*rhs.m10) + (m3*rhs.m14);
 	//tmp.m3 = (m0*rhs.m3) + (m1*rhs.m7) + (m2*rhs.m11) + (m3*rhs.m15);
-
 	//tmp.m4 = (m4*rhs.m0) + (m5*rhs.m4) + (m6*rhs.m8) + (m7*rhs.m12);
 	//tmp.m5 = (m4*rhs.m1) + (m5*rhs.m5) + (m6*rhs.m9) + (m7*rhs.m13);
 	//tmp.m6 = (m4*rhs.m2) + (m5*rhs.m6) + (m6*rhs.m10) + (m7*rhs.m14);
 	//tmp.m7 = (m4*rhs.m3) + (m5*rhs.m7) + (m6*rhs.m11) + (m7*rhs.m15);
-
 	//tmp.m8 = (m8*rhs.m0) + (m9*rhs.m4) + (m10*rhs.m8) + (m11*rhs.m12);
 	//tmp.m9 = (m8*rhs.m1) + (m9*rhs.m5) + (m10*rhs.m9) + (m11*rhs.m13);
 	//tmp.m10 = (m8*rhs.m2) + (m9*rhs.m6) + (m10*rhs.m10) + (m11*rhs.m14);
 	//tmp.m11 = (m8*rhs.m3) + (m9*rhs.m7) + (m10*rhs.m11) + (m11*rhs.m15);
-
 	//tmp.m12 = (m12*rhs.m0) + (m13*rhs.m4) + (m14*rhs.m8) + (m15*rhs.m12);
 	//tmp.m13 = (m12*rhs.m1) + (m13*rhs.m5) + (m14*rhs.m9) + (m15*rhs.m13);
 	//tmp.m14 = (m12*rhs.m2) + (m13*rhs.m6) + (m14*rhs.m10) + (m15*rhs.m14);
 	//tmp.m15 = (m12*rhs.m3) + (m13*rhs.m7) + (m14 *rhs.m11) + (m15*rhs.m15);
-	//
 	//return tmp;
 
 	Matrix A;

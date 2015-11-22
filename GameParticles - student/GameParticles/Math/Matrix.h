@@ -33,7 +33,7 @@ public:
 	void setIdentMatrix();
 	void setTransMatrix(const Vect4D &t);
 	void setScaleMatrix(const Vect4D &s);
-	void setRotZMatrix(float Z_Radians);
+	void setRotZMatrix(const float &az);
 
 	float &operator[](INDEX_ENUM e);
 
