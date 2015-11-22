@@ -59,7 +59,7 @@ void ParticleEmitter::SpawnParticle()
 	{
 
 		// create new particle
-		Particle *newParticle = (Particle*)_aligned_malloc(sizeof Particle, 16);
+		Particle *newParticle = (Particle*)_aligned_malloc(sizeof(Particle), 16);
 
 		// initialize the particle
 		newParticle->life = 0.0f;
@@ -202,7 +202,8 @@ void ParticleEmitter::removeParticleFromList(Particle *p)
 	}
 
 	// bye bye
-	delete p;
+	//delete p;
+	_aligned_free(p);
 }
 
 void ParticleEmitter::draw()
@@ -314,11 +315,10 @@ void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc)
 	var0 = static_cast <float> (rand() - this->randHalf) / this->varM;				// * 1.0f
 	var1 = static_cast <float> ((rand() - this->randHalf) * 4) / this->varM;		// * 4.0f
 	var2 = static_cast <float> ((rand() - this->randHalf) * 2 / 5) / this->varM;	// * 0.4f
-
-	//vel.x += var0;
-	//vel.y += var1 * 4.0f;
-	//vel.z += var2 * 0.4f;
-	vel += Vect4D(var0, var1, var2, 0.0f);
+	vel.x += var0;
+	vel.y += var1;
+	vel.z += var2;
+	//vel += Vect4D(var0, var1, var2, 0.0f);
 	var0 = static_cast <float> ((rand() - this->randHalf) * 2) / this->varM;
 	sc *= var0;
 }
