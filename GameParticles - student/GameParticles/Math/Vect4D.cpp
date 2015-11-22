@@ -84,7 +84,7 @@ this->z = tz;
 this->w = tw;
 }
 
-*/
+
 float& Vect4D::operator[](VECT_ENUM e)
 {
 	switch (e)
@@ -106,7 +106,7 @@ float& Vect4D::operator[](VECT_ENUM e)
 		return x;
 	}
 }
-
+*/
 void Vect4D::updatePos(const float life)
 {
 	//Vect4D z_axis(0.0f, -0.25f, 1.0f);
@@ -135,6 +135,7 @@ void Vect4D::updatePos(const float life)
 	this->x += tx * mag;
 	this->y += ty * mag;
 	this->z += tz * mag;
+	//this->w += mag;
 }
 
 /*

@@ -90,9 +90,9 @@ public:
 		this->m = _mm_mul_ps(this->m, _mm_set1_ps(scale));
 	};
 
-	float &operator[](VECT_ENUM e);
+	
 	void updatePos(const float life);
-
+	//float &operator[](VECT_ENUM e);
 	//void norm(Vect4D &out);
 	//void Cross(const Vect4D &vin, Vect4D &vout) const;
 	//float SqrtOpt(float x);

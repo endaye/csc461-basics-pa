@@ -19,22 +19,18 @@ Particle::~Particle()
 
 void Particle::Update(const float& time_elapsed)
 {
-	// Rotate the matrices
-	Vect4D tmp_Row0;
-	tmp_Row0 = curr_Row0;
-	prev_Row0 = tmp_Row0;
+	Vect4D tmp_Row;
+	tmp_Row = curr_Row0;
+	prev_Row0 = tmp_Row;
 
-	Vect4D tmp_Row1;
-	tmp_Row1 = curr_Row1;
-	prev_Row1 = tmp_Row1;
+	tmp_Row = curr_Row1;
+	prev_Row1 = tmp_Row;
 
-	Vect4D tmp_Row2;
-	tmp_Row2 = curr_Row2;
-	prev_Row2 = tmp_Row2;
+	tmp_Row = curr_Row2;
+	prev_Row2 = tmp_Row;
 
-	Vect4D tmp_Row3;
-	tmp_Row3 = curr_Row3;
-	prev_Row3 = tmp_Row3;
+	tmp_Row = curr_Row3;
+	prev_Row3 = tmp_Row;
 
 	Matrix tmp;
 

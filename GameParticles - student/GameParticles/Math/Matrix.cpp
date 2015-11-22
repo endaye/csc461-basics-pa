@@ -332,8 +332,8 @@ void Matrix::operator/=(const float &rhs)
 
 float Matrix::Determinant()
 {
-	// A = { a,b,c,d / e,f,g,h / j,k,l,m / n,o,p,q }
-	// A = { 0,1,2,3 / 4,5,6,7 / 8,9,10,11 / 12,13,14,15 }
+	// A = { a, b, c, d / e, f, g, h / j, k, l, m /  n, o, p, q }
+	// A = { 0, 1, 2, 3 / 4, 5, 6, 7 / 8, 9,10,11 / 12,13,14,15 }
 
 	// det(A) =   a * det( { f,g,h / k,l,m / o,p,q } )
 	//			- b * det( { e,g,h / j,l,m / n,p,q } )
@@ -345,27 +345,31 @@ float Matrix::Determinant()
 	//			+ (c (e (kq - mo) - f (jq - mn) + h (jo - kn) ) )
 	//			- (d (e (kp - lo) - f (jp - ln) + g (jo - kn) ) )
 
-	// ta = (lq - mp)
-	float ta = (m10 * m15) - (m11 * m14);
-	// tb = (kq - mo)
-	float tb = (m9 * m15) - (m11 * m13);
-	// tc = (kp - lo)
-	float tc = (m9 * m14) - (m10 * m13);
-	// td = (jq - mn)
-	float td = (m8 * m15) - (m11 * m12);
-	// te = (jo - kn)
-	float te = (m8 * m13) - (m9 *  m12);
-	// tf = (jp - ln)
-	float tf = (m8 * m14) - (m10 * m12);
+	//// ta = (lq - mp)
+	//float ta = ((m10 * m15) - (m11 * m14));
+	//// tb = (kq - mo)
+	//float tb = ((m9 * m15) - (m11 * m13));
+	//// tc = (kp - lo)
+	//float tc = ((m9 * m14) - (m10 * m13));
+	//// td = (jq - mn)
+	//float td = ((m8 * m15) - (m11 * m12));
+	//// te = (jo - kn)
+	//float te = ((m8 * m13) - (m9 *  m12));
+	//// tf = (jp - ln)
+	//float tf = ((m8 * m14) - (m10 * m12));
 
-	// det(A) = (a (f*ta  - g*tb + h*tc) )
-	//			- (b (e*ta - g*td + h*tf) )
-	//			+ (c (e*tb - f*td + h*te) )
-	//			- (d (e*tc - f*tf + g*te) )
-	return ((m0 * ((m5 * ta) - (m6 * tb) + (m7 * tc)))
-		- (m1 * ((m4 * ta) - (m6 * td) + (m7 * tf)))
-		+ (m2 * ((m4 * tb) - (m5 * td) + (m7 * te)))
-		- (m3 * ((m4 * tc) - (m5 * tf) + (m6 * te))));
+	//// det(A) =   (a (f * ta - g * tb + h * tc) )
+	////			- (b (e * ta - g * td + h * tf) )
+	////			+ (c (e * tb - f * td + h * te) )
+	////			- (d (e * tc - f * tf + g * te) )
+	//return ((m0 * ((m5 * ta) - (m6 * tb) + (m7 * tc)))
+	//	  - (m1 * ((m4 * ta) - (m6 * td) + (m7 * tf)))
+	//	  + (m2 * ((m4 * tb) - (m5 * td) + (m7 * te)))
+	//	  - (m3 * ((m4 * tc) - (m5 * tf) + (m6 * te))));
+	return ((m0 * ((m5 * ((m10 * m15) - (m11 * m14))) - (m6 * ((m9 * m15) - (m11 * m13))) + (m7 * ((m9 * m14) - (m10 * m13)))))
+		  - (m1 * ((m4 * ((m10 * m15) - (m11 * m14))) - (m6 * ((m8 * m15) - (m11 * m12))) + (m7 * ((m8 * m14) - (m10 * m12)))))
+		  + (m2 * ((m4 * (( m9 * m15) - (m11 * m13))) - (m5 * ((m8 * m15) - (m11 * m12))) + (m7 * ((m8 * m13) - ( m9 * m12)))))
+		  - (m3 * ((m4 * (( m9 * m14) - (m10 * m13))) - (m5 * ((m8 * m14) - (m10 * m12))) + (m6 * ((m8 * m13) - ( m9 * m12))))));
 
 }
 
