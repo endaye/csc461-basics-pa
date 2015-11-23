@@ -65,7 +65,7 @@ void ParticleEmitter::SpawnParticle()
 		newParticle->life = 0.0f;
 		newParticle->position = start_position;
 		newParticle->velocity = start_velocity;
-		newParticle->scale = Vect4D(1.0f, 1.0f, 1.0f, 1.0f);
+		newParticle->scale.set(1.0f, 1.0f, 1.0f, 1.0f);
 
 		// apply the variance
 		this->Execute(newParticle->position, newParticle->velocity, newParticle->scale);
