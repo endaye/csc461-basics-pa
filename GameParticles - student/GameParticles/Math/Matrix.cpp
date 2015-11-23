@@ -6,34 +6,17 @@
 
 
 Matrix::Matrix()
-{	// constructor for the matrix
-	//this->m0 = 0.0f;
-	//this->m1 = 0.0f;
-	//this->m2 = 0.0f;
-	//this->m3 = 0.0f;
-
-	//this->m4 = 0.0f;
-	//this->m5 = 0.0f;
-	//this->m6 = 0.0f;
-	//this->m7 = 0.0f;
-
-	//this->m8 = 0.0f;
-	//this->m9 = 0.0f;
-	//this->m10 = 0.0f;
-	//this->m11 = 0.0f;
-
-	//this->m12 = 0.0f;
-	//this->m13 = 0.0f;
-	//this->m14 = 0.0f;
-	//this->m15 = 0.0f;
-	v0 = Vect4D(0.0f, 0.0f, 0.0f, 0.0f);
-	v1 = Vect4D(0.0f, 0.0f, 0.0f, 0.0f);
-	v2 = Vect4D(0.0f, 0.0f, 0.0f, 0.0f);
-	v3 = Vect4D(0.0f, 0.0f, 0.0f, 0.0f);
+{	
+	// constructor for the matrix
+	v0.set(0.0f, 0.0f, 0.0f, 0.0f);
+	v1.set(0.0f, 0.0f, 0.0f, 0.0f);
+	v2.set(0.0f, 0.0f, 0.0f, 0.0f);
+	v3.set(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
 Matrix::Matrix(Matrix& t)
-{ // copy constructor
+{ 
+	// copy constructor
 	//this->m0 = t.m0;
 	//this->m1 = t.m1;
 	//this->m2 = t.m2;
@@ -89,6 +72,14 @@ void Matrix::set(MatrixRowEnum row, const Vect4D &t)
 		// should never get here, if we are here something bad has happened
 		assert(0);
 	}
+}
+
+void Matrix::set(const Vect4D &t0, const Vect4D &t1, const Vect4D &t2, const Vect4D &t3)
+{
+	this->v0.m = t0.m;
+	this->v1.m = t1.m;
+	this->v2.m = t2.m;
+	this->v3.m = t3.m;
 }
 
 void Matrix::get(MatrixRowEnum row, Vect4D &t) const
