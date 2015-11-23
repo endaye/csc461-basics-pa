@@ -119,19 +119,19 @@ void Matrix::get(MatrixRowEnum row, Vect4D &t) const
 void Matrix::setIdentMatrix()
 { 
 	// initialize to the identity matrix
-	v0 = Vect4D(1.0f, 0.0f, 0.0f, 0.0f);
-	v1 = Vect4D(0.0f, 1.0f, 0.0f, 0.0f);
-	v2 = Vect4D(0.0f, 0.0f, 1.0f, 0.0f);
-	v3 = Vect4D(0.0f, 0.0f, 0.0f, 1.0f);
+	v0.set(1.0f, 0.0f, 0.0f, 0.0f);
+	v1.set(0.0f, 1.0f, 0.0f, 0.0f);
+	v2.set(0.0f, 0.0f, 1.0f, 0.0f);
+	v3.set(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void Matrix::setTransMatrix(const Vect4D &t)
 { 
 	// set the translation matrix (note: we are row major)
-	v0 = Vect4D(1.0f, 0.0f, 0.0f, 0.0f);
-	v1 = Vect4D(0.0f, 1.0f, 0.0f, 0.0f);
-	v2 = Vect4D(0.0f, 0.0f, 1.0f, 0.0f);
-	v3 = Vect4D(t.x, t.y, t.z, 1.0f);
+	v0.set(1.0f, 0.0f, 0.0f, 0.0f);
+	v1.set(0.0f, 1.0f, 0.0f, 0.0f);
+	v2.set(0.0f, 0.0f, 1.0f, 0.0f);
+	v3.set(t.x, t.y, t.z, 1.0f);
 }
 
 void Matrix::setScaleMatrix(const Vect4D &scale)
@@ -141,10 +141,10 @@ void Matrix::setScaleMatrix(const Vect4D &scale)
 	//	{	0		0		sz		0	}
 	//	{	0		0		0		1	}
 
-	this->v0 = Vect4D(scale.x, 0.0f, 0.0f, 0.0f);
-	this->v1 = Vect4D(0.0f, scale.y, 0.0f, 0.0f);
-	this->v2 = Vect4D(0.0f, 0.0f, scale.z, 0.0f);
-	this->v3 = Vect4D(0.0f, 0.0f, 0.0f, 1.0f);
+	this->v0.set(scale.x, 0.0f, 0.0f, 0.0f);
+	this->v1.set(0.0f, scale.y, 0.0f, 0.0f);
+	this->v2.set(0.0f, 0.0f, scale.z, 0.0f);
+	this->v3.set(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void Matrix::setRotZMatrix(const float &az)
@@ -154,29 +154,12 @@ void Matrix::setRotZMatrix(const float &az)
 	//	{	0		0		1		0	}
 	//	{	0		0		0		1	}
 
-	Matrix tmp;
-	
-	tmp.m0 = cosf(az);
-	tmp.m1 = -sinf(az);
-	tmp.m2 = 0.0f;
-	tmp.m3 = 0.0f;
-
-	tmp.m4 = sinf(az);
-	tmp.m5 = cosf(az);
-	tmp.m6 = 0.0f;
-	tmp.m7 = 0.0f;
-
-	tmp.m8 = 0.0f;
-	tmp.m9 = 0.0f;
-	tmp.m10 = 1.0f;
-	tmp.m11 = 0.0f;
-
-	tmp.m12 = 0.0f;
-	tmp.m13 = 0.0f;
-	tmp.m14 = 0.0f;
-	tmp.m15 = 1.0f;
-
-	*this = tmp;
+	float tsin = sinf(az);
+	float tcos = cosf(az);
+	this->v0.set(tcos, -tsin, 0.0f, 0.0f);
+	this->v1.set(tsin, tcos, 0.0f, 0.0f);
+	this->v2.set(0.0f, 0.0f, 1.0f, 0.0f);
+	this->v3.set(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 float &Matrix::operator[](INDEX_ENUM e)
@@ -322,12 +305,28 @@ void Matrix::operator/=(const float &rhs)
 {
 	// divide each element by a value
 	// using inverse multiply trick, faster that individual divides
-	const float inv_rhs = 1.0f / rhs;
+	__m128 tmp = _mm_set1_ps(rhs);
+	this->v0.m = _mm_div_ps(this->v0.m, tmp);
+	this->v1.m = _mm_div_ps(this->v1.m, tmp);
+	this->v2.m = _mm_div_ps(this->v2.m, tmp);
+	this->v3.m = _mm_div_ps(this->v3.m, tmp);
+}
 
-	this->v0 *= inv_rhs;
-	this->v1 *= inv_rhs;
-	this->v2 *= inv_rhs;
-	this->v3 *= inv_rhs;
+void Matrix::Inverse(Matrix &out)
+{
+	Matrix tmp;
+	float det = Determinant();
+	if (fabs(det) < 0.0001)
+	{
+		// do nothing, Matrix is not invertable
+	}
+	else
+	{
+		tmp = GetAdjugate();
+		tmp /= det;
+	}
+
+	out = tmp;
 }
 
 float Matrix::Determinant()
@@ -345,31 +344,31 @@ float Matrix::Determinant()
 	//			+ (c (e (kq - mo) - f (jq - mn) + h (jo - kn) ) )
 	//			- (d (e (kp - lo) - f (jp - ln) + g (jo - kn) ) )
 
-	//// ta = (lq - mp)
-	//float ta = ((m10 * m15) - (m11 * m14));
-	//// tb = (kq - mo)
-	//float tb = ((m9 * m15) - (m11 * m13));
-	//// tc = (kp - lo)
-	//float tc = ((m9 * m14) - (m10 * m13));
-	//// td = (jq - mn)
-	//float td = ((m8 * m15) - (m11 * m12));
-	//// te = (jo - kn)
-	//float te = ((m8 * m13) - (m9 *  m12));
-	//// tf = (jp - ln)
-	//float tf = ((m8 * m14) - (m10 * m12));
+	// ta = (lq - mp)
+	float ta = ((m10 * m15) - (m11 * m14));
+	// tb = (kq - mo)
+	float tb = ((m9 * m15) - (m11 * m13));
+	// tc = (kp - lo)
+	float tc = ((m9 * m14) - (m10 * m13));
+	// td = (jq - mn)
+	float td = ((m8 * m15) - (m11 * m12));
+	// te = (jo - kn)
+	float te = ((m8 * m13) - (m9 *  m12));
+	// tf = (jp - ln)
+	float tf = ((m8 * m14) - (m10 * m12));
 
-	//// det(A) =   (a (f * ta - g * tb + h * tc) )
-	////			- (b (e * ta - g * td + h * tf) )
-	////			+ (c (e * tb - f * td + h * te) )
-	////			- (d (e * tc - f * tf + g * te) )
-	//return ((m0 * ((m5 * ta) - (m6 * tb) + (m7 * tc)))
-	//	  - (m1 * ((m4 * ta) - (m6 * td) + (m7 * tf)))
-	//	  + (m2 * ((m4 * tb) - (m5 * td) + (m7 * te)))
-	//	  - (m3 * ((m4 * tc) - (m5 * tf) + (m6 * te))));
-	return ((m0 * ((m5 * ((m10 * m15) - (m11 * m14))) - (m6 * ((m9 * m15) - (m11 * m13))) + (m7 * ((m9 * m14) - (m10 * m13)))))
-		  - (m1 * ((m4 * ((m10 * m15) - (m11 * m14))) - (m6 * ((m8 * m15) - (m11 * m12))) + (m7 * ((m8 * m14) - (m10 * m12)))))
-		  + (m2 * ((m4 * (( m9 * m15) - (m11 * m13))) - (m5 * ((m8 * m15) - (m11 * m12))) + (m7 * ((m8 * m13) - ( m9 * m12)))))
-		  - (m3 * ((m4 * (( m9 * m14) - (m10 * m13))) - (m5 * ((m8 * m14) - (m10 * m12))) + (m6 * ((m8 * m13) - ( m9 * m12))))));
+	// det(A) =   (a (f * ta - g * tb + h * tc) )
+	//			- (b (e * ta - g * td + h * tf) )
+	//			+ (c (e * tb - f * td + h * te) )
+	//			- (d (e * tc - f * tf + g * te) )
+	return ((m0 * ((m5 * ta) - (m6 * tb) + (m7 * tc)))
+		  - (m1 * ((m4 * ta) - (m6 * td) + (m7 * tf)))
+		  + (m2 * ((m4 * tb) - (m5 * td) + (m7 * te)))
+		  - (m3 * ((m4 * tc) - (m5 * tf) + (m6 * te))));
+	//return ((m0 * ((m5 * ((m10 * m15) - (m11 * m14))) - (m6 * ((m9 * m15) - (m11 * m13))) + (m7 * ((m9 * m14) - (m10 * m13)))))
+	//	  - (m1 * ((m4 * ((m10 * m15) - (m11 * m14))) - (m6 * ((m8 * m15) - (m11 * m12))) + (m7 * ((m8 * m14) - (m10 * m12)))))
+	//	  + (m2 * ((m4 * (( m9 * m15) - (m11 * m13))) - (m5 * ((m8 * m15) - (m11 * m12))) + (m7 * ((m8 * m13) - ( m9 * m12)))))
+	//	  - (m3 * ((m4 * (( m9 * m14) - (m10 * m13))) - (m5 * ((m8 * m14) - (m10 * m12))) + (m6 * ((m8 * m13) - ( m9 * m12))))));
 
 }
 
@@ -554,22 +553,7 @@ Matrix Matrix::GetAdjugate()
 	return tmp;
 }
 
-void Matrix::Inverse(Matrix &out)
-{
-	Matrix tmp;
-	float det = Determinant();
-	if (fabs(det) < 0.0001)
-	{
-		// do nothing, Matrix is not invertable
-	}
-	else
-	{
-		tmp = GetAdjugate();
-		tmp /= det;
-	}
 
-	out = tmp;
-}
 
 
 
