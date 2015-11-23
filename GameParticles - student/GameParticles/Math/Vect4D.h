@@ -85,9 +85,15 @@ public:
 		this->m = _mm_mul_ps(this->m, tmp.m);
 	};
 
+
 	void operator *= (float scale)
 	{
 		this->m = _mm_mul_ps(this->m, _mm_set1_ps(scale));
+	};
+
+	void operator /= (float scale)
+	{
+		this->m = _mm_div_ps(this->m, _mm_set1_ps(scale));
 	};
 
 	
