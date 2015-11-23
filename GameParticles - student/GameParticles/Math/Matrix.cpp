@@ -23,44 +23,18 @@ Matrix::Matrix(Matrix& t)
 	this->v3 = t.v3;
 }
 
+Matrix::Matrix(const Vect4D &t0, const Vect4D &t1, const Vect4D &t2, const Vect4D &t3)
+{
+	// copy constructor
+	this->v0 = t0;
+	this->v1 = t1;
+	this->v2 = t2;
+	this->v3 = t3;
+}
+
 Matrix::~Matrix()
 {
 	// nothign to delete
-}
-
-void Matrix::set(MatrixRowEnum row, const Vect4D &t)
-{
-	// initialize the rows of the matrix
-	switch (row)
-	{
-	case MATRIX_ROW_0:
-		this->v0 = t;
-		break;
-
-	case MATRIX_ROW_1:
-		this->v1 = t;
-		break;
-
-	case MATRIX_ROW_2:
-		this->v2 = t;
-		break;
-
-	case MATRIX_ROW_3:
-		this->v3 = t;
-		break;
-
-	default:
-		// should never get here, if we are here something bad has happened
-		assert(0);
-	}
-}
-
-void Matrix::set(const Vect4D &t0, const Vect4D &t1, const Vect4D &t2, const Vect4D &t3)
-{
-	this->v0.m = t0.m;
-	this->v1.m = t1.m;
-	this->v2.m = t2.m;
-	this->v3.m = t3.m;
 }
 
 void Matrix::get(MatrixRowEnum row, Vect4D &t) const

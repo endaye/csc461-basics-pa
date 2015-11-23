@@ -32,12 +32,11 @@ void Particle::Update(const float& time_elapsed)
 	tmp_Row = curr_Row3;
 	prev_Row3 = tmp_Row;
 
-	Matrix tmp;
-	tmp.set(this->diff_Row0, this->diff_Row1, this->diff_Row2, this->diff_Row3);
+	Matrix tmp(this->diff_Row0, this->diff_Row1, this->diff_Row2, this->diff_Row3);
 
 	// serious math below - magic secret sauce
 	life += time_elapsed;
-	position = position + (velocity * time_elapsed);
+	position += (velocity * time_elapsed);
 	//Vect4D z_axis(0.0f, -0.25f, 1.0f);
 	//Vect4D v(3.0f, 4.0f, 0.0f);
 	//Vect4D v;

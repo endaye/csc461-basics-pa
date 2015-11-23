@@ -60,7 +60,7 @@ void ParticleEmitter::SpawnParticle()
 
 		// create new particle
 		Particle *newParticle = (Particle*)_aligned_malloc(sizeof(Particle), 16);
-
+	
 		// initialize the particle
 		newParticle->life = 0.0f;
 		newParticle->position = start_position;
@@ -75,7 +75,6 @@ void ParticleEmitter::SpawnParticle()
 
 		// add to list
 		this->addParticleToList(newParticle);
-
 	}
 }
 

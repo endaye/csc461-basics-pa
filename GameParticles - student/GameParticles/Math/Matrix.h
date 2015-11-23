@@ -24,11 +24,10 @@ public:
 
 	Matrix();
 	Matrix(Matrix& t);
-	Matrix(Vect4D &tV0, Vect4D &tV1, Vect4D &tV2, Vect4D &tV3);
+	Matrix(const Vect4D &t0, const Vect4D &t1, const Vect4D &t2, const Vect4D &t3);
 	~Matrix();
 
-	void set(MatrixRowEnum row, const Vect4D &t);
-	void set(const Vect4D &t0, const Vect4D &t1, const Vect4D &t2, const Vect4D &t3);
+	//void set(MatrixRowEnum row, const Vect4D &t);
 	void get(MatrixRowEnum row, Vect4D &vOut) const;
 	void get(Vect4D &t0, Vect4D &t1, Vect4D &t2, Vect4D &t3) const;
 

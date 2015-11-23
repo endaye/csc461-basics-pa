@@ -10,7 +10,6 @@ public:
 	friend class ParticleEmitter;
 	
 	Particle();	
-	//Particle(const Particle &tmp);
 	~Particle();
 	void Update(const float& time_elapsed);
 public:
@@ -33,11 +32,10 @@ public:
 	Vect4D	velocity;
 	Vect4D	scale;
 
-	float	life;
-	float	rotation;
-
 	Particle *next;
 	Particle *prev;
+	float	life;
+	float	rotation;
 };
 
 #endif //PARTICLE_H
