@@ -40,5 +40,4 @@ public:
 	Particle *prev;
 };
 
-
 #endif //PARTICLE_H

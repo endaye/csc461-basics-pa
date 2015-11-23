@@ -30,6 +30,7 @@ public:
 	void set(MatrixRowEnum row, const Vect4D &t);
 	void set(const Vect4D &t0, const Vect4D &t1, const Vect4D &t2, const Vect4D &t3);
 	void get(MatrixRowEnum row, Vect4D &vOut) const;
+	void get(Vect4D &t0, Vect4D &t1, Vect4D &t2, Vect4D &t3) const;
 
 	void setIdentMatrix();
 	void setTransMatrix(const Vect4D &t);

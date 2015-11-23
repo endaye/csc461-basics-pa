@@ -17,25 +17,6 @@ Matrix::Matrix()
 Matrix::Matrix(Matrix& t)
 { 
 	// copy constructor
-	//this->m0 = t.m0;
-	//this->m1 = t.m1;
-	//this->m2 = t.m2;
-	//this->m3 = t.m3;
-
-	//this->m4 = t.m4;
-	//this->m5 = t.m5;
-	//this->m6 = t.m6;
-	//this->m7 = t.m7;
-
-	//this->m8 = t.m8;
-	//this->m9 = t.m9;
-	//this->m10 = t.m10;
-	//this->m11 = t.m11;
-
-	//this->m12 = t.m12;
-	//this->m13 = t.m13;
-	//this->m14 = t.m14;
-	//this->m15 = t.m15;
 	this->v0 = t.v0;
 	this->v1 = t.v1;
 	this->v2 = t.v2;
@@ -105,6 +86,14 @@ void Matrix::get(MatrixRowEnum row, Vect4D &t) const
 	default:
 		assert(0);
 	}
+}
+
+void Matrix::get(Vect4D &t0, Vect4D &t1, Vect4D &t2, Vect4D &t3) const
+{ // get a row of the matrix
+	t0 = this->v0;
+	t1 = this->v1;
+	t2 = this->v2;
+	t3 = this->v3;
 }
 
 void Matrix::setIdentMatrix()
@@ -292,32 +281,30 @@ Matrix Matrix::operator*(Matrix& rhs)
 	return A;
 }
 
-void Matrix::operator/=(const float &rhs)
+void Matrix::operator /= (const float &rhs)
 {
 	// divide each element by a value
 	// using inverse multiply trick, faster that individual divides
-	__m128 tmp = _mm_set1_ps(rhs);
-	this->v0.m = _mm_div_ps(this->v0.m, tmp);
-	this->v1.m = _mm_div_ps(this->v1.m, tmp);
-	this->v2.m = _mm_div_ps(this->v2.m, tmp);
-	this->v3.m = _mm_div_ps(this->v3.m, tmp);
+	__m128 tmp = _mm_set1_ps(1.0f / rhs);
+	this->v0.m = _mm_mul_ps(this->v0.m, tmp);
+	this->v1.m = _mm_mul_ps(this->v1.m, tmp);
+	this->v2.m = _mm_mul_ps(this->v2.m, tmp);
+	this->v3.m = _mm_mul_ps(this->v3.m, tmp);
 }
 
 void Matrix::Inverse(Matrix &out)
 {
-	Matrix tmp;
 	float det = Determinant();
 	if (fabs(det) < 0.0001)
 	{
 		// do nothing, Matrix is not invertable
+		return;
 	}
 	else
 	{
-		tmp = GetAdjugate();
-		tmp /= det;
+		out = GetAdjugate();
+		out /= det;
 	}
-
-	out = tmp;
 }
 
 float Matrix::Determinant()
