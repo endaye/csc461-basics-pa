@@ -19,10 +19,10 @@ static const unsigned char squareColors[] =
 
 static const float squareVertices[] =
 {
-	-0.015f, -0.015f, 0.0f,
-	0.015f, -0.015f, 0.0f,
-	-0.015f, 0.015f, 0.0f,
-	0.015f, 0.015f, 0.0f,
+	-0.015f, -0.015f,  0.0f,
+	 0.015f, -0.015f,  0.0f,
+	-0.015f,  0.015f,  0.0f,
+	 0.015f,  0.015f,  0.0f,
 };
 
 
