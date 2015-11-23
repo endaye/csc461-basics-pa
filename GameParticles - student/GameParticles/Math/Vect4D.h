@@ -43,10 +43,7 @@ public:
 
 	void operator = (const Vect4D &t)
 	{
-		this->x = t.x;
-		this->y = t.y;
-		this->z = t.z;
-		this->w = t.w;
+		this->m = t.m;
 	};
 
 	Vect4D operator + (Vect4D &t) const
@@ -109,7 +106,7 @@ public:
 	// anonymous union
 	union
 	{
-		__declspec(align(16)) __m128	m;
+		__declspec(align(16)) __m128 m;
 
 		// anonymous struct
 		struct
@@ -120,8 +117,6 @@ public:
 			float w;
 		};
 	};
-
-
 };
 
 #endif  //Vect4D.h
