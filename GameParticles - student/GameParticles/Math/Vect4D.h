@@ -35,18 +35,18 @@ public:
 
 	void set(float tx, float ty, float tz, float tw = 1.0f)
 	{
-		x = tx;
-		y = ty;
-		z = tz;
-		w = tw;
+		this->x = tx;
+		this->y = ty;
+		this->z = tz;
+		this->w = tw;
 	}
 
 	void operator = (const Vect4D &t)
 	{
-		x = t.x;
-		y = t.y;
-		z = t.z;
-		w = t.w;
+		this->x = t.x;
+		this->y = t.y;
+		this->z = t.z;
+		this->w = t.w;
 	};
 
 	Vect4D operator + (Vect4D &t) const
