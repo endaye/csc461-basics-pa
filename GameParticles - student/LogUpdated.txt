@@ -19,4 +19,13 @@ Student: Yuancheng Zhang
 1. combined Vect4D norm() and Cross() into updatePos()
 2. combined SqrtOpt() into updatePos() instead of sqrtf()
 3. replaced pointer with const reference
-4. 
+
+11/23/2015
+1. removed std::list() in the ParticleEmitter
+	much faster!
+2. replaced =Vect4D() by setter
+3. added operator/=() in Vect4D
+4. updated Matrix setter and getter
+5. updated Inverse() in Matrix
+
+	
