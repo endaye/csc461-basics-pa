@@ -28,18 +28,10 @@ void Particle::setPrev(Particle * p)
 
 void Particle::Update(const float& time_elapsed)
 {
-	Vect4D tmp_Row;
-	tmp_Row = curr_Row0;
-	prev_Row0 = tmp_Row;
-
-	tmp_Row = curr_Row1;
-	prev_Row1 = tmp_Row;
-
-	tmp_Row = curr_Row2;
-	prev_Row2 = tmp_Row;
-
-	tmp_Row = curr_Row3;
-	prev_Row3 = tmp_Row;
+	prev_Row0.m = curr_Row0.m;
+	prev_Row1.m = curr_Row1.m;
+	prev_Row2.m = curr_Row2.m;
+	prev_Row3.m = curr_Row3.m;
 
 	Matrix tmp(this->diff_Row0, this->diff_Row1, this->diff_Row2, this->diff_Row3);
 
