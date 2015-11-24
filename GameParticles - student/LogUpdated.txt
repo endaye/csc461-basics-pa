@@ -27,5 +27,8 @@ Student: Yuancheng Zhang
 3. added operator/=() in Vect4D
 4. updated Matrix setter and getter
 5. updated Inverse() in Matrix
+6. used SIMD _mm_xor_ps() to swap two Vect4Ds 
+	0.3ms faster!
+7. move CreateLinkedList() from main into ParticleEmitter constructor
 
 	
