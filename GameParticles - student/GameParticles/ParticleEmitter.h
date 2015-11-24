@@ -13,17 +13,10 @@ public:
 	ParticleEmitter();
 	~ParticleEmitter();
 
-	void SpawnParticle();
-	void update();
-	void update_old();
-	void draw();
-	void draw_old();
-
-	void CreateLinkedList();
-	void addParticleToList(Particle *p);
-	void removeParticleFromList(Particle *p);
-
 	void Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc);
+	void update();
+	void draw();
+	void CreateLinkedList();
 	
 public:
 
