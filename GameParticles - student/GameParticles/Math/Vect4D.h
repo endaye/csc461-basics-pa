@@ -33,13 +33,21 @@ public:
 	~Vect4D()
 	{};
 
+	void set(float t)
+	{
+		this->x = t;
+		this->y = t;
+		this->z = t;
+		this->w = 1.0f;
+	};
+
 	void set(float tx, float ty, float tz, float tw = 1.0f)
 	{
 		this->x = tx;
 		this->y = ty;
 		this->z = tz;
 		this->w = tw;
-	}
+	};
 
 	void operator = (const Vect4D &t)
 	{
@@ -59,7 +67,6 @@ public:
 	Vect4D operator - (Vect4D &t) const
 	{
 		return Vect4D(_mm_sub_ps(this->m, t.m));
-		//return Vect4D(this->x - t.x, this->y - t.y, this->z - t.z, 1.0f);
 	};
 
 	void operator -= (Vect4D &t)

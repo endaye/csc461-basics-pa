@@ -31,19 +31,12 @@ ParticleEmitter::ParticleEmitter()
 	start_velocity(0.0f, 1.0f, 0.0f),
 	max_life(MAX_LIFE),
 	max_particles(NUM_PARTICLES),
-	spawn_frequency(0.0000001f),
 	randHalf(RAND_MAX / 2),
-	varM(static_cast <float> (randHalf)),
-	last_spawn(globalTimer::getTimerInSec()),
-	last_loop(globalTimer::getTimerInSec()),
-	last_active_particle(-1),
-	particle_list(NUM_PARTICLES),
-	scale_variance(2.5f),
-	headParticle(0)
+	varM(1.0f / (static_cast <float> (randHalf))),
+	last_loop(globalTimer::getTimerInSec())
 {
 	// nothing to do
 }
-
 
 
 ParticleEmitter::~ParticleEmitter()
@@ -52,158 +45,86 @@ ParticleEmitter::~ParticleEmitter()
 }
 
 
-void ParticleEmitter::SpawnParticle()
+void ParticleEmitter::CreateLinkedList()
 {
-	// create another particle if there are ones free
-	if (last_active_particle < max_particles - 1)
-	{
+	// initialize it NULL
+	headParticle = 0;
 
-		// create new particle
-		Particle *newParticle = (Particle*)_aligned_malloc(sizeof(Particle), 16);
-	
-		// initialize the particle
-		newParticle->life = 0.0f;
-		newParticle->position = start_position;
-		newParticle->velocity = start_velocity;
-		newParticle->scale.set(1.0f, 1.0f, 1.0f, 1.0f);
+	// create the space
+	Particle *p = (Particle*)_aligned_malloc(sizeof(Particle) * max_particles, 16);
+
+	// head
+	headParticle = p;
+
+	// some markers...
+	Particle *pFirst = p;
+	Particle *pLast = p + max_particles - 1;
+	Particle *pCurr = pFirst;
+
+	// initialize the all nodes
+	for (int i = 0; i < max_particles; ++i)
+	{
+		pCurr->setNext(pCurr + 1);
+		pCurr->setPrev(pCurr - 1);
+		pCurr->life = 0.0f;
+		pCurr->position = start_position;
+		pCurr->velocity = start_velocity;
+		pCurr->scale.set(1.0f, 1.0f, 1.0f, 1.0f);
 
 		// apply the variance
-		this->Execute(newParticle->position, newParticle->velocity, newParticle->scale);
-
-		// increment count
-		last_active_particle++;
-
-		// add to list
-		this->addParticleToList(newParticle);
+		this->Execute(pCurr->position, pCurr->velocity, pCurr->scale);
+		pCurr++;
 	}
+
+	// fix up the first and last node
+	pLast->setNext(0);
+	pFirst->setPrev(0);
 }
+
 
 void ParticleEmitter::update()
 {
 	// get current time
 	float current_time = globalTimer::getTimerInSec();
 
-	// spawn particles
-	float time_elapsed = current_time - last_spawn;
-
-	// update
-	while (spawn_frequency < time_elapsed)
-	{
-		// spawn a particle
-		this->SpawnParticle();
-		// adjust time
-		time_elapsed -= spawn_frequency;
-		// last time
-		last_spawn = current_time;
-	}
-
-	// total elapsed
-	time_elapsed = current_time - last_loop;
+	float time_elapsed = current_time - last_loop;
 
 	Particle *p = this->headParticle;
-	// walk the particles
 
 	while (p != 0)
 	{
 		// call every particle and update its position 
-		p->Update(time_elapsed);
+		
 
 		// if it's live is greater that the max_life 
 		// and there is some on the list
-		// remove node
-		if ((p->life > max_life) && (last_active_particle > 0))
+		// reset node
+		if (p->life > max_life)
 		{
 			// particle to remove
-			Particle *s = p;
-
-			// need to squirrel it away.
-			p = p->next;
-
-			// remove last node
-			this->removeParticleFromList(s);
-
-			// update the number of particles
-			last_active_particle--;
+			p->life = 0.0f;
+			p->position = start_position;
+			p->velocity = start_velocity;
+			p->scale.set(1.0f, 1.0f, 1.0f, 1.0f);
+			this->Execute(p->position, p->velocity, p->scale);
 		}
 		else
 		{
 			// increment to next point
-			p = p->next;
+			p->Update(time_elapsed);
 		}
+		p = p->next;
 	}
 
 	//move a copy to vector for faster iterations in draw
 	p = this->headParticle;
-	bufferCount = 0;
 
-	// clear the buffer
-	drawBuffer.clear();
-
-	// walk the pointers, add to list
-	while (p != 0)
-	{
-		// add to buffer
-		drawBuffer.push_back(*p);
-
-		// advance ptr
-		p = p->next;
-
-		// track the current count
-		bufferCount++;
-	}
 
 	// make sure the counts track (asserts go away in release - relax Christos)
-	assert(bufferCount == (last_active_particle + 1));
 	last_loop = current_time;
 }
 
-void ParticleEmitter::addParticleToList(Particle *p)
-{
-	assert(p);
-	if (this->headParticle == 0)
-	{ // first on list
-		this->headParticle = p;
-		p->next = 0;
-		p->prev = 0;
-	}
-	else
-	{ // add to front of list
-		headParticle->prev = p;
-		p->next = headParticle;
-		p->prev = 0;
-		headParticle = p;
-	}
 
-}
-
-void ParticleEmitter::removeParticleFromList(Particle *p)
-{
-	// make sure we are not screwed with a null pointer
-	assert(p);
-
-	if (p->prev == 0 && p->next == 0)
-	{ // only one on the list
-		this->headParticle = 0;
-	}
-	else if (p->prev == 0 && p->next != 0)
-	{ // first on the list
-		p->next->prev = 0;
-		this->headParticle = p->next;
-	}
-	else if (p->prev != 0 && p->next == 0)
-	{ // last on the list 
-		p->prev->next = 0;
-	}
-	else//( p->next != 0  && p->prev !=0 )
-	{ // middle of the list
-		p->prev->next = p->next;
-		p->next->prev = p->prev;
-	}
-
-	// bye bye
-	//delete p;
-	_aligned_free(p);
-}
 
 void ParticleEmitter::draw()
 {
@@ -219,7 +140,7 @@ void ParticleEmitter::draw()
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glColorPointer(4, GL_UNSIGNED_BYTE, 0, squareColors);
 	glEnableClientState(GL_COLOR_ARRAY);
-	
+
 	// get the position from this matrix
 	Vect4D camPosVect;
 	cameraMatrix.get(Matrix::MATRIX_ROW_3, camPosVect);
@@ -245,11 +166,10 @@ void ParticleEmitter::draw()
 	Matrix tmp;
 
 	// iterate throught the list of particles
-	
-	Particle front = drawBuffer.front();
-	Particle *p = &front;
-	
-	for (size_t i = 0; i < drawBuffer.size(); i++)
+
+	Particle *p = this->headParticle;
+
+	while (p != 0)
 	{
 		// particle position
 		transParticle.setTransMatrix(p->position);
@@ -268,15 +188,19 @@ void ParticleEmitter::draw()
 		// total transformation of particle
 		tmp = scaleMatrix * transCamera * transParticle * rotParticle * scaleMatrix;
 
-		// set the transformation matrix
-		glLoadMatrixf(reinterpret_cast<float*>(&(tmp)));
-
 		// squirrel away matrix for next update
 		tmp.get(p->curr_Row0, p->curr_Row1, p->curr_Row2, p->curr_Row3);
 
+		// set the transformation matrix
+		if (tmp.v0.x > 3.0f)
+		{
+			break;
+			p = p->next;
+		}
+		glLoadMatrixf(reinterpret_cast<float*>(&(tmp)));
 		// draw the trangle strip
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
+		
 		// difference vector
 		p->diff_Row0 = p->curr_Row0 - p->prev_Row0;
 		p->diff_Row1 = p->curr_Row1 - p->prev_Row1;
@@ -290,37 +214,27 @@ void ParticleEmitter::draw()
 
 		p = p->next;
 	}
-	
 
-	// delete the buffer
-	for (size_t i = 0; i < drawBuffer.size(); i++)
-	{
-		drawBuffer.pop_back();
-	}
-
-	// done with buffer, clear it.
-	drawBuffer.clear();
 }
-
 
 void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc)
 {
 	// Add some randomness...
-	float var0 = static_cast <float> (rand() - this->randHalf) / this->varM;
-	float var1 = static_cast <float> (rand() - this->randHalf) / this->varM;
-	float var2 = static_cast <float> (rand() - this->randHalf) / this->varM;
+	float var0 = static_cast <float> (rand() - this->randHalf) * this->varM;
+	float var1 = static_cast <float> (rand() - this->randHalf) * this->varM;
+	float var2 = static_cast <float> (rand() - this->randHalf) * this->varM;
 	pos.x += var0;
 	pos.y += var1;
 	pos.z += var2;
 	//pos += Vect4D(var0, var1, var2, 0.0f);
-	var0 = static_cast <float> (rand() - this->randHalf) / this->varM;				// * 1.0f
-	var1 = static_cast <float> ((rand() - this->randHalf) * 4) / this->varM;		// * 4.0f
-	var2 = static_cast <float> ((rand() - this->randHalf) * 2 / 5) / this->varM;	// * 0.4f
+	var0 = static_cast <float> (rand() - this->randHalf) * this->varM;				// * 1.0f
+	var1 = static_cast <float> ((rand() - this->randHalf) * 4) * this->varM;		// * 4.0f
+	var2 = static_cast <float> (rand() - this->randHalf) * this->varM * 0.4f;	// * 0.4f
 	vel.x += var0;
 	vel.y += var1;
 	vel.z += var2;
 	//vel += Vect4D(var0, var1, var2, 0.0f);
-	var0 = static_cast <float> ((rand() - this->randHalf) * 2) / this->varM;
+	var0 = static_cast <float> ((rand() - this->randHalf) * 2) * this->varM;
 	sc *= var0;
 }
 

@@ -5,9 +5,9 @@ Particle::Particle()
 {
 	// construtor
 	this->life = 0.0f;
-	this->position.set(0.0f, 0.0f, 0.0f);
-	this->velocity.set(0.0f, 0.0f, 0.0f);
-	this->scale.set(1.0f, 1.0f, 1.0f);
+	this->position.set(0.0f);
+	this->velocity.set(0.0f);
+	this->scale.set(1.0f);
 	this->rotation = 0.0f;
 }
 
@@ -15,6 +15,15 @@ Particle::Particle()
 Particle::~Particle()
 {
 	// nothing to do
+}
+
+void Particle::setNext(Particle * n)
+{
+	this->next = n;
+}
+void Particle::setPrev(Particle * p)
+{
+	this->prev = p;
 }
 
 void Particle::Update(const float& time_elapsed)
