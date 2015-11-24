@@ -186,53 +186,21 @@ void ParticleEmitter::draw()
 	glEnableClientState(GL_COLOR_ARRAY);
 
 	// camera position: setTransMatrix(const Vect4D &t)
-	Matrix transCamera;
-	transCamera.setIdentMatrix2();
-	transCamera.v3.set(cameraMatrix.v3.x, cameraMatrix.v3.y, cameraMatrix.v3.z);
-
 	// particle position
-	Matrix transParticle;
-	transParticle.setIdentMatrix2();
-
 	// rotation matrix
-	Matrix rotParticle;
-	rotParticle.setIdentMatrix2();
-
-	// scale Matrix
-	Matrix scaleMatrix;
-	scaleMatrix.setIdentMatrix2();
-	
+	// scale Matrix	
 	Matrix tmp;
 	tmp.setIdentMatrix2();
 
-	float tsin;
-	float tcos;
-
 	// iterate throught the list of particles
-
 	Particle *p = this->headParticle;
 	while (p != 0)
 	{
 		// particle position: setTransMatrix(const Vect4D &t)
-		transParticle.v3.set(p->position.x, p->position.y, p->position.z);
 
-		// rotation matrix: setRotZMatrix(const float &az)
-		tsin = sinf(p->rotation);
-		tcos = cosf(p->rotation);
-		rotParticle.m0 = tcos;
-		rotParticle.m1 = -tsin;
-		rotParticle.m4 = tsin;
-		rotParticle.m5 = tcos;
-
-		// scale Matrix: setScaleMatrix(const Vect4D &scale)
-		//scaleMatrix.m0 = p->scale.x;
-		//scaleMatrix.m5 = p->scale.y;
-		//scaleMatrix.m10 = p->scale.z;		
-
-		// total transformation of particle
 		//tmp = scaleMatrix * scaleMatrix * transCamera * transParticle * rotParticle;
 		TotalTransform(tmp, p->scale, cameraMatrix.v3, p->position, p->rotation);
-		//TotalTransform(Matrix &out, const Vect4D &scale, const Vect4D &TrCam, const Vect4D &TrPtc, const float rot)
+
 		// squirrel away matrix for next update
 		tmp.get(p->curr_Row0, p->curr_Row1, p->curr_Row2, p->curr_Row3);
 

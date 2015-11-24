@@ -24,7 +24,7 @@ public:
 	//void setTransMatrix(const Vect4D &t);
 	//void setScaleMatrix(const Vect4D &s);
 	//void setRotZMatrix(const float &az);
-	Matrix operator*(Matrix &t);
+	//Matrix operator*(Matrix &t);
 
 	float Determinant();
 	void Inverse(Matrix &out);

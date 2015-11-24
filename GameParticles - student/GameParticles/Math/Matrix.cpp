@@ -154,6 +154,7 @@ void Matrix::setIdentMatrix2()
 //	}
 //}
 
+/*
 Matrix Matrix::operator*(Matrix& rhs)
 {
 	//// matrix multiplications
@@ -232,7 +233,7 @@ Matrix Matrix::operator*(Matrix& rhs)
 
 	return A;
 }
-
+*/
 void Matrix::Inverse(Matrix &out)
 {
 	float det = Determinant();
