@@ -65,8 +65,6 @@ int main(int argc, char * const argv[])
 	// create an emitter:-------------------------------
 	ParticleEmitter emitter;
 
-	emitter.CreateLinkedList();
-
 	// counter for printing
 	int i = 0;
 

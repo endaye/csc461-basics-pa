@@ -36,6 +36,7 @@ ParticleEmitter::ParticleEmitter()
 	last_loop(globalTimer::getTimerInSec())
 {
 	// nothing to do
+	CreateLinkedList();
 }
 
 
@@ -44,8 +45,7 @@ ParticleEmitter::~ParticleEmitter()
 	// do nothing
 }
 
-
-void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc)
+void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc) const
 {
 	// Add some randomness...
 	float var0 = static_cast <float> (rand() - this->randHalf) * this->varM;
@@ -57,7 +57,7 @@ void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc)
 	//pos += Vect4D(var0, var1, var2, 0.0f);
 	var0 = static_cast <float> (rand() - this->randHalf) * this->varM;				// * 1.0f
 	var1 = static_cast <float> ((rand() - this->randHalf) * 4) * this->varM;		// * 4.0f
-	var2 = static_cast <float> (rand() - this->randHalf) * this->varM * 0.4f;	// * 0.4f
+	var2 = static_cast <float> (rand() - this->randHalf) * this->varM * 0.4f;		// * 0.4f
 	vel.x += var0;
 	vel.y += var1;
 	vel.z += var2;

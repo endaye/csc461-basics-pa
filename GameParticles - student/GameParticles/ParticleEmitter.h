@@ -13,7 +13,7 @@ public:
 	ParticleEmitter();
 	~ParticleEmitter();
 
-	void Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc);
+	void Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc) const;
 	void update();
 	void draw();
 	void CreateLinkedList();
