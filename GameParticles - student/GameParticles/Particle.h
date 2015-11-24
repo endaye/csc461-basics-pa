@@ -11,6 +11,8 @@ public:
 	
 	Particle();	
 	~Particle();
+	void setNext(Particle * n);
+	void setPrev(Particle * p);
 	void Update(const float& time_elapsed);
 public:
 	Vect4D	prev_Row0;
