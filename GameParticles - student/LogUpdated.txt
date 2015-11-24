@@ -1,5 +1,7 @@
 Student: Yuancheng Zhang
 
+Sorry professor. I used log git instead the performace. So I can't show each update Changelist number. 
+
 11/17/2015
 1. changed double type to float (data structures, OpenGL)
 2. added a switch in main.cpp
@@ -33,5 +35,13 @@ Student: Yuancheng Zhang
 8. just copied curr -> prev
 	0.1ms faster!
 
+11/24/2015
+1. removed Pivot in draw(), it useless
+2. removed tmp = scaleMatrix * scaleMatrix * transCamera * transParticle * rotParticle;
+   added TotalTransform(tmp, p->scale, cameraMatrix.v3, p->position, p->rotation);
+   2ms faster!
+3. clear useless parts
+4. compiler optimazied
+	0.5ms faster
 
 	
