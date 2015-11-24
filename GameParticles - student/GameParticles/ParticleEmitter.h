@@ -16,6 +16,7 @@ public:
 	void Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc) const;
 	void update();
 	void draw();
+	void TotalTransform(Matrix &out, const Vect4D &scale, const Vect4D &TrCam, const Vect4D &TrPtc, const float rot);
 	void CreateLinkedList();
 	
 public:
@@ -31,9 +32,6 @@ public:
 	float	last_loop;
 
 	Particle *headParticle;
-
-	Matrix cameraMatrix;
-	Vect4D camPosVect;
 };
 
 #endif // PARTICLEEMITTER_H

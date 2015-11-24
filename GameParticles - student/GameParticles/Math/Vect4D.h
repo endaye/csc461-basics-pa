@@ -35,10 +35,7 @@ public:
 
 	void set(float t)
 	{
-		this->x = t;
-		this->y = t;
-		this->z = t;
-		this->w = 1.0f;
+		this->m = _mm_set1_ps(t);
 	};
 
 	void set(float tx, float ty, float tz, float tw = 1.0f)

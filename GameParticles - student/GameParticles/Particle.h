@@ -12,8 +12,8 @@ public:
 	Particle();	
 	~Particle();
 	void setNext(Particle * n);
-	void setPrev(Particle * p);
 	void Update(const float& time_elapsed);
+	void updatePos(Vect4D &pos, const Vect4D &vect, const float time_elapsed) const;
 public:
 	Vect4D	prev_Row0;
 	Vect4D	prev_Row1;
@@ -35,7 +35,6 @@ public:
 	Vect4D	scale;
 
 	Particle *next;
-	Particle *prev;
 	float	life;
 	float	rotation;
 };

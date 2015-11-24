@@ -47,16 +47,16 @@ int main(int argc, char * const argv[])
 
 	// initialize the camera matrix
 	Matrix cameraMatrix;
-	cameraMatrix.setIdentMatrix();
+	cameraMatrix.setIdentMatrix2();
 
-	// setup the translation matrix
+	// setup the translation matrix: setTransMatrix(const Vect4D &t)
 	Matrix transMatrix;
-	Vect4D trans(0.0f, 3.0f, 10.0f);
-	transMatrix.setTransMatrix(trans);
+	transMatrix.setIdentMatrix2();
+	transMatrix.v3.set(0.0f, 3.0f, 10.0f);
 
 	// multiply them together
-	Matrix tmp;
-	tmp = cameraMatrix * transMatrix;
+	Matrix tmp(transMatrix);
+	//tmp = cameraMatrix * transMatrix;
 
 	// get the inverse matrix
 	Matrix inverseCameraMatrix;

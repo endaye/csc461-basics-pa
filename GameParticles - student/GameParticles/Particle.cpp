@@ -21,9 +21,10 @@ void Particle::setNext(Particle * n)
 {
 	this->next = n;
 }
-void Particle::setPrev(Particle * p)
+
+void Particle::updatePos(Vect4D &pos, const Vect4D &vel, const float time_elapsed) const
 {
-	this->prev = p;
+	pos.m = _mm_add_ps(pos.m, _mm_mul_ps(vel.m, _mm_set1_ps(time_elapsed)));
 }
 
 void Particle::Update(const float& time_elapsed)
@@ -37,7 +38,8 @@ void Particle::Update(const float& time_elapsed)
 
 	// serious math below - magic secret sauce
 	life += time_elapsed;
-	position += (velocity * time_elapsed);
+	//position += (velocity * time_elapsed);
+	updatePos(position, velocity, time_elapsed);
 	//Vect4D z_axis(0.0f, -0.25f, 1.0f);
 	//Vect4D v(3.0f, 4.0f, 0.0f);
 	//Vect4D v;
@@ -53,6 +55,8 @@ void Particle::Update(const float& time_elapsed)
 
 	rotation += scale + 0.5f * time_elapsed * 2.01f;
 }
+
+
 
 // End of file
 
