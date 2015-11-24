@@ -85,7 +85,7 @@ void Matrix::setTransMatrix(const Vect4D &t)
 	v0.set(1.0f, 0.0f, 0.0f, 0.0f);
 	v1.set(0.0f, 1.0f, 0.0f, 0.0f);
 	v2.set(0.0f, 0.0f, 1.0f, 0.0f);
-	v3.set(t.x, t.y, t.z, 1.0f);
+	v3.set(t.x,  t.y,  t.z,  1.0f);
 }
 
 void Matrix::setScaleMatrix(const Vect4D &scale)

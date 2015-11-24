@@ -192,11 +192,6 @@ void ParticleEmitter::draw()
 		tmp.get(p->curr_Row0, p->curr_Row1, p->curr_Row2, p->curr_Row3);
 
 		// set the transformation matrix
-		if (tmp.v0.x > 3.0f)
-		{
-			break;
-			p = p->next;
-		}
 		glLoadMatrixf(reinterpret_cast<float*>(&(tmp)));
 		// draw the trangle strip
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
