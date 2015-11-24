@@ -30,5 +30,8 @@ Student: Yuancheng Zhang
 6. used SIMD _mm_xor_ps() to swap two Vect4Ds 
 	0.3ms faster!
 7. move CreateLinkedList() from main into ParticleEmitter constructor
+8. just copied curr -> prev
+	0.1ms faster!
+
 
 	
