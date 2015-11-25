@@ -15,27 +15,11 @@ public:
 	void Update(const float& time_elapsed);
 	void updatePos(Vect4D &pos, const Vect4D &vect, const float time_elapsed) const;
 public:
-	Vect4D	prev_Row0;
-	Vect4D	prev_Row1;
-	Vect4D  prev_Row2;
-	Vect4D  prev_Row3;
-
-	Vect4D  diff_Row0;
-	Vect4D  diff_Row1;
-	Vect4D  diff_Row2;
-	Vect4D  diff_Row3;
-	
-	Vect4D	curr_Row0;
-	Vect4D	curr_Row1;
-	Vect4D  curr_Row2;
-	Vect4D  curr_Row3;
-
 	Vect4D	position;
 	Vect4D	velocity;
-	Vect4D	scale;
-
 	Particle *next;
 	float	life;
+	float	scale;
 	float	rotation;
 };
 

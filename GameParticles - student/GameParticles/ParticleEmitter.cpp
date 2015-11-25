@@ -44,7 +44,6 @@ ParticleEmitter::~ParticleEmitter()
 	// do nothing
 }
 
-
 /*
 tmp = scaleMatrix * transCamera * transParticle * rotParticle * scaleMatrix;
 
@@ -97,23 +96,24 @@ scaleMatrix * scaleMatrix * transCamera * transParticle * rotParticle
 {	sx*sx*(tcx+tpx)	sy*sy*(tcy+tpy)	sz*sz*(tcz+tpz)	1	}
 
 */
-void ParticleEmitter::TotalTransform(Matrix &out, const Vect4D &scale, const Vect4D &TrCam, const Vect4D &TrPtc, const float rot)
+void ParticleEmitter::TotalTransform(Matrix &out, const float &scale, const Vect4D &TrCam, const Vect4D &TrPtc, const float rot)
 {
-	Vect4D tmpScSq(_mm_mul_ps(scale.m, scale.m));
+	
+	float tmpSc = scale * scale;
 	Vect4D tmpTrans(_mm_add_ps(TrPtc.m, TrCam.m));
 	float sin = sinf(rot);
 	float cos = cosf(rot);
-	out.m0 = cos * tmpScSq.x;
-	out.m1 = (-sin) * tmpScSq.y;
-	out.m4 = sin * tmpScSq.x;
-	out.m5 = cos * tmpScSq.y;
-	out.m10 = tmpScSq.z;
-	out.m12 = tmpScSq.x * tmpTrans.x;
-	out.m13 = tmpScSq.y * tmpTrans.y;
-	out.m14 = tmpScSq.z * tmpTrans.z;
+	out.m0 = cos * tmpSc;
+	out.m1 = (-sin) * tmpSc;
+	out.m4 = sin * tmpSc;
+	out.m5 = cos * tmpSc;
+	out.m10 = tmpSc;
+	out.m12 = tmpSc * tmpTrans.x;
+	out.m13 = tmpSc * tmpTrans.y;
+	out.m14 = tmpSc * tmpTrans.z;
 }
 
-void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc) const
+void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, float& sc) const
 {
 	// Add some randomness...
 	float var0 = static_cast <float> (rand() - this->randHalf) * this->varM;
@@ -130,8 +130,7 @@ void ParticleEmitter::Execute(Vect4D& pos, Vect4D& vel, Vect4D& sc) const
 	vel.y += var1;
 	vel.z += var2;
 	//vel += Vect4D(var0, var1, var2, 0.0f);
-	var0 = static_cast <float> ((rand() - this->randHalf) * 2) * this->varM;
-	sc *= var0;
+	sc = static_cast <float> ((rand() - this->randHalf) * 2) * this->varM;
 }
 
 void ParticleEmitter::update()
@@ -156,7 +155,7 @@ void ParticleEmitter::update()
 			p->life = 0.0f;
 			p->position = start_position;
 			p->velocity = start_velocity;
-			p->scale.set(1.0f);
+			p->scale = 1.0f;
 			this->Execute(p->position, p->velocity, p->scale);
 		}
 		p = p->next;
@@ -202,19 +201,13 @@ void ParticleEmitter::draw()
 		TotalTransform(tmp, p->scale, cameraMatrix.v3, p->position, p->rotation);
 
 		// squirrel away matrix for next update
-		tmp.get(p->curr_Row0, p->curr_Row1, p->curr_Row2, p->curr_Row3);
+		//tmp.get(p->curr_Row0, p->curr_Row1, p->curr_Row2, p->curr_Row3);
 
 		// set the transformation matrix
 		glLoadMatrixf(reinterpret_cast<float*>(&(tmp)));
 		// draw the trangle strip
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 		
-		// difference vector
-		p->diff_Row0 = p->curr_Row0 - p->prev_Row0;
-		p->diff_Row1 = p->curr_Row1 - p->prev_Row1;
-		p->diff_Row2 = p->curr_Row2 - p->prev_Row2;
-		p->diff_Row3 = p->curr_Row3 - p->prev_Row3;
-
 		// clears or flushes some internal setting, used in debug, but is need for performance reasons
 		// magic...  really it's magic.
 		GLenum glError = glGetError();
@@ -246,10 +239,9 @@ void ParticleEmitter::CreateLinkedList()
 	{
 		pCurr->setNext(pCurr + 1);
 		pCurr->life = 0.0f;
+		pCurr->scale = 1.0f;
 		pCurr->position = start_position;
 		pCurr->velocity = start_velocity;
-		pCurr->scale.set(1.0f, 1.0f, 1.0f, 1.0f);
-
 		// apply the variance
 		this->Execute(pCurr->position, pCurr->velocity, pCurr->scale);
 		pCurr++;
